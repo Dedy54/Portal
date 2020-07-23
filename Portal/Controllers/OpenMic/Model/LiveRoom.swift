@@ -21,7 +21,7 @@ class LiveRoom: CloudKitProtocol, Identifiable, Equatable {
         self.id = ckRecord.recordID
     }
     
-    init(name: String, pendidikan: String, jabatan: String, email: String, alamat: String){
+    init(name: String){
         self.name = name
         
         if record == nil {

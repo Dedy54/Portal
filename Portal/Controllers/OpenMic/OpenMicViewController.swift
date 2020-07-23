@@ -28,6 +28,17 @@ class OpenMicViewController: UIViewController {
     */
     
     func sampleCode() {
+        // add inDatabase: CloudKitService.shared.publicDatabase default publicCloudDatabase
+        // add inDatabase: CloudKitService.shared.privateDatabase
+        // add inDatabase: CloudKitService.shared.sharedDatabase
+        
+        // create
+        LiveRoom(name: "test-room-live").save(inDatabase: CloudKitService.shared.sharedDatabase, result: { (result) in
+            
+        }) { (error) in
+            
+        }
+        
         // room query
         let predicateRoomName = NSPredicate(format: "name=%@", "test-room-live")
         LiveRoom.query(predicate: predicateRoomName, result: { (liveRooms) in
