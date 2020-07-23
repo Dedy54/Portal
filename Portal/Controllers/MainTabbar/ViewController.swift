@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         
-        if UserDefaults.standard.bool(forKey: "FirstLaunch") {
+        if PreferenceManager.instance.finishedOnboarding == false {
             performSegue(withIdentifier: "toOnBoardingPage", sender: self)
         }
         else {

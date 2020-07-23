@@ -86,6 +86,7 @@
                                         </state>
                                         <connections>
                                             <action selector="buttonButton:" destination="ICe-yM-TwI" eventType="touchUpInside" id="tcO-cc-p6S"/>
+                                            <action selector="changeOnBoardPref:" destination="rOv-mw-34H" eventType="touchUpInside" id="n0T-S2-AGx"/>
                                             <segue destination="4zZ-2m-8wp" kind="show" id="9K9-bz-8kI"/>
                                         </connections>
                                     </button>

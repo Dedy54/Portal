@@ -20,6 +20,9 @@ class onBoarding2ViewController: UIViewController {
     }
     
 
+    @IBAction func changeOnBoardPref(_ sender: Any) {
+        PreferenceManager.instance.finishedOnboarding = true
+    }
     /*
     // MARK: - Navigation
 
