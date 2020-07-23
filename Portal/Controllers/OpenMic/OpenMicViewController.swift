@@ -26,5 +26,41 @@ class OpenMicViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    func sampleCode() {
+        // room query
+        let predicateRoomName = NSPredicate(format: "name=%@", "test-room-live")
+        LiveRoom.query(predicate: predicateRoomName, result: { (liveRooms) in
+            print("Success \(liveRooms?.count ?? 0)")
+        }) { (error) in
+        
+        }
+        
+        // delete where
+        let predicateMembersTest = NSPredicate(format: "%K == %@", argumentArray: ["name", "test-room-live"])
+        LiveRoom.delete(predicate: predicateMembersTest, completion: {
+            print("Success delete LiveRoom test name")
+        })
+        
+        // delete all
+        LiveRoom.deleteAll {
+            print("Success delete LiveRoom")
+        }
+        
+        // update
+        let name = "test-room-live"
+        let predicate = NSPredicate(format: "%K == %@", argumentArray: ["email", name])
+        LiveRoom.query(predicate: predicate, result: { (foundLiveRooms) in
+            if let foundLiveRoom = foundLiveRooms?.first {
+                foundLiveRoom.record?.setValue("testnameupdate", forKey: "name")
+                foundLiveRoom.save(result: { (foundLiveRooms) in
+                    print("Success")
+                }) { (error) in
+                    print("error")
+                }
+            }
+        }) { (error) in
+            print(error)
+        }
+    }
 }
