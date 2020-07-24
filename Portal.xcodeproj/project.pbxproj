@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C16736724C9466D00DBD828 /* CloudKitProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C16736424C9466D00DBD828 /* CloudKitProtocol.swift */; };
+		5C16736824C9466D00DBD828 /* CloudKitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C16736524C9466D00DBD828 /* CloudKitService.swift */; };
+		5C16736924C9466D00DBD828 /* PreferenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C16736624C9466D00DBD828 /* PreferenceManager.swift */; };
+		5C16736C24C946D300DBD828 /* LiveRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C16736B24C946D300DBD828 /* LiveRoom.swift */; };
 		5C26559224BEEA0400FCE8AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C26559124BEEA0400FCE8AB /* AppDelegate.swift */; };
 		5C26559424BEEA0400FCE8AB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C26559324BEEA0400FCE8AB /* SceneDelegate.swift */; };
 		5C26559924BEEA0400FCE8AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C26559724BEEA0400FCE8AB /* Main.storyboard */; };
@@ -45,6 +49,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5C16736424C9466D00DBD828 /* CloudKitProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitProtocol.swift; sourceTree = "<group>"; };
+		5C16736524C9466D00DBD828 /* CloudKitService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitService.swift; sourceTree = "<group>"; };
+		5C16736624C9466D00DBD828 /* PreferenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceManager.swift; sourceTree = "<group>"; };
+		5C16736B24C946D300DBD828 /* LiveRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveRoom.swift; sourceTree = "<group>"; };
 		5C26558E24BEEA0400FCE8AB /* Portal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Portal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C26559124BEEA0400FCE8AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5C26559324BEEA0400FCE8AB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +104,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5C16736224C9466D00DBD828 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				5C16736324C9466D00DBD828 /* CloudKit */,
+				5C16736624C9466D00DBD828 /* PreferenceManager.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		5C16736324C9466D00DBD828 /* CloudKit */ = {
+			isa = PBXGroup;
+			children = (
+				5C16736424C9466D00DBD828 /* CloudKitProtocol.swift */,
+				5C16736524C9466D00DBD828 /* CloudKitService.swift */,
+			);
+			path = CloudKit;
+			sourceTree = "<group>";
+		};
+		5C16736A24C946BE00DBD828 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5C16736B24C946D300DBD828 /* LiveRoom.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		5C26558524BEEA0400FCE8AB = {
 			isa = PBXGroup;
 			children = (
@@ -124,6 +158,7 @@
 				5C26559A24BEEA0700FCE8AB /* Assets.xcassets */,
 				5C26559C24BEEA0700FCE8AB /* LaunchScreen.storyboard */,
 				5C26559F24BEEA0700FCE8AB /* Info.plist */,
+				5C16736224C9466D00DBD828 /* Helper */,
 				5C2655C124BEEABD00FCE8AB /* Controllers */,
 			);
 			path = Portal;
@@ -190,6 +225,7 @@
 		5C2655C524BEEB6A00FCE8AB /* OpenMic */ = {
 			isa = PBXGroup;
 			children = (
+				5C16736A24C946BE00DBD828 /* Model */,
 				5C2655D024BEEBBA00FCE8AB /* OpenMic.storyboard */,
 				5C2655D224BEEBC400FCE8AB /* OpenMicViewController.swift */,
 			);
@@ -351,12 +387,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C2655CD24BEEBA300FCE8AB /* SearchViewController.swift in Sources */,
+				5C16736724C9466D00DBD828 /* CloudKitProtocol.swift in Sources */,
+				5C16736C24C946D300DBD828 /* LiveRoom.swift in Sources */,
 				5C2655DD24BEEFE100FCE8AB /* MainTabBarController.swift in Sources */,
 				5C2655DB24BEEBEC00FCE8AB /* ProfileViewController.swift in Sources */,
 				5C26559224BEEA0400FCE8AB /* AppDelegate.swift in Sources */,
+				5C16736924C9466D00DBD828 /* PreferenceManager.swift in Sources */,
 				5C2655D524BEEBCE00FCE8AB /* NotificationViewController.swift in Sources */,
 				5C26559424BEEA0400FCE8AB /* SceneDelegate.swift in Sources */,
 				5C2655D324BEEBC400FCE8AB /* OpenMicViewController.swift in Sources */,
+				5C16736824C9466D00DBD828 /* CloudKitService.swift in Sources */,
 				5C2655CB24BEEB9700FCE8AB /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
