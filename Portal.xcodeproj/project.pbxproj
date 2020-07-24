@@ -30,6 +30,12 @@
 		5C2655DB24BEEBEC00FCE8AB /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2655DA24BEEBEC00FCE8AB /* ProfileViewController.swift */; };
 		5C2655DD24BEEFE100FCE8AB /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2655DC24BEEFE100FCE8AB /* MainTabBarController.swift */; };
 		8C49FD3124C97BEF0009C452 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C49FD3024C97BEF0009C452 /* CollectionViewCell.swift */; };
+		8C49FD3624C987280009C452 /* NewComer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C49FD3524C987280009C452 /* NewComer.storyboard */; };
+		8C49FD3824C9877C0009C452 /* NewComerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C49FD3724C9877C0009C452 /* NewComerViewController.swift */; };
+		8C49FD3A24C9886B0009C452 /* LiveNow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C49FD3924C9886B0009C452 /* LiveNow.storyboard */; };
+		8C49FD3C24C988800009C452 /* LiveNowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C49FD3B24C988800009C452 /* LiveNowViewController.swift */; };
+		8C49FD3E24C9893B0009C452 /* TrendingVideos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C49FD3D24C9893B0009C452 /* TrendingVideos.storyboard */; };
+		8C49FD4024C989490009C452 /* TrendingVideosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C49FD3F24C989490009C452 /* TrendingVideosViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +85,12 @@
 		5C2655DA24BEEBEC00FCE8AB /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		5C2655DC24BEEFE100FCE8AB /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		8C49FD3024C97BEF0009C452 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		8C49FD3524C987280009C452 /* NewComer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewComer.storyboard; sourceTree = "<group>"; };
+		8C49FD3724C9877C0009C452 /* NewComerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewComerViewController.swift; sourceTree = "<group>"; };
+		8C49FD3924C9886B0009C452 /* LiveNow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LiveNow.storyboard; sourceTree = "<group>"; };
+		8C49FD3B24C988800009C452 /* LiveNowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveNowViewController.swift; sourceTree = "<group>"; };
+		8C49FD3D24C9893B0009C452 /* TrendingVideos.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TrendingVideos.storyboard; sourceTree = "<group>"; };
+		8C49FD3F24C989490009C452 /* TrendingVideosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingVideosViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +224,9 @@
 				5C2655C824BEEB8A00FCE8AB /* Home.storyboard */,
 				5C2655CA24BEEB9700FCE8AB /* HomeViewController.swift */,
 				8C49FD3024C97BEF0009C452 /* CollectionViewCell.swift */,
+				8C49FD3224C986C90009C452 /* New Comer */,
+				8C49FD3324C986E40009C452 /* Live Now */,
+				8C49FD3424C986E70009C452 /* Trending Videos */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -251,6 +266,33 @@
 				5C2655DA24BEEBEC00FCE8AB /* ProfileViewController.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		8C49FD3224C986C90009C452 /* New Comer */ = {
+			isa = PBXGroup;
+			children = (
+				8C49FD3524C987280009C452 /* NewComer.storyboard */,
+				8C49FD3724C9877C0009C452 /* NewComerViewController.swift */,
+			);
+			path = "New Comer";
+			sourceTree = "<group>";
+		};
+		8C49FD3324C986E40009C452 /* Live Now */ = {
+			isa = PBXGroup;
+			children = (
+				8C49FD3924C9886B0009C452 /* LiveNow.storyboard */,
+				8C49FD3B24C988800009C452 /* LiveNowViewController.swift */,
+			);
+			path = "Live Now";
+			sourceTree = "<group>";
+		};
+		8C49FD3424C986E70009C452 /* Trending Videos */ = {
+			isa = PBXGroup;
+			children = (
+				8C49FD3D24C9893B0009C452 /* TrendingVideos.storyboard */,
+				8C49FD3F24C989490009C452 /* TrendingVideosViewController.swift */,
+			);
+			path = "Trending Videos";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -358,12 +400,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C26559E24BEEA0700FCE8AB /* LaunchScreen.storyboard in Resources */,
+				8C49FD3A24C9886B0009C452 /* LiveNow.storyboard in Resources */,
 				5C26559B24BEEA0700FCE8AB /* Assets.xcassets in Resources */,
 				5C2655D924BEEBE200FCE8AB /* Profile.storyboard in Resources */,
+				8C49FD3E24C9893B0009C452 /* TrendingVideos.storyboard in Resources */,
 				5C26559924BEEA0400FCE8AB /* Main.storyboard in Resources */,
 				5C2655C924BEEB8A00FCE8AB /* Home.storyboard in Resources */,
 				5C2655D124BEEBBA00FCE8AB /* OpenMic.storyboard in Resources */,
 				5C2655CF24BEEBAE00FCE8AB /* Search.storyboard in Resources */,
+				8C49FD3624C987280009C452 /* NewComer.storyboard in Resources */,
 				5C2655D724BEEBD700FCE8AB /* Notification.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -393,6 +438,9 @@
 				5C16736724C9466D00DBD828 /* CloudKitProtocol.swift in Sources */,
 				5C16736C24C946D300DBD828 /* LiveRoom.swift in Sources */,
 				5C2655DD24BEEFE100FCE8AB /* MainTabBarController.swift in Sources */,
+				8C49FD3824C9877C0009C452 /* NewComerViewController.swift in Sources */,
+				8C49FD4024C989490009C452 /* TrendingVideosViewController.swift in Sources */,
+				8C49FD3C24C988800009C452 /* LiveNowViewController.swift in Sources */,
 				5C2655DB24BEEBEC00FCE8AB /* ProfileViewController.swift in Sources */,
 				5C26559224BEEA0400FCE8AB /* AppDelegate.swift in Sources */,
 				5C16736924C9466D00DBD828 /* PreferenceManager.swift in Sources */,
@@ -575,7 +623,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 52CL477F5B;
+				DEVELOPMENT_TEAM = RVX7923326;
 				INFOPLIST_FILE = Portal/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -593,7 +641,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 52CL477F5B;
+				DEVELOPMENT_TEAM = RVX7923326;
 				INFOPLIST_FILE = Portal/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
