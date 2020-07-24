@@ -7,9 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+
 		2DD9F6FA24C9591600CD71AC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD9F6F924C9591600CD71AC /* ViewController.swift */; };
 		2DD9F6FC24C9599F00CD71AC /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD9F6FB24C9599F00CD71AC /* OnBoardingViewController.swift */; };
 		2DD9F6FE24C9807D00CD71AC /* onBoarding2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD9F6FD24C9807D00CD71AC /* onBoarding2ViewController.swift */; };
+
+		20A5773A24CA8949009F55EC /* LaughClassifierController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A5773924CA8949009F55EC /* LaughClassifierController.swift */; };
+		20A5773B24CA8E42009F55EC /* LaughClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 20A5773824CA8913009F55EC /* LaughClassifier.mlmodel */; };
+
 		5C16736724C9466D00DBD828 /* CloudKitProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C16736424C9466D00DBD828 /* CloudKitProtocol.swift */; };
 		5C16736824C9466D00DBD828 /* CloudKitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C16736524C9466D00DBD828 /* CloudKitService.swift */; };
 		5C16736924C9466D00DBD828 /* PreferenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C16736624C9466D00DBD828 /* PreferenceManager.swift */; };
@@ -52,9 +57,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+
 		2DD9F6F924C9591600CD71AC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2DD9F6FB24C9599F00CD71AC /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
 		2DD9F6FD24C9807D00CD71AC /* onBoarding2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onBoarding2ViewController.swift; sourceTree = "<group>"; };
+
+		20A5773824CA8913009F55EC /* LaughClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = LaughClassifier.mlmodel; sourceTree = "<group>"; };
+		20A5773924CA8949009F55EC /* LaughClassifierController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaughClassifierController.swift; sourceTree = "<group>"; };
+
 		5C16736424C9466D00DBD828 /* CloudKitProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitProtocol.swift; sourceTree = "<group>"; };
 		5C16736524C9466D00DBD828 /* CloudKitService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitService.swift; sourceTree = "<group>"; };
 		5C16736624C9466D00DBD828 /* PreferenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceManager.swift; sourceTree = "<group>"; };
@@ -110,6 +120,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		20A5773524CA88FE009F55EC /* LaughDetector */ = {
+			isa = PBXGroup;
+			children = (
+				20A5773824CA8913009F55EC /* LaughClassifier.mlmodel */,
+				20A5773924CA8949009F55EC /* LaughClassifierController.swift */,
+			);
+			path = LaughDetector;
+			sourceTree = "<group>";
+		};
 		5C16736224C9466D00DBD828 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,6 +210,7 @@
 		5C2655C124BEEABD00FCE8AB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				20A5773524CA88FE009F55EC /* LaughDetector */,
 				5C2655C724BEEB7A00FCE8AB /* Profile */,
 				5C2655C624BEEB7200FCE8AB /* Notification */,
 				5C2655C524BEEB6A00FCE8AB /* OpenMic */,
@@ -395,9 +415,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20A5773B24CA8E42009F55EC /* LaughClassifier.mlmodel in Sources */,
 				5C2655CD24BEEBA300FCE8AB /* SearchViewController.swift in Sources */,
 				5C16736724C9466D00DBD828 /* CloudKitProtocol.swift in Sources */,
 				5C16736C24C946D300DBD828 /* LiveRoom.swift in Sources */,
+				20A5773A24CA8949009F55EC /* LaughClassifierController.swift in Sources */,
 				5C2655DD24BEEFE100FCE8AB /* MainTabBarController.swift in Sources */,
 				5C2655DB24BEEBEC00FCE8AB /* ProfileViewController.swift in Sources */,
 				5C26559224BEEA0400FCE8AB /* AppDelegate.swift in Sources */,
