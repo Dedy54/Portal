@@ -37,6 +37,7 @@
 		5C2655D924BEEBE200FCE8AB /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C2655D824BEEBE200FCE8AB /* Profile.storyboard */; };
 		5C2655DB24BEEBEC00FCE8AB /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2655DA24BEEBEC00FCE8AB /* ProfileViewController.swift */; };
 		5C2655DD24BEEFE100FCE8AB /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2655DC24BEEFE100FCE8AB /* MainTabBarController.swift */; };
+		8C49FD3124C97BEF0009C452 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C49FD3024C97BEF0009C452 /* CollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,7 @@
 		5C2655D824BEEBE200FCE8AB /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		5C2655DA24BEEBEC00FCE8AB /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		5C2655DC24BEEFE100FCE8AB /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		8C49FD3024C97BEF0009C452 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,6 +240,7 @@
 			children = (
 				5C2655C824BEEB8A00FCE8AB /* Home.storyboard */,
 				5C2655CA24BEEB9700FCE8AB /* HomeViewController.swift */,
+				8C49FD3024C97BEF0009C452 /* CollectionViewCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -429,6 +432,7 @@
 				2DD9F6FA24C9591600CD71AC /* ViewController.swift in Sources */,
 				2DD9F6FC24C9599F00CD71AC /* OnBoardingViewController.swift in Sources */,
 				5C26559424BEEA0400FCE8AB /* SceneDelegate.swift in Sources */,
+				8C49FD3124C97BEF0009C452 /* CollectionViewCell.swift in Sources */,
 				5C2655D324BEEBC400FCE8AB /* OpenMicViewController.swift in Sources */,
 				5C16736824C9466D00DBD828 /* CloudKitService.swift in Sources */,
 				5C2655CB24BEEB9700FCE8AB /* HomeViewController.swift in Sources */,
