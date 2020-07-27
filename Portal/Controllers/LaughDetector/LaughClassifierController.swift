@@ -13,7 +13,7 @@ import SoundAnalysis
 class LaughClassifierController: UIViewController, GenderClassifierDelegate {
     
     func displayPredictionResult(identifier: String, confidence: Double) {
-        <#code#>
+        
     }
     
 

@@ -1,14 +1,27 @@
 //
-//  NotificationViewController.swift
+//  NewComerViewController.swift
 //  Portal
 //
-//  Created by Dedy Yuristiawan on 15/07/20.
+//  Created by Stendy Antonio on 23/07/20.
 //  Copyright © 2020 Dedy Yuristiawan. All rights reserved.
 //
 
 import UIKit
 
-class NotificationViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class NewComerViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! NewComerCollectionViewCell
+        
+        
+        return cell
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,17 +29,7 @@ class NotificationViewController: UIViewController, UICollectionViewDelegate, UI
         // Do any additional setup after loading the view.
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! NotificationCollectionViewCell
-        
-        
-        
-        return cell
-    }
+
     /*
     // MARK: - Navigation
 

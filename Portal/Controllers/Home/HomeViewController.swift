@@ -10,12 +10,13 @@ import UIKit
 
 class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
-    let items = ["0","1","2","3","4","5","6","7","8","9"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(HomeViewController.viewTapped(gestureRecognizer:)))
+        
+        view.addGestureRecognizer(tapGesture)
     }
     
 
@@ -29,6 +30,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         
         return cell
+    }
+    
+    @objc func viewTapped(gestureRecognizer:UITapGestureRecognizer){
+        view.endEditing(true)
     }
 
 }
