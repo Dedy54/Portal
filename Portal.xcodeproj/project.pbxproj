@@ -8,15 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		205B0F2424CE691700360695 /* LaughClassifier1.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 205B0F2324CE691700360695 /* LaughClassifier1.mlmodel */; };
-
+		205B0F2624CF1BB700360695 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205B0F2524CF1BB700360695 /* UIViewControllerExtension.swift */; };
 		20A5773A24CA8949009F55EC /* LaughClassifierController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A5773924CA8949009F55EC /* LaughClassifierController.swift */; };
 		20A5773B24CA8E42009F55EC /* LaughClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 20A5773824CA8913009F55EC /* LaughClassifier.mlmodel */; };
+		20C9687B24CF3BA00067D346 /* VideoPlayerController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20C9687A24CF3BA00067D346 /* VideoPlayerController.storyboard */; };
+		20C9687D24CF464A0067D346 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C9687C24CF464A0067D346 /* ContentView.swift */; };
+		20C9687F24CF46DB0067D346 /* test.mov in Resources */ = {isa = PBXBuildFile; fileRef = 20C9687E24CF46DB0067D346 /* test.mov */; };
 		2DD9F6FA24C9591600CD71AC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD9F6F924C9591600CD71AC /* ViewController.swift */; };
 		2DD9F6FC24C9599F00CD71AC /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD9F6FB24C9599F00CD71AC /* OnBoardingViewController.swift */; };
 		2DD9F6FE24C9807D00CD71AC /* onBoarding2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD9F6FD24C9807D00CD71AC /* onBoarding2ViewController.swift */; };
-
 		2DD9F70024CD7B5000CD71AC /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD9F6FF24CD7B5000CD71AC /* ProfileCollectionViewCell.swift */; };
-
 		5C16736724C9466D00DBD828 /* CloudKitProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C16736424C9466D00DBD828 /* CloudKitProtocol.swift */; };
 		5C16736824C9466D00DBD828 /* CloudKitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C16736524C9466D00DBD828 /* CloudKitService.swift */; };
 		5C16736924C9466D00DBD828 /* PreferenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C16736624C9466D00DBD828 /* PreferenceManager.swift */; };
@@ -71,15 +72,17 @@
 
 /* Begin PBXFileReference section */
 		205B0F2324CE691700360695 /* LaughClassifier1.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = LaughClassifier1.mlmodel; path = "../../../../../ML Model/LaughClassifier.mlproj/Models/LaughClassifier1.mlmodel"; sourceTree = "<group>"; };
-
+		205B0F2524CF1BB700360695 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		20A5773824CA8913009F55EC /* LaughClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = LaughClassifier.mlmodel; sourceTree = "<group>"; };
 		20A5773924CA8949009F55EC /* LaughClassifierController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaughClassifierController.swift; sourceTree = "<group>"; };
+		20C9687A24CF3BA00067D346 /* VideoPlayerController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VideoPlayerController.storyboard; sourceTree = "<group>"; };
+		20C9687C24CF464A0067D346 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		20C9687E24CF46DB0067D346 /* test.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = test.mov; path = ../../../Desktop/test.mov; sourceTree = "<group>"; };
+		20C9688024CF479E0067D346 /* test2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = test2.mp4; path = ../../../Downloads/test2.mp4; sourceTree = "<group>"; };
 		2DD9F6F924C9591600CD71AC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2DD9F6FB24C9599F00CD71AC /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
 		2DD9F6FD24C9807D00CD71AC /* onBoarding2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onBoarding2ViewController.swift; sourceTree = "<group>"; };
-
 		2DD9F6FF24CD7B5000CD71AC /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
-
 		5C16736424C9466D00DBD828 /* CloudKitProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitProtocol.swift; sourceTree = "<group>"; };
 		5C16736524C9466D00DBD828 /* CloudKitService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitService.swift; sourceTree = "<group>"; };
 		5C16736624C9466D00DBD828 /* PreferenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceManager.swift; sourceTree = "<group>"; };
@@ -152,6 +155,8 @@
 				205B0F2324CE691700360695 /* LaughClassifier1.mlmodel */,
 				20A5773824CA8913009F55EC /* LaughClassifier.mlmodel */,
 				20A5773924CA8949009F55EC /* LaughClassifierController.swift */,
+				20C9687A24CF3BA00067D346 /* VideoPlayerController.storyboard */,
+				20C9687C24CF464A0067D346 /* ContentView.swift */,
 			);
 			path = LaughDetector;
 			sourceTree = "<group>";
@@ -161,6 +166,7 @@
 			children = (
 				5C16736324C9466D00DBD828 /* CloudKit */,
 				5C16736624C9466D00DBD828 /* PreferenceManager.swift */,
+				205B0F2524CF1BB700360695 /* UIViewControllerExtension.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -205,6 +211,8 @@
 		5C26559024BEEA0400FCE8AB /* Portal */ = {
 			isa = PBXGroup;
 			children = (
+				20C9687E24CF46DB0067D346 /* test.mov */,
+				20C9688024CF479E0067D346 /* test2.mp4 */,
 				5C26559124BEEA0400FCE8AB /* AppDelegate.swift */,
 				5C26559324BEEA0400FCE8AB /* SceneDelegate.swift */,
 				5C26559A24BEEA0700FCE8AB /* Assets.xcassets */,
@@ -449,6 +457,7 @@
 				5C26559E24BEEA0700FCE8AB /* LaunchScreen.storyboard in Resources */,
 				8C49FD3A24C9886B0009C452 /* LiveNow.storyboard in Resources */,
 				5C26559B24BEEA0700FCE8AB /* Assets.xcassets in Resources */,
+				20C9687F24CF46DB0067D346 /* test.mov in Resources */,
 				5C2655D924BEEBE200FCE8AB /* Profile.storyboard in Resources */,
 				8C49FD3E24C9893B0009C452 /* TrendingVideos.storyboard in Resources */,
 				5C26559924BEEA0400FCE8AB /* Main.storyboard in Resources */,
@@ -456,6 +465,7 @@
 				5C2655D124BEEBBA00FCE8AB /* OpenMic.storyboard in Resources */,
 				5C2655CF24BEEBAE00FCE8AB /* Search.storyboard in Resources */,
 				8C49FD3624C987280009C452 /* NewComer.storyboard in Resources */,
+				20C9687B24CF3BA00067D346 /* VideoPlayerController.storyboard in Resources */,
 				5C2655D724BEEBD700FCE8AB /* Notification.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -489,13 +499,12 @@
 				5C16736724C9466D00DBD828 /* CloudKitProtocol.swift in Sources */,
 				5C16736C24C946D300DBD828 /* LiveRoom.swift in Sources */,
 				20A5773A24CA8949009F55EC /* LaughClassifierController.swift in Sources */,
-
 				205B0F2424CE691700360695 /* LaughClassifier1.mlmodel in Sources */,
-
 				2DD9F70024CD7B5000CD71AC /* ProfileCollectionViewCell.swift in Sources */,
-
 				5C2655DD24BEEFE100FCE8AB /* MainTabBarController.swift in Sources */,
 				8C49FD3824C9877C0009C452 /* NewComerViewController.swift in Sources */,
+				205B0F2624CF1BB700360695 /* UIViewControllerExtension.swift in Sources */,
+				20C9687D24CF464A0067D346 /* ContentView.swift in Sources */,
 				8C49FD4024C989490009C452 /* TrendingVideosViewController.swift in Sources */,
 				8C49FD3C24C988800009C452 /* LiveNowViewController.swift in Sources */,
 				5C2655DB24BEEBEC00FCE8AB /* ProfileViewController.swift in Sources */,

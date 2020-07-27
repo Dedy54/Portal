@@ -17,6 +17,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(HomeViewController.viewTapped(gestureRecognizer:)))
         
         view.addGestureRecognizer(tapGesture)
+        hideNavigationBar()
     }
     
 
@@ -36,4 +37,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         view.endEditing(true)
     }
 
+    
+    override func viewWillAppear(_ animated: Bool) {
+        hideNavigationBar()
+    }
 }
