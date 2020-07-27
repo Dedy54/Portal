@@ -1,14 +1,14 @@
 //
-//  NotificationViewController.swift
+//  LiveNewViewController.swift
 //  Portal
 //
-//  Created by Dedy Yuristiawan on 15/07/20.
+//  Created by Stendy Antonio on 23/07/20.
 //  Copyright © 2020 Dedy Yuristiawan. All rights reserved.
 //
 
 import UIKit
 
-class NotificationViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class LiveNowViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,12 +21,13 @@ class NotificationViewController: UIViewController, UICollectionViewDelegate, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! NotificationCollectionViewCell
         
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! LiveNowCollectionViewCell
         
         
         return cell
     }
+
     /*
     // MARK: - Navigation
 
