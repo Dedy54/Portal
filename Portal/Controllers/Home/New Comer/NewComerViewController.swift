@@ -27,6 +27,7 @@ class NewComerViewController: UIViewController, UICollectionViewDataSource, UICo
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        showNavigationBar()
     }
     
 

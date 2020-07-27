@@ -26,6 +26,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         view.addGestureRecognizer(tapGesture)
         
         // Do any additional setup after loading the view.
+        hideNavigationBar()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

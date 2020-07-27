@@ -14,6 +14,7 @@ class NotificationViewController: UIViewController, UICollectionViewDelegate, UI
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        hideNavigationBar()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
