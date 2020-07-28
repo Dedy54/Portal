@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Stream Live Video View Controller-->
+        <scene sceneID="oGg-SH-m2n">
+            <objects>
+                <viewController restorationIdentifier="StreamLiveVideoViewController" storyboardIdentifier="StreamLiveVideoViewController" id="FC8-n4-HRz" customClass="StreamLiveVideoViewController" customModule="Portal" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AQA-U2-5BD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dw9-fc-MkI" customClass="AGEVideoContainer" customModule="Portal" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Dw9-fc-MkI" firstAttribute="leading" secondItem="ioS-ki-ac2" secondAttribute="leading" id="3ba-xX-7yW"/>
+                            <constraint firstItem="ioS-ki-ac2" firstAttribute="trailing" secondItem="Dw9-fc-MkI" secondAttribute="trailing" id="4gs-4l-OQ1"/>
+                            <constraint firstItem="Dw9-fc-MkI" firstAttribute="top" secondItem="AQA-U2-5BD" secondAttribute="top" id="lPQ-6e-D2y"/>
+                            <constraint firstItem="ioS-ki-ac2" firstAttribute="bottom" secondItem="Dw9-fc-MkI" secondAttribute="bottom" id="r9C-IZ-TG6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ioS-ki-ac2"/>
+                    </view>
+                    <connections>
+                        <outlet property="broadcastersView" destination="Dw9-fc-MkI" id="rcZ-QU-4cF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z9b-pL-M3h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
+        </scene>
+    </scenes>
+</document>
