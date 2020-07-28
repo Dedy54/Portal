@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		205B0F2424CE691700360695 /* LaughClassifier1.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 205B0F2324CE691700360695 /* LaughClassifier1.mlmodel */; };
 		205B0F2624CF1BB700360695 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205B0F2524CF1BB700360695 /* UIViewControllerExtension.swift */; };
-		20A5773A24CA8949009F55EC /* LaughClassifierController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A5773924CA8949009F55EC /* LaughClassifierController.swift */; };
+		20A5773A24CA8949009F55EC /* VideoPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A5773924CA8949009F55EC /* VideoPlayerController.swift */; };
 		20A5773B24CA8E42009F55EC /* LaughClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 20A5773824CA8913009F55EC /* LaughClassifier.mlmodel */; };
-		20C9687B24CF3BA00067D346 /* VideoPlayerController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20C9687A24CF3BA00067D346 /* VideoPlayerController.storyboard */; };
+		20C9687B24CF3BA00067D346 /* VideoPlayer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20C9687A24CF3BA00067D346 /* VideoPlayer.storyboard */; };
 		20C9687D24CF464A0067D346 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C9687C24CF464A0067D346 /* ContentView.swift */; };
 		20C9687F24CF46DB0067D346 /* test.mov in Resources */ = {isa = PBXBuildFile; fileRef = 20C9687E24CF46DB0067D346 /* test.mov */; };
 		2DD9F6FA24C9591600CD71AC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD9F6F924C9591600CD71AC /* ViewController.swift */; };
@@ -95,8 +95,8 @@
 		205B0F2324CE691700360695 /* LaughClassifier1.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = LaughClassifier1.mlmodel; path = "../../../../../ML Model/LaughClassifier.mlproj/Models/LaughClassifier1.mlmodel"; sourceTree = "<group>"; };
 		205B0F2524CF1BB700360695 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		20A5773824CA8913009F55EC /* LaughClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = LaughClassifier.mlmodel; sourceTree = "<group>"; };
-		20A5773924CA8949009F55EC /* LaughClassifierController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaughClassifierController.swift; sourceTree = "<group>"; };
-		20C9687A24CF3BA00067D346 /* VideoPlayerController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VideoPlayerController.storyboard; sourceTree = "<group>"; };
+		20A5773924CA8949009F55EC /* VideoPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerController.swift; sourceTree = "<group>"; };
+		20C9687A24CF3BA00067D346 /* VideoPlayer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VideoPlayer.storyboard; sourceTree = "<group>"; };
 		20C9687C24CF464A0067D346 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		20C9687E24CF46DB0067D346 /* test.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = test.mov; path = ../../../Desktop/test.mov; sourceTree = "<group>"; };
 		20C9688024CF479E0067D346 /* test2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = test2.mp4; path = ../../../Downloads/test2.mp4; sourceTree = "<group>"; };
@@ -198,8 +198,8 @@
 			children = (
 				205B0F2324CE691700360695 /* LaughClassifier1.mlmodel */,
 				20A5773824CA8913009F55EC /* LaughClassifier.mlmodel */,
-				20A5773924CA8949009F55EC /* LaughClassifierController.swift */,
-				20C9687A24CF3BA00067D346 /* VideoPlayerController.storyboard */,
+				20A5773924CA8949009F55EC /* VideoPlayerController.swift */,
+				20C9687A24CF3BA00067D346 /* VideoPlayer.storyboard */,
 				20C9687C24CF464A0067D346 /* ContentView.swift */,
 			);
 			path = LaughDetector;
@@ -614,7 +614,7 @@
 				5C2655D124BEEBBA00FCE8AB /* OpenMic.storyboard in Resources */,
 				5C2655CF24BEEBAE00FCE8AB /* Search.storyboard in Resources */,
 				8C49FD3624C987280009C452 /* NewComer.storyboard in Resources */,
-				20C9687B24CF3BA00067D346 /* VideoPlayerController.storyboard in Resources */,
+				20C9687B24CF3BA00067D346 /* VideoPlayer.storyboard in Resources */,
 				5C2655D724BEEBD700FCE8AB /* Notification.storyboard in Resources */,
 				5CBFEBB024D012E700F406D8 /* LiveMenu.storyboard in Resources */,
 			);
@@ -650,6 +650,8 @@
 				20A5773A24CA8949009F55EC /* LaughClassifierController.swift in Sources */,
 				5CBFEB8124D012C000F406D8 /* AgoraExtension.swift in Sources */,
 				5CBFEB9024D012D200F406D8 /* AGEVideoLayout.swift in Sources */,
+				5C16736C24C946D300DBD828 /* LiveRoom.swift in Sources */,
+				20A5773A24CA8949009F55EC /* VideoPlayerController.swift in Sources */,
 				205B0F2424CE691700360695 /* LaughClassifier1.mlmodel in Sources */,
 				5CBFEBAE24D012E700F406D8 /* LiveMenuViewController.swift in Sources */,
 				2DD9F70024CD7B5000CD71AC /* ProfileCollectionViewCell.swift in Sources */,

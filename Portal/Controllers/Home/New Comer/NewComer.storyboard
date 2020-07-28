@@ -85,10 +85,23 @@
                         <viewLayoutGuide key="safeArea" id="vam-fN-Ztp"/>
                     </view>
                     <navigationItem key="navigationItem" id="ded-12-aKr"/>
+                    <connections>
+                        <segue destination="LcC-ZB-LKS" kind="show" identifier="toVideoPlayer" id="FdE-4p-TXp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Hw-r1-sTo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1065.217391304348" y="-563.16964285714278"/>
+        </scene>
+        <!--VideoPlayerController-->
+        <scene sceneID="POB-83-kBj">
+            <objects>
+                <viewControllerPlaceholder storyboardName="VideoPlayer" referencedIdentifier="VideoPlayerController" id="LcC-ZB-LKS" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="uqB-V5-cMY"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AEo-ze-xHu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-254" y="-563"/>
         </scene>
     </scenes>
     <resources>
