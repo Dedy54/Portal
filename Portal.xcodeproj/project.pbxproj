@@ -61,6 +61,8 @@
 		5CBFEBB124D012E700F406D8 /* NewPostFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CBFEBA624D012E700F406D8 /* NewPostFormViewController.swift */; };
 		5CBFEBB224D012E700F406D8 /* NewPostForm.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CBFEBA724D012E700F406D8 /* NewPostForm.storyboard */; };
 		5CBFEBB324D012E700F406D8 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CBFEBA924D012E700F406D8 /* Post.swift */; };
+		8C28ADE624D141610057903B /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C28ADE524D141610057903B /* SettingViewController.swift */; };
+		8C28ADE824D141900057903B /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C28ADE724D141900057903B /* EditProfileViewController.swift */; };
 		8C439C6724CD607100B94CDA /* NewComerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C439C6624CD607100B94CDA /* NewComerCollectionViewCell.swift */; };
 		8C439C6924CD624B00B94CDA /* LiveNowCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C439C6824CD624B00B94CDA /* LiveNowCollectionViewCell.swift */; };
 		8C439C6B24CD63EA00B94CDA /* TrendingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C439C6A24CD63EA00B94CDA /* TrendingCollectionViewCell.swift */; };
@@ -154,6 +156,8 @@
 		5CBFEBA624D012E700F406D8 /* NewPostFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostFormViewController.swift; sourceTree = "<group>"; };
 		5CBFEBA724D012E700F406D8 /* NewPostForm.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewPostForm.storyboard; sourceTree = "<group>"; };
 		5CBFEBA924D012E700F406D8 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		8C28ADE524D141610057903B /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		8C28ADE724D141900057903B /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		8C439C6624CD607100B94CDA /* NewComerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewComerCollectionViewCell.swift; sourceTree = "<group>"; };
 		8C439C6824CD624B00B94CDA /* LiveNowCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveNowCollectionViewCell.swift; sourceTree = "<group>"; };
 		8C439C6A24CD63EA00B94CDA /* TrendingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -362,6 +366,8 @@
 				5C2655D824BEEBE200FCE8AB /* Profile.storyboard */,
 				5C2655DA24BEEBEC00FCE8AB /* ProfileViewController.swift */,
 				2DD9F6FF24CD7B5000CD71AC /* ProfileCollectionViewCell.swift */,
+				8C28ADE524D141610057903B /* SettingViewController.swift */,
+				8C28ADE724D141900057903B /* EditProfileViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -647,10 +653,9 @@
 				8C439C6B24CD63EA00B94CDA /* TrendingCollectionViewCell.swift in Sources */,
 				5C2655CD24BEEBA300FCE8AB /* SearchViewController.swift in Sources */,
 				5C16736724C9466D00DBD828 /* CloudKitProtocol.swift in Sources */,
-				20A5773A24CA8949009F55EC /* LaughClassifierController.swift in Sources */,
+				20A5773A24CA8949009F55EC /* VideoPlayerController.swift in Sources */,
 				5CBFEB8124D012C000F406D8 /* AgoraExtension.swift in Sources */,
 				5CBFEB9024D012D200F406D8 /* AGEVideoLayout.swift in Sources */,
-				5C16736C24C946D300DBD828 /* LiveRoom.swift in Sources */,
 				20A5773A24CA8949009F55EC /* VideoPlayerController.swift in Sources */,
 				205B0F2424CE691700360695 /* LaughClassifier1.mlmodel in Sources */,
 				5CBFEBAE24D012E700F406D8 /* LiveMenuViewController.swift in Sources */,
@@ -663,6 +668,7 @@
 				5CBFEB9524D012D200F406D8 /* KeyCenter.swift in Sources */,
 				5CBFEB9124D012D200F406D8 /* AGEVideoConstraints.swift in Sources */,
 				8C49FD4024C989490009C452 /* TrendingVideosViewController.swift in Sources */,
+				8C28ADE624D141610057903B /* SettingViewController.swift in Sources */,
 				8C49FD3C24C988800009C452 /* LiveNowViewController.swift in Sources */,
 				5C2655DB24BEEBEC00FCE8AB /* ProfileViewController.swift in Sources */,
 				5C26559224BEEA0400FCE8AB /* AppDelegate.swift in Sources */,
@@ -673,6 +679,7 @@
 				5C2655D524BEEBCE00FCE8AB /* NotificationViewController.swift in Sources */,
 				2DD9F6FA24C9591600CD71AC /* ViewController.swift in Sources */,
 				2DD9F6FC24C9599F00CD71AC /* OnBoardingViewController.swift in Sources */,
+				8C28ADE824D141900057903B /* EditProfileViewController.swift in Sources */,
 				5C26559424BEEA0400FCE8AB /* SceneDelegate.swift in Sources */,
 				5CBFEB9324D012D200F406D8 /* AGEView.swift in Sources */,
 				5CBFEB9824D012D200F406D8 /* StatisticsInfo.swift in Sources */,
