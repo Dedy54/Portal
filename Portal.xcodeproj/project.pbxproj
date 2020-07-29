@@ -14,6 +14,8 @@
 		20C9687B24CF3BA00067D346 /* VideoPlayer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20C9687A24CF3BA00067D346 /* VideoPlayer.storyboard */; };
 		20C9687D24CF464A0067D346 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C9687C24CF464A0067D346 /* ContentView.swift */; };
 		20C9687F24CF46DB0067D346 /* test.mov in Resources */ = {isa = PBXBuildFile; fileRef = 20C9687E24CF46DB0067D346 /* test.mov */; };
+		2DAD940F24D1374B00DC4CC5 /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DAD940E24D1374B00DC4CC5 /* Register.storyboard */; };
+		2DAD941124D1377800DC4CC5 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAD941024D1377800DC4CC5 /* RegisterViewController.swift */; };
 		2DD9F6FA24C9591600CD71AC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD9F6F924C9591600CD71AC /* ViewController.swift */; };
 		2DD9F6FC24C9599F00CD71AC /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD9F6FB24C9599F00CD71AC /* OnBoardingViewController.swift */; };
 		2DD9F6FE24C9807D00CD71AC /* onBoarding2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD9F6FD24C9807D00CD71AC /* onBoarding2ViewController.swift */; };
@@ -100,6 +102,8 @@
 		20C9687C24CF464A0067D346 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		20C9687E24CF46DB0067D346 /* test.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = test.mov; path = ../../../Desktop/test.mov; sourceTree = "<group>"; };
 		20C9688024CF479E0067D346 /* test2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = test2.mp4; path = ../../../Downloads/test2.mp4; sourceTree = "<group>"; };
+		2DAD940E24D1374B00DC4CC5 /* Register.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
+		2DAD941024D1377800DC4CC5 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		2DD9F6F924C9591600CD71AC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2DD9F6FB24C9599F00CD71AC /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
 		2DD9F6FD24C9807D00CD71AC /* onBoarding2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onBoarding2ViewController.swift; sourceTree = "<group>"; };
@@ -205,6 +209,15 @@
 			path = LaughDetector;
 			sourceTree = "<group>";
 		};
+		2DAD940D24D1370700DC4CC5 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				2DAD940E24D1374B00DC4CC5 /* Register.storyboard */,
+				2DAD941024D1377800DC4CC5 /* RegisterViewController.swift */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
 		5C16736224C9466D00DBD828 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -288,6 +301,7 @@
 		5C2655C124BEEABD00FCE8AB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2DAD940D24D1370700DC4CC5 /* Register */,
 				5CBFEBA024D012E700F406D8 /* LiveMenu */,
 				5CBFEBA524D012E700F406D8 /* NewPostForm */,
 				5CBFEB9D24D012E700F406D8 /* PreviewVideo */,
@@ -605,6 +619,7 @@
 				5C26559E24BEEA0700FCE8AB /* LaunchScreen.storyboard in Resources */,
 				8C49FD3A24C9886B0009C452 /* LiveNow.storyboard in Resources */,
 				5C26559B24BEEA0700FCE8AB /* Assets.xcassets in Resources */,
+				2DAD940F24D1374B00DC4CC5 /* Register.storyboard in Resources */,
 				20C9687F24CF46DB0067D346 /* test.mov in Resources */,
 				5C2655D924BEEBE200FCE8AB /* Profile.storyboard in Resources */,
 				8C49FD3E24C9893B0009C452 /* TrendingVideos.storyboard in Resources */,
@@ -647,10 +662,9 @@
 				8C439C6B24CD63EA00B94CDA /* TrendingCollectionViewCell.swift in Sources */,
 				5C2655CD24BEEBA300FCE8AB /* SearchViewController.swift in Sources */,
 				5C16736724C9466D00DBD828 /* CloudKitProtocol.swift in Sources */,
-				20A5773A24CA8949009F55EC /* LaughClassifierController.swift in Sources */,
+				20A5773A24CA8949009F55EC /* VideoPlayerController.swift in Sources */,
 				5CBFEB8124D012C000F406D8 /* AgoraExtension.swift in Sources */,
 				5CBFEB9024D012D200F406D8 /* AGEVideoLayout.swift in Sources */,
-				5C16736C24C946D300DBD828 /* LiveRoom.swift in Sources */,
 				20A5773A24CA8949009F55EC /* VideoPlayerController.swift in Sources */,
 				205B0F2424CE691700360695 /* LaughClassifier1.mlmodel in Sources */,
 				5CBFEBAE24D012E700F406D8 /* LiveMenuViewController.swift in Sources */,
@@ -671,6 +685,7 @@
 				8C439C6724CD607100B94CDA /* NewComerCollectionViewCell.swift in Sources */,
 				2DD9F6FE24C9807D00CD71AC /* onBoarding2ViewController.swift in Sources */,
 				5C2655D524BEEBCE00FCE8AB /* NotificationViewController.swift in Sources */,
+				2DAD941124D1377800DC4CC5 /* RegisterViewController.swift in Sources */,
 				2DD9F6FA24C9591600CD71AC /* ViewController.swift in Sources */,
 				2DD9F6FC24C9599F00CD71AC /* OnBoardingViewController.swift in Sources */,
 				5C26559424BEEA0400FCE8AB /* SceneDelegate.swift in Sources */,
