@@ -9,6 +9,7 @@
 import UIKit
 import AgoraRtcKit
 import AgoraRtcCryptoLoader
+import CloudKit
 
 enum LiveMenu : String {
     case live = "live"
@@ -169,7 +170,6 @@ class LiveMenuViewController: UIViewController {
     
     @IBOutlet weak var liveStartButton: UIButton!
     @IBAction func actionStartLiveButton(_ sender: Any) {
-        self.showHideWaitingView()
         self.joinChanel()
     }
     
@@ -177,7 +177,6 @@ class LiveMenuViewController: UIViewController {
     @IBAction func actionCloseButton(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
-    
     @IBOutlet weak var recordButton: UIButton!
     @IBAction func actionRecordButton(_ sender: Any) {
         self.showHideWaitingView()
@@ -582,23 +581,28 @@ private extension LiveMenuViewController {
     }
     
     func joinChanel() {
-        guard let channelId = self.roomName else {
-            return
+        self.showIndicator()
+        LiveRoom.deleteAll {
+            LiveRoom(name: "portalaja", token: KeyCenter.Token, userReference: CKRecord.Reference(record: CKRecord(recordType: "Post"), action: .none)).save(result: { (result) in
+                DispatchQueue.main.async {
+                    self.hideIndicator()
+                    self.showHideWaitingView()
+                    guard let channelId = result?.name else {
+                        return
+                    }
+                    
+                    self.agoraKit.startPreview()
+                    self.agoraKit.joinChannel(byToken: KeyCenter.Token, channelId: channelId, info: nil, uid: 0, joinSuccess: nil)
+                    self.agoraKit.setEnableSpeakerphone(true)
+                    self.liveMenu = .inlive
+                    self.setViewSourceVideo()
+                }
+            }) { (error) in
+                DispatchQueue.main.async {
+                    self.hideIndicator()
+                }
+            }
         }
-        
-        agoraKit.startPreview()
-        
-        // Step 5, join channel and start group chat
-        // If join  channel success, agoraKit triggers it's delegate function
-        // 'rtcEngine(_ engine: AgoraRtcEngineKit, didJoinChannel channel: String, withUid uid: UInt, elapsed: Int)'
-        agoraKit.joinChannel(byToken: KeyCenter.Token, channelId: channelId, info: nil, uid: 0, joinSuccess: nil)
-        
-        // Step 6, set speaker audio route
-        agoraKit.setEnableSpeakerphone(true)
-        
-        liveMenu = .inlive
-        
-        setViewSourceVideo()
     }
     
     func addLocalSession() {

@@ -14,21 +14,32 @@ class LiveRoom: CloudKitProtocol, Identifiable, Equatable {
     public var record: CKRecord?
     var id: CKRecord.ID?
     var name: String?
+    var token: String?
+    var userReference : CKRecord.Reference?
+    
+    static var RecordType = "Programs"
     
     public required init(ckRecord: CKRecord) {
         self.name = ckRecord["name"]
+        self.token = ckRecord["token"]
+        self.userReference = ckRecord["userReference"]
+        
         self.record = ckRecord
         self.id = ckRecord.recordID
     }
     
-    init(name: String){
+    init(name: String, token: String, userReference: CKRecord.Reference){
         self.name = name
+        self.token = token
+        self.userReference = userReference
         
         if record == nil {
             record = CKRecord(recordType: Self.recordType)
         }
         
         record?["name"] = name
+        record?["token"] = token
+        record?["userReference"] = userReference
         
         if let record = self.record {
             self.id = record.recordID

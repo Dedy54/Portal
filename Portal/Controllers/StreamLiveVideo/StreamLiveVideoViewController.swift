@@ -13,6 +13,11 @@ import AgoraRtcKit
 class StreamLiveVideoViewController: UIViewController {
     
     @IBOutlet weak var broadcastersView: AGEVideoContainer!
+    @IBOutlet weak var waitingView: UIView!{
+        didSet{
+            waitingView.isHidden = true
+        }
+    }
     
     private lazy var agoraKit: AgoraRtcEngineKit = {
         let engine = AgoraRtcEngineKit.sharedEngine(withAppId: KeyCenter.AppId, delegate: nil)
@@ -29,7 +34,7 @@ class StreamLiveVideoViewController: UIViewController {
     
     private let maxVideoSession = 4
     
-    private var roomName : String? = "portalaja"
+    var liveRoom : LiveRoom?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +43,16 @@ class StreamLiveVideoViewController: UIViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    func showHideWaitingView() {
+        self.waitingView.isHidden = false
+        self.waitingView.alpha = 1
+        UIView.animate(withDuration: 2, animations: {
+            self.waitingView.alpha = 0
+        }) { (finished) in
+            self.waitingView.isHidden = true
+        }
     }
 }
 
@@ -110,7 +125,7 @@ private extension StreamLiveVideoViewController {
 //MARK: - Agora Media SDK
 private extension StreamLiveVideoViewController {
     func loadAgoraKit() {
-        guard let channelId = roomName else {
+        guard let channelId = liveRoom?.name else {
             return
         }
         

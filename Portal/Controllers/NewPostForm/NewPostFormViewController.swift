@@ -21,7 +21,7 @@ class NewPostFormViewController: UIViewController {
     @IBOutlet weak var counterTitleLabel: UILabel!
     @IBOutlet weak var titleTextField: UITextField!
     @IBAction func actionSwitch(_ sender: Any) {
-        self.post?.isSensitiveContent = sensitivitySwitch.isOn
+        self.post?.isSensitiveContent = sensitivitySwitch.isOn ? 1 : 0
     }
     @IBOutlet weak var sensitivitySwitch: UISwitch!{
         didSet{
@@ -43,14 +43,25 @@ class NewPostFormViewController: UIViewController {
     }
     
     @objc func addTappedPost(sender: UIBarButtonItem) {
-        let title = titleTextField.text
-        self.post?.title = title
-        self.post?.isSensitiveContent = self.sensitivitySwitch.isOn
-        self.post?.save(result: { (result) in
+        if let post = post, let videoUrl = post.videoUrl {
+            self.titleTextField.endEditing(true)
+            let title = titleTextField.text ?? ""
             
-        }, errorCase: { (error) in
+            self.post?.title = title
+            self.post?.isSensitiveContent = self.sensitivitySwitch.isOn ? 1 : 0
+            self.showIndicator()
             
-        })
+            Post(title: title, viewer: post.viewer, lpm: post.lpm, videoUrl: videoUrl, isSensitiveContent: post.isSensitiveContent, isLive: post.isLive, userReference: post.userReference).save(result: { (result) in
+                DispatchQueue.main.async {
+                    self.hideIndicator()
+                    self.navigationController?.dismiss(animated: true, completion: nil)
+                }
+            }, errorCase: { (error) in
+                DispatchQueue.main.async {
+                    self.hideIndicator()
+                }
+            })
+        }
     }
     
     func setView(post: Post?){
@@ -92,18 +103,5 @@ extension NewPostFormViewController : UITextFieldDelegate {
         let updatedString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
         self.counterTitleLabel.text = "\(updatedString.count)/120"
         return updatedString.count < MAX_LENGTH
-    }
-}
-
-// Put this piece of code anywhere you like
-extension UIViewController {
-    func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
     }
 }
