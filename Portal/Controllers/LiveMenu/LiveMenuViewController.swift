@@ -41,6 +41,11 @@ class LiveMenuViewController: UIViewController {
     }
     
     @IBOutlet weak var liveImageView: UIImageView!
+    @IBOutlet weak var waitingView: UIView!{
+        didSet{
+            waitingView.isHidden = true
+        }
+    }
     @IBOutlet weak var broadcastersView: AGEVideoContainer!{
         didSet{
             self.broadcastersView.clipsToBounds = true
@@ -67,14 +72,17 @@ class LiveMenuViewController: UIViewController {
     
     @IBAction func actionLiveButton(_ sender: Any) {
         self.liveMenu = .live
+        self.showHideWaitingView()
     }
     
     @IBAction func actionThirtyButton(_ sender: Any) {
+        self.showHideWaitingView()
         self.liveMenu = .thirtyseconds
         self.setViewSourceVideo()
     }
     
     @IBAction func actionGalleryButton(_ sender: Any) {
+        self.showHideWaitingView()
         self.pickerController.mediaTypes = ["public.movie"]
         self.pickerController.videoQuality = .typeHigh
         self.pickerController.sourceType = .photoLibrary
@@ -89,6 +97,7 @@ class LiveMenuViewController: UIViewController {
     }
     @IBOutlet weak var rotateCameraButton: UIButton!
     @IBAction func rotateCamera(_ sender: Any) {
+        self.showHideWaitingView()
         self.isSwitchCamera.toggle()
         switch liveMenu {
         case .live:
@@ -114,6 +123,7 @@ class LiveMenuViewController: UIViewController {
     
     @IBOutlet weak var rotateCameraBottomButton: UIButton!
     @IBAction func rotateBottomCamera(_ sender: Any) {
+        self.showHideWaitingView()
         self.isSwitchCamera.toggle()
         switch liveMenu {
         case .live:
@@ -139,6 +149,7 @@ class LiveMenuViewController: UIViewController {
         }
     }
     @IBAction func endLiveVideo(_ sender: Any) {
+        self.showHideWaitingView()
         self.leaveChannel()
     }
     
@@ -148,7 +159,7 @@ class LiveMenuViewController: UIViewController {
         }
     }
     @IBAction func actionEndLive(_ sender: Any) {
-        
+        self.showHideWaitingView()
     }
     
     @IBOutlet weak var cancelEndLiveButton: UIButton!
@@ -158,6 +169,7 @@ class LiveMenuViewController: UIViewController {
     
     @IBOutlet weak var liveStartButton: UIButton!
     @IBAction func actionStartLiveButton(_ sender: Any) {
+        self.showHideWaitingView()
         self.joinChanel()
     }
     
@@ -168,6 +180,7 @@ class LiveMenuViewController: UIViewController {
     
     @IBOutlet weak var recordButton: UIButton!
     @IBAction func actionRecordButton(_ sender: Any) {
+        self.showHideWaitingView()
         if liveMenu == .thirtyseconds {
             self.liveMenu = .recording
             if let session = self.previewView.session as? CKFVideoSession {
@@ -227,6 +240,7 @@ class LiveMenuViewController: UIViewController {
         self.pickerController.delegate = self
         self.loadAgoraKit()
         self.setViewSourceVideo()
+        self.showHideWaitingView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -235,6 +249,16 @@ class LiveMenuViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+    }
+    
+    func showHideWaitingView() {
+        self.waitingView.isHidden = false
+        self.waitingView.alpha = 1
+        UIView.animate(withDuration: 2, animations: {
+            self.waitingView.alpha = 0
+        }) { (finished) in
+            self.waitingView.isHidden = true
+        }
     }
     
     func setViewSourceVideo(){
