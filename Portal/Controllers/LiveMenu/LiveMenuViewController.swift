@@ -12,68 +12,139 @@ import AgoraRtcCryptoLoader
 
 enum LiveMenu : String {
     case live = "live"
+    case inlive = "inlive"
     case thirtyseconds = "30s"
     case gallery = "gallery"
+    case recording = "recording"
 }
 
 class LiveMenuViewController: UIViewController {
     
     @IBOutlet weak var viewLiveMenu: UIView!
+    @IBOutlet weak var liveLabel: UILabel!
     @IBOutlet weak var liveDotImage: UIImageView!{
         didSet{
-            liveDotImage.isHidden = (liveMenu != .live)
+            liveDotImage.isHidden = false
         }
     }
+    @IBOutlet weak var thirtyLabel: UILabel!
     @IBOutlet weak var thirtyDotImage: UIImageView!{
         didSet{
-            if liveMenu == .thirtyseconds {
-                thirtyDotImage.isHidden = false
-            }
+            thirtyDotImage.isHidden = false
         }
     }
-    
+    @IBOutlet weak var galleryLabel: UILabel!
     @IBOutlet weak var galleryDotImage: UIImageView!{
         didSet{
-            if liveMenu == .gallery {
-                galleryDotImage.isHidden = false
-            }
+            galleryDotImage.isHidden = false
         }
     }
     
     @IBOutlet weak var liveImageView: UIImageView!
-    @IBOutlet weak var broadcastersView: AGEVideoContainer!
+    @IBOutlet weak var broadcastersView: AGEVideoContainer!{
+        didSet{
+            self.broadcastersView.clipsToBounds = true
+            self.broadcastersView.layer.cornerRadius = 10
+            self.broadcastersView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        }
+    }
+    @IBOutlet weak var previewView: CKFPreviewView! {
+        didSet {
+            let session = CKFVideoSession()
+            session.delegate = self
+            
+            self.previewView.autorotate = true
+            self.previewView.session = session
+            self.previewView.previewLayer?.videoGravity = .resizeAspectFill
+            
+            self.previewView.clipsToBounds = true
+            self.previewView.layer.cornerRadius = 10
+            self.previewView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        }
+    }
+    
     @IBOutlet weak var viewEndLive: UIView!
     
     @IBAction func actionLiveButton(_ sender: Any) {
-        
+        self.liveMenu = .live
     }
     
     @IBAction func actionThirtyButton(_ sender: Any) {
-        self.pickerController.mediaTypes = ["public.movie"]
-        self.pickerController.videoQuality = .typeHigh
-        self.pickerController.sourceType = .camera
-        self.pickerController.showsCameraControls = true
-        self.present(self.pickerController, animated: true)
+        self.liveMenu = .thirtyseconds
+        self.setViewSourceVideo()
     }
     
     @IBAction func actionGalleryButton(_ sender: Any) {
         self.pickerController.mediaTypes = ["public.movie"]
         self.pickerController.videoQuality = .typeHigh
         self.pickerController.sourceType = .photoLibrary
+        self.pickerController.allowsEditing = false
         self.present(self.pickerController, animated: true)
     }
     
+    @IBOutlet weak var countDownLabel: UILabel!{
+        didSet{
+            self.countDownLabel.isHidden = true
+        }
+    }
+    @IBOutlet weak var rotateCameraButton: UIButton!
     @IBAction func rotateCamera(_ sender: Any) {
         self.isSwitchCamera.toggle()
+        switch liveMenu {
+        case .live:
+            agoraKit.switchCamera()
+            previewView.session?.stop()
+        case .inlive:
+            agoraKit.switchCamera()
+            previewView.session?.stop()
+        case .thirtyseconds:
+            agoraKit.stopPreview()
+            if let session = self.previewView.session as? CKFVideoSession {
+                session.cameraPosition = isBackCamera ? .back : .front
+            }
+        case .recording:
+            agoraKit.stopPreview()
+            if let session = self.previewView.session as? CKFVideoSession {
+                session.cameraPosition = isBackCamera ? .back : .front
+            }
+        default:
+            print("default")
+        }
     }
     
+    @IBOutlet weak var rotateCameraBottomButton: UIButton!
+    @IBAction func rotateBottomCamera(_ sender: Any) {
+        self.isSwitchCamera.toggle()
+        switch liveMenu {
+        case .live:
+            agoraKit.switchCamera()
+        case .inlive:
+            agoraKit.switchCamera()
+        case .thirtyseconds:
+            if let session = self.previewView.session as? CKFVideoSession {
+                session.cameraPosition = isBackCamera ? .front : .back
+            }
+        case .recording:
+            if let session = self.previewView.session as? CKFVideoSession {
+                session.cameraPosition = isBackCamera ? .front : .back
+            }
+        default:
+            print("default")
+        }
+    }
+    
+    @IBOutlet weak var endLiveVideo: UIButton!{
+        didSet{
+            endLiveVideo.layer.cornerRadius = 5
+        }
+    }
     @IBAction func endLiveVideo(_ sender: Any) {
         self.leaveChannel()
     }
     
     @IBOutlet weak var endLiveButton: UIButton!{
         didSet{
-            endLiveButton.layer.cornerRadius = 10
+            endLiveButton.layer.cornerRadius = 5
         }
     }
     @IBAction func actionEndLive(_ sender: Any) {
@@ -90,6 +161,35 @@ class LiveMenuViewController: UIViewController {
         self.joinChanel()
     }
     
+    @IBOutlet weak var closeButton: UIButton!
+    @IBAction func actionCloseButton(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBOutlet weak var recordButton: UIButton!
+    @IBAction func actionRecordButton(_ sender: Any) {
+        if liveMenu == .thirtyseconds {
+            self.liveMenu = .recording
+            if let session = self.previewView.session as? CKFVideoSession {
+                self.startTimer()
+                self.setViewSourceVideo()
+                session.record({ (url) in
+                    self.movePreview(url: url)
+                }) { (_) in }
+            }
+        } else if liveMenu == .recording {
+            self.liveMenu = .thirtyseconds
+            if let session = self.previewView.session as? CKFVideoSession {
+                if session.isRecording {
+                    session.stopRecording()
+                    self.timer?.invalidate()
+                }
+            }
+            self.setViewSourceVideo()
+        }
+        
+    }
+    
     private var roomName : String? = "portalaja"
     private lazy var agoraKit: AgoraRtcEngineKit = {
         let engine = AgoraRtcEngineKit.sharedEngine(withAppId: KeyCenter.AppId, delegate: nil)
@@ -98,41 +198,198 @@ class LiveMenuViewController: UIViewController {
         return engine
     }()
     private let pickerController : UIImagePickerController = UIImagePickerController()
-    var liveMenu: LiveMenu? = .live
+    
+    var liveMenu: LiveMenu? = .live {
+        didSet {
+            self.setViewSourceVideo()
+        }
+    }
     private let maxVideoSession = 4
     
     private var isSwitchCamera = false {
         didSet {
-            agoraKit.switchCamera()
+            self.isBackCamera = isSwitchCamera
         }
     }
+    private var isBackCamera = true
+    
+    var timer: Timer?
+    var countTimer = 0
     
     private var videoSessions = [VideoSession]() {
         didSet {
-            updateBroadcastersView()
+            self.updateBroadcastersView()
         }
     }
-    
-    private var isLive = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.pickerController.delegate = self
         self.loadAgoraKit()
-        self.setView(isLive: false)
+        self.setViewSourceVideo()
     }
     
-    func setView(isLive: Bool) {
-        self.endLiveButton.isHidden = isLive
-        self.liveImageView.isHidden = !isLive
-        self.liveStartButton.isHidden = isLive
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
+    
+    func setViewSourceVideo(){
+        switch liveMenu {
+        case .live:
+            self.viewLiveMenu.isHidden = false
+            self.liveDotImage.isHidden = false
+            self.thirtyDotImage.isHidden = true
+            self.galleryDotImage.isHidden = true
+            
+            self.liveLabel.textColor = UIColor.init(named: "ColorYellow")
+            self.thirtyLabel.textColor = UIColor.white
+            self.galleryLabel.textColor = UIColor.white
+            
+            self.broadcastersView.isHidden = false
+            self.agoraKit.stopPreview()
+            self.agoraKit.startPreview()
+            self.previewView.isHidden = false
+            self.previewView.session?.stop()
+            
+            self.endLiveVideo.isHidden = true
+            self.liveImageView.isHidden = true
+            self.liveStartButton.isHidden = false
+            
+            self.closeButton.isHidden = false
+            self.countDownLabel.isHidden = true
+            
+            self.recordButton.isHidden = true
+            self.rotateCameraButton.isHidden = true
+            self.rotateCameraBottomButton.isHidden = false
+            
+        case .inlive:
+            self.viewLiveMenu.isHidden = true
+            self.liveDotImage.isHidden = false
+            self.thirtyDotImage.isHidden = true
+            self.galleryDotImage.isHidden = true
+            
+            self.liveLabel.textColor = UIColor.init(named: "ColorYellow")
+            self.thirtyLabel.textColor = UIColor.white
+            self.galleryLabel.textColor = UIColor.white
+            
+            self.broadcastersView.isHidden = false
+            self.agoraKit.startPreview()
+            self.previewView.isHidden = true
+            self.previewView.session?.stop()
+            
+            self.endLiveVideo.isHidden = false
+            self.liveImageView.isHidden = false
+            self.liveStartButton.isHidden = true
+            
+            self.closeButton.isHidden = true
+            self.countDownLabel.isHidden = true
+            
+            self.recordButton.isHidden = true
+            self.rotateCameraButton.isHidden = false
+            self.rotateCameraBottomButton.isHidden = true
+            
+        case .thirtyseconds:
+            self.viewLiveMenu.isHidden = false
+            self.liveDotImage.isHidden = true
+            self.thirtyDotImage.isHidden = false
+            self.galleryDotImage.isHidden = true
+            
+            self.liveLabel.textColor = UIColor.white
+            self.thirtyLabel.textColor = UIColor.init(named: "ColorYellow")
+            self.galleryLabel.textColor = UIColor.white
+            
+            self.broadcastersView.isHidden = true
+            self.agoraKit.stopPreview()
+            self.previewView.isHidden = false
+            self.previewView.session?.stop()
+            self.previewView.session?.start()
+            
+            self.endLiveVideo.isHidden = true
+            self.liveImageView.isHidden = true
+            self.liveStartButton.isHidden = true
+            
+            self.closeButton.isHidden = false
+            self.countDownLabel.isHidden = true
+            
+            self.recordButton.isHidden = false
+            self.recordButton.setImage(UIImage(named: "Record Button"), for: .normal)
+            self.rotateCameraButton.isHidden = true
+            self.rotateCameraBottomButton.isHidden = false
+        case .recording:
+            self.viewLiveMenu.isHidden = true
+            self.liveDotImage.isHidden = true
+            self.thirtyDotImage.isHidden = false
+            self.galleryDotImage.isHidden = true
+            
+            self.liveLabel.textColor = UIColor.white
+            self.thirtyLabel.textColor = UIColor.init(named: "ColorYellow")
+            self.galleryLabel.textColor = UIColor.white
+            
+            self.broadcastersView.isHidden = true
+            self.agoraKit.stopPreview()
+            self.previewView.isHidden = false
+            self.previewView.session?.stop()
+            self.previewView.session?.start()
+            
+            self.endLiveVideo.isHidden = true
+            self.liveImageView.isHidden = true
+            self.liveStartButton.isHidden = true
+            
+            self.closeButton.isHidden = true
+            self.countDownLabel.isHidden = false
+            
+            self.recordButton.isHidden = false
+            self.recordButton.setImage(UIImage(named: "Stop Record Btn"), for: .normal)
+            self.rotateCameraButton.isHidden = true
+            self.rotateCameraBottomButton.isHidden = true
+        default:
+            self.liveLabel.textColor = UIColor.white
+            self.thirtyLabel.textColor = UIColor.white
+            self.galleryLabel.textColor = UIColor.init(named: "ColorYellow")
+            
+            self.broadcastersView.isHidden = false
+            self.previewView.isHidden = true
+        }
+    }
+    
+    func startTimer() {
+        self.countTimer = 0
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(stopTimer), userInfo: nil, repeats: true)
+    }
+    
+    @objc func stopTimer() {
+        self.countTimer += 1
+        self.countDownLabel.text = "00:0\(self.countTimer)"
+        if self.countTimer == 30, let session = self.previewView.session as? CKFVideoSession {
+            if session.isRecording {
+                session.stopRecording()
+                self.timer?.invalidate()
+                self.countTimer = 0
+            }
+        }
+    }
 }
 extension LiveMenuViewController : UIImagePickerControllerDelegate , UINavigationControllerDelegate {
     
+    func movePreview(url: URL) {
+        let storyboard = UIStoryboard(name: "PreviewVideo", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "PreviewVideoViewController") as! PreviewVideoViewController
+        controller.url = url
+        if AVURLAsset(url: url).duration.seconds >= 30 {
+            self.cropVideo(sourceURL: url, startTime: 0, endTime: 30) { (url) in
+                controller.url = url
+            }
+        }
+        let navController = UINavigationController(rootViewController: controller)
+        self.present(navController, animated:true, completion: nil)
+    }
+    
     public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        
+        self.pickerController.dismiss(animated: true, completion: nil)
     }
     
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
@@ -141,13 +398,51 @@ extension LiveMenuViewController : UIImagePickerControllerDelegate , UINavigatio
         }
         
         self.pickerController.dismiss(animated: true, completion: nil)
-        let storyboard = UIStoryboard(name: "NewPostForm", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "NewPostFormViewController") as! NewPostFormViewController
-        let post = Post(title: "", viewer: 0, lpm: 0, videoUrl: url, isSensitiveContent: false, isLive: false)
-        controller.post = post
-        let navController = UINavigationController(rootViewController: controller)
-        self.present(navController, animated:true, completion: nil)
+        self.movePreview(url: url)
     }
+    
+    func cropVideo(sourceURL: URL, startTime: Double, endTime: Double, completion: ((_ outputUrl: URL) -> Void)? = nil) {
+        let fileManager = FileManager.default
+        let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        
+        let asset = AVAsset(url: sourceURL)
+        let length = Float(asset.duration.value) / Float(asset.duration.timescale)
+        print("video length: \(length) seconds")
+        
+        var outputURL = documentDirectory.appendingPathComponent("output")
+        do {
+            try fileManager.createDirectory(at: outputURL, withIntermediateDirectories: true, attributes: nil)
+            outputURL = outputURL.appendingPathComponent("\(sourceURL.lastPathComponent).mp4")
+        }catch let error {
+            print(error)
+        }
+        
+        //Remove existing file
+        try? fileManager.removeItem(at: outputURL)
+        
+        guard let exportSession = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetHighestQuality) else { return }
+        exportSession.outputURL = outputURL
+        exportSession.outputFileType = .mp4
+        
+        let timeRange = CMTimeRange(start: CMTime(seconds: startTime, preferredTimescale: 1000),
+                                    end: CMTime(seconds: endTime, preferredTimescale: 1000))
+        
+        exportSession.timeRange = timeRange
+        exportSession.exportAsynchronously {
+            switch exportSession.status {
+            case .completed:
+                print("exported at \(outputURL)")
+                completion?(outputURL)
+            case .failed:
+                print("failed \(exportSession.error.debugDescription)")
+            case .cancelled:
+                print("cancelled \(exportSession.error.debugDescription)")
+            default: break
+            }
+        }
+    }
+    
+    
 }
 
 private extension LiveMenuViewController {
@@ -198,6 +493,14 @@ private extension LiveMenuViewController {
     }
 }
 
+extension LiveMenuViewController : CKFSessionDelegate {
+    
+    func didChangeValue(session: CKFSession, value: Any, key: String) {
+        print("key : \(key)")
+    }
+    
+}
+
 private extension LiveMenuViewController {
     func getSession(of uid: UInt) -> VideoSession? {
         for session in videoSessions {
@@ -222,6 +525,7 @@ private extension LiveMenuViewController {
 //MARK: - Agora Media SDK
 private extension LiveMenuViewController {
     func loadAgoraKit() {
+        
         setIdleTimerActive(false)
         
         // Step 1, set delegate to inform the app on AgoraRtcEngineKit events
@@ -258,6 +562,8 @@ private extension LiveMenuViewController {
             return
         }
         
+        agoraKit.startPreview()
+        
         // Step 5, join channel and start group chat
         // If join  channel success, agoraKit triggers it's delegate function
         // 'rtcEngine(_ engine: AgoraRtcEngineKit, didJoinChannel channel: String, withUid uid: UInt, elapsed: Int)'
@@ -266,7 +572,9 @@ private extension LiveMenuViewController {
         // Step 6, set speaker audio route
         agoraKit.setEnableSpeakerphone(true)
         
-        self.setView(isLive: true)
+        liveMenu = .inlive
+        
+        setViewSourceVideo()
     }
     
     func addLocalSession() {
@@ -279,7 +587,8 @@ private extension LiveMenuViewController {
     func leaveChannel() {
         agoraKit.leaveChannel(nil)
         setIdleTimerActive(true)
-        self.setView(isLive: false)
+        liveMenu = .live
+        setViewSourceVideo()
     }
 }
 

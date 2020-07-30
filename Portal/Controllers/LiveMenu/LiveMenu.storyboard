@@ -52,10 +52,28 @@
                                     <constraint firstItem="m7L-P5-y40" firstAttribute="centerX" secondItem="Ldi-7R-eeF" secondAttribute="centerX" id="xQQ-SX-PUx"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9yu-5b-QzO" customClass="AGEVideoContainer" customModule="Portal" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="802"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GrN-CA-0hn" customClass="CKFPreviewView" customModule="Portal" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9yu-5b-QzO" customClass="AGEVideoContainer" customModule="Portal" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XPK-QF-2MV">
+                                <rect key="frame" x="344" y="750" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="hO4-xI-Zn8"/>
+                                    <constraint firstAttribute="height" constant="30" id="t40-Uz-NS5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="camera.rotate" catalog="system"/>
+                                <connections>
+                                    <action selector="rotateBottomCamera:" destination="8wd-jS-RMm" eventType="touchUpInside" id="0Me-Zz-x1y"/>
+                                    <action selector="rotateCamera:" destination="8wd-jS-RMm" eventType="touchUpInside" id="c0w-6J-RLh"/>
+                                </connections>
+                            </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Live Label" translatesAutoresizingMaskIntoConstraints="NO" id="EfE-sQ-eLs">
                                 <rect key="frame" x="172" y="49" width="70" height="10"/>
                                 <constraints>
@@ -63,6 +81,19 @@
                                     <constraint firstAttribute="width" constant="70" id="aW0-fv-F8c"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sM1-DV-l5P">
+                                <rect key="frame" x="20" y="44" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="1lG-ED-ODB"/>
+                                    <constraint firstAttribute="width" constant="30" id="b6d-fI-o6L"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="xmark.circle.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="actionCloseButton:" destination="8wd-jS-RMm" eventType="touchUpInside" id="lnx-fU-mPG"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f0A-po-gjM">
                                 <rect key="frame" x="20" y="44" width="30" height="30"/>
                                 <constraints>
@@ -73,7 +104,7 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="camera.rotate" catalog="system"/>
                                 <connections>
-                                    <action selector="rotateCamera:" destination="8wd-jS-RMm" eventType="touchUpInside" id="7s8-dh-NI7"/>
+                                    <action selector="rotateCamera:" destination="8wd-jS-RMm" eventType="touchUpInside" id="lzV-gE-a3w"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b27-9c-SkY">
@@ -85,6 +116,17 @@
                                 <state key="normal" image="Start Live Btn"/>
                                 <connections>
                                     <action selector="actionStartLiveButton:" destination="8wd-jS-RMm" eventType="touchUpInside" id="Agi-Js-JkN"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gYo-Se-uh0">
+                                <rect key="frame" x="182" y="740" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="NMI-4F-QaK"/>
+                                    <constraint firstAttribute="width" constant="50" id="Qzv-uE-1Ek"/>
+                                </constraints>
+                                <state key="normal" image="Record Button"/>
+                                <connections>
+                                    <action selector="actionRecordButton:" destination="8wd-jS-RMm" eventType="touchUpInside" id="bs6-j1-Lt3"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mfE-ke-CXx">
@@ -232,20 +274,41 @@
                                     <constraint firstAttribute="height" constant="52" id="v6V-ga-YQx"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zSj-W7-60m">
+                                <rect key="frame" x="20" y="44" width="50" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="EKC-3M-KQy"/>
+                                    <constraint firstAttribute="height" constant="21" id="zOz-JQ-wuG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.027450980390000001" green="0.0" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="sJp-et-uOm" firstAttribute="bottom" secondItem="9yu-5b-QzO" secondAttribute="bottom" constant="60" id="0Gf-kb-vzT"/>
+                            <constraint firstItem="gYo-Se-uh0" firstAttribute="centerX" secondItem="sJp-et-uOm" secondAttribute="centerX" id="0hI-ct-gnp"/>
                             <constraint firstItem="b27-9c-SkY" firstAttribute="centerX" secondItem="sJp-et-uOm" secondAttribute="centerX" id="6bo-Ri-zwU"/>
                             <constraint firstItem="q7z-pU-aYd" firstAttribute="top" secondItem="b27-9c-SkY" secondAttribute="bottom" constant="20" id="7Ff-ek-2pj"/>
                             <constraint firstItem="Ldi-7R-eeF" firstAttribute="top" secondItem="Tvg-2A-X02" secondAttribute="top" id="9gu-nl-ACe"/>
-                            <constraint firstItem="q7z-pU-aYd" firstAttribute="top" secondItem="9yu-5b-QzO" secondAttribute="bottom" constant="8" id="C69-v9-rK7"/>
+                            <constraint firstItem="sJp-et-uOm" firstAttribute="trailing" secondItem="XPK-QF-2MV" secondAttribute="trailing" constant="40" id="9yg-gb-XjU"/>
+                            <constraint firstItem="sJp-et-uOm" firstAttribute="bottom" secondItem="GrN-CA-0hn" secondAttribute="bottom" constant="44" id="Bes-dw-lsk"/>
+                            <constraint firstItem="XPK-QF-2MV" firstAttribute="centerY" secondItem="b27-9c-SkY" secondAttribute="centerY" id="DrC-qa-mY1"/>
+                            <constraint firstItem="zSj-W7-60m" firstAttribute="top" secondItem="sJp-et-uOm" secondAttribute="top" id="FHY-K0-GVN"/>
+                            <constraint firstItem="GrN-CA-0hn" firstAttribute="top" secondItem="Tvg-2A-X02" secondAttribute="top" id="Fq1-HA-ZCD"/>
+                            <constraint firstItem="sM1-DV-l5P" firstAttribute="leading" secondItem="sJp-et-uOm" secondAttribute="leading" constant="20" id="G7A-Ex-MY6"/>
+                            <constraint firstItem="sM1-DV-l5P" firstAttribute="top" secondItem="sJp-et-uOm" secondAttribute="top" id="H4i-lW-Ndv"/>
+                            <constraint firstItem="sJp-et-uOm" firstAttribute="bottom" secondItem="9yu-5b-QzO" secondAttribute="bottom" constant="44" id="LbX-Sg-aLi"/>
                             <constraint firstItem="mfE-ke-CXx" firstAttribute="top" secondItem="sJp-et-uOm" secondAttribute="top" id="Oz7-Ti-bkf"/>
                             <constraint firstItem="sJp-et-uOm" firstAttribute="trailing" secondItem="mfE-ke-CXx" secondAttribute="trailing" constant="20" id="Pz0-by-DG3"/>
                             <constraint firstItem="9yu-5b-QzO" firstAttribute="leading" secondItem="sJp-et-uOm" secondAttribute="leading" id="Rbe-AL-H1L"/>
+                            <constraint firstItem="zSj-W7-60m" firstAttribute="leading" secondItem="sJp-et-uOm" secondAttribute="leading" constant="20" id="V5H-95-BDP"/>
                             <constraint firstItem="q7z-pU-aYd" firstAttribute="centerX" secondItem="sJp-et-uOm" secondAttribute="centerX" id="Vck-d3-zAS"/>
                             <constraint firstItem="f0A-po-gjM" firstAttribute="leading" secondItem="sJp-et-uOm" secondAttribute="leading" constant="20" id="dMn-xC-MqW"/>
+                            <constraint firstItem="GrN-CA-0hn" firstAttribute="leading" secondItem="sJp-et-uOm" secondAttribute="leading" id="dZ1-Pi-WP8"/>
+                            <constraint firstItem="q7z-pU-aYd" firstAttribute="top" secondItem="gYo-Se-uh0" secondAttribute="bottom" constant="20" id="e1o-io-btu"/>
                             <constraint firstItem="sJp-et-uOm" firstAttribute="trailing" secondItem="9yu-5b-QzO" secondAttribute="trailing" id="gDt-LY-bu4"/>
+                            <constraint firstItem="GrN-CA-0hn" firstAttribute="trailing" secondItem="sJp-et-uOm" secondAttribute="trailing" id="gGd-DI-8F4"/>
                             <constraint firstItem="EfE-sQ-eLs" firstAttribute="top" secondItem="sJp-et-uOm" secondAttribute="top" constant="5" id="gdm-fn-Rp5"/>
                             <constraint firstItem="9yu-5b-QzO" firstAttribute="top" secondItem="Tvg-2A-X02" secondAttribute="top" id="i9S-on-6cc"/>
                             <constraint firstItem="q7z-pU-aYd" firstAttribute="bottom" secondItem="sJp-et-uOm" secondAttribute="bottom" id="mKc-1U-Vry"/>
@@ -260,12 +323,22 @@
                     <connections>
                         <outlet property="broadcastersView" destination="9yu-5b-QzO" id="GjH-y8-rft"/>
                         <outlet property="cancelEndLiveButton" destination="HOQ-GV-TQz" id="r7n-JH-LCl"/>
+                        <outlet property="closeButton" destination="sM1-DV-l5P" id="Vix-dj-Klg"/>
+                        <outlet property="countDownLabel" destination="zSj-W7-60m" id="x5K-kr-pEC"/>
                         <outlet property="endLiveButton" destination="pRX-Fc-A6G" id="edz-lH-7Fw"/>
+                        <outlet property="endLiveVideo" destination="mfE-ke-CXx" id="u38-CL-9xy"/>
                         <outlet property="galleryDotImage" destination="F9T-yn-ogH" id="Kbd-ke-Mf9"/>
+                        <outlet property="galleryLabel" destination="0hS-bI-Thh" id="mu8-BY-rrb"/>
                         <outlet property="liveDotImage" destination="5cx-wL-7n7" id="OkP-sb-ckm"/>
                         <outlet property="liveImageView" destination="EfE-sQ-eLs" id="yOb-ie-Vuu"/>
+                        <outlet property="liveLabel" destination="aMB-6H-pPD" id="aNk-JQ-FM6"/>
                         <outlet property="liveStartButton" destination="b27-9c-SkY" id="QrR-8t-x61"/>
+                        <outlet property="previewView" destination="GrN-CA-0hn" id="v2w-lB-U1Z"/>
+                        <outlet property="recordButton" destination="gYo-Se-uh0" id="1q2-ga-uC2"/>
+                        <outlet property="rotateCameraBottomButton" destination="XPK-QF-2MV" id="yKN-5J-bQE"/>
+                        <outlet property="rotateCameraButton" destination="f0A-po-gjM" id="968-FJ-Lkj"/>
                         <outlet property="thirtyDotImage" destination="mV1-CZ-Rbf" id="Yhg-6y-hdm"/>
+                        <outlet property="thirtyLabel" destination="oc4-Dc-1jF" id="Vzm-Qh-ylX"/>
                         <outlet property="viewEndLive" destination="Ldi-7R-eeF" id="d46-0H-3i7"/>
                         <outlet property="viewLiveMenu" destination="q7z-pU-aYd" id="OPJ-Ca-1Pn"/>
                     </connections>
@@ -280,6 +353,7 @@
         <image name="Record Button" width="72" height="72"/>
         <image name="Start Live Btn" width="72" height="72"/>
         <image name="camera.rotate" catalog="system" width="128" height="96"/>
+        <image name="xmark.circle.fill" catalog="system" width="128" height="121"/>
         <namedColor name="ColorYellow">
             <color red="0.98431372549019602" green="0.62352941176470589" blue="0.14901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
