@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import MBProgressHUD
 
 extension UIViewController {
     
@@ -26,4 +27,30 @@ extension UIViewController {
         navigationController?.navigationBar.tintColor = UIColor.white
     }
 
+}
+
+// Put this piece of code anywhere you like
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+
+extension UIViewController {
+    
+   func showIndicator() {
+      let Indicator = MBProgressHUD.showAdded(to: self.view, animated: true)
+      Indicator.isUserInteractionEnabled = false
+      Indicator.show(animated: true)
+   }
+    
+   func hideIndicator() {
+      MBProgressHUD.hide(for: self.view, animated: true)
+   }
 }

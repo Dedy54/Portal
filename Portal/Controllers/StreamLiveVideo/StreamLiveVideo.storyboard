@@ -19,18 +19,43 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W40-lV-CVX">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uln-RK-yAf">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="rcz-Nn-U5q">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </view>
+                                        <blurEffect style="regular"/>
+                                    </visualEffectView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.027450980390000001" green="0.0" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Uln-RK-yAf" secondAttribute="trailing" id="68v-Qs-qku"/>
+                                    <constraint firstItem="Uln-RK-yAf" firstAttribute="top" secondItem="W40-lV-CVX" secondAttribute="top" id="Oo5-VM-Okp"/>
+                                    <constraint firstItem="Uln-RK-yAf" firstAttribute="leading" secondItem="W40-lV-CVX" secondAttribute="leading" id="X2f-HW-f4j"/>
+                                    <constraint firstAttribute="bottom" secondItem="Uln-RK-yAf" secondAttribute="bottom" id="l8a-7t-gHN"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Dw9-fc-MkI" firstAttribute="leading" secondItem="ioS-ki-ac2" secondAttribute="leading" id="3ba-xX-7yW"/>
                             <constraint firstItem="ioS-ki-ac2" firstAttribute="trailing" secondItem="Dw9-fc-MkI" secondAttribute="trailing" id="4gs-4l-OQ1"/>
+                            <constraint firstItem="W40-lV-CVX" firstAttribute="top" secondItem="AQA-U2-5BD" secondAttribute="top" id="E8W-lW-HLE"/>
+                            <constraint firstItem="W40-lV-CVX" firstAttribute="leading" secondItem="ioS-ki-ac2" secondAttribute="leading" id="Qz8-lC-94W"/>
                             <constraint firstItem="Dw9-fc-MkI" firstAttribute="top" secondItem="AQA-U2-5BD" secondAttribute="top" id="lPQ-6e-D2y"/>
+                            <constraint firstAttribute="bottom" secondItem="W40-lV-CVX" secondAttribute="bottom" id="odN-iz-VGi"/>
                             <constraint firstItem="ioS-ki-ac2" firstAttribute="bottom" secondItem="Dw9-fc-MkI" secondAttribute="bottom" id="r9C-IZ-TG6"/>
+                            <constraint firstItem="W40-lV-CVX" firstAttribute="trailing" secondItem="ioS-ki-ac2" secondAttribute="trailing" id="yif-5H-iNg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ioS-ki-ac2"/>
                     </view>
                     <connections>
                         <outlet property="broadcastersView" destination="Dw9-fc-MkI" id="rcZ-QU-4cF"/>
+                        <outlet property="waitingView" destination="W40-lV-CVX" id="kdd-cn-JDj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z9b-pL-M3h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
