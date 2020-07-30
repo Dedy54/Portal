@@ -21,41 +21,8 @@ class StreamLiveVideoViewController: UIViewController {
         return engine
     }()
     
-//    private var isMutedVideo = false {
-//        didSet {
-//            // mute local video
-//            agoraKit.muteLocalVideoStream(isMutedVideo)
-//            videoMuteButton.isSelected = isMutedVideo
-//        }
-//    }
-//
-//    private var isMutedAudio = false {
-//        didSet {
-//            // mute local audio
-//            agoraKit.muteLocalAudioStream(isMutedAudio)
-//            audioMuteButton.isSelected = isMutedAudio
-//        }
-//    }
-//
-//    private var isBeautyOn = false {
-//        didSet {
-//            // improve local render view
-//            agoraKit.setBeautyEffectOptions(isBeautyOn,
-//                                            options: isBeautyOn ? beautyOptions : nil)
-//            beautyEffectButton.isSelected = isBeautyOn
-//        }
-//    }
-    
-//    private var isSwitchCamera = false {
-//        didSet {
-//            agoraKit.switchCamera()
-//        }
-//    }
-    
     private var videoSessions = [VideoSession]() {
         didSet {
-//            placeholderView.isHidden = (videoSessions.count == 0 ? false : true)
-            // update render view layout
             updateBroadcastersView()
         }
     }
@@ -66,34 +33,12 @@ class StreamLiveVideoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        updateButtonsVisiablity()
         loadAgoraKit()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-    
-    //MARK: - ui action
-//    @IBAction func doSwitchCameraPressed(_ sender: UIButton) {
-//        isSwitchCamera.toggle()
-//    }
-//
-//    @IBAction func doBeautyPressed(_ sender: UIButton) {
-//        isBeautyOn.toggle()
-//    }
-//
-//    @IBAction func doMuteVideoPressed(_ sender: UIButton) {
-//        isMutedVideo.toggle()
-//    }
-//
-//    @IBAction func doMuteAudioPressed(_ sender: UIButton) {
-//        isMutedAudio.toggle()
-//    }
-//
-//    @IBAction func doLeavePressed(_ sender: UIButton) {
-//        leaveChannel()
-//    }
 }
 
 private extension StreamLiveVideoViewController {
@@ -135,18 +80,6 @@ private extension StreamLiveVideoViewController {
             broadcastersView.setLayouts([layout], animated: true)
         }
     }
-    
-//    func updateButtonsVisiablity() {
-//        guard let sessionButtons = sessionButtons else {
-//            return
-//        }
-//
-//        let isHidden = settings.role == .audience
-//
-//        for item in sessionButtons {
-//            item.isHidden = isHidden
-//        }
-//    }
     
     func setIdleTimerActive(_ active: Bool) {
         UIApplication.shared.isIdleTimerDisabled = !active
@@ -197,14 +130,6 @@ private extension StreamLiveVideoViewController {
         // Step 4, enable the video module
         agoraKit.enableVideo()
         // set video configuration
-//        agoraKit.setVideoEncoderConfiguration(
-//            AgoraVideoEncoderConfiguration(
-//                size: settings.dimension,
-//                frameRate: settings.frameRate,
-//                bitrate: AgoraVideoBitrateStandard,
-//                orientationMode: .adaptative
-//            )
-//        )
         
         agoraKit.setVideoEncoderConfiguration(
             AgoraVideoEncoderConfiguration(
@@ -215,12 +140,6 @@ private extension StreamLiveVideoViewController {
             )
         )
         
-        // if current role is broadcaster, add local render view and start preview
-//        if settings.role == .broadcaster {
-//            addLocalSession()
-//            agoraKit.startPreview()
-//        }
-        
         // Step 5, join channel and start group chat
         // If join  channel success, agoraKit triggers it's delegate function
         // 'rtcEngine(_ engine: AgoraRtcEngineKit, didJoinChannel channel: String, withUid uid: UInt, elapsed: Int)'
@@ -230,23 +149,11 @@ private extension StreamLiveVideoViewController {
         agoraKit.setEnableSpeakerphone(true)
     }
     
-//    func addLocalSession() {
-//        let localSession = VideoSession.localSession()
-//        localSession.updateInfo(fps: settings.frameRate.rawValue)
-//        videoSessions.append(localSession)
-//        agoraKit.setupLocalVideo(localSession.canvas)
-//    }
-    
     func leaveChannel() {
         // Step 1, release local AgoraRtcVideoCanvas instance
         agoraKit.setupLocalVideo(nil)
         // Step 2, leave channel and end group chat
         agoraKit.leaveChannel(nil)
-        
-        // Step 3, if current role is broadcaster,  stop preview after leave channel
-//        if settings.role == .broadcaster {
-//            agoraKit.stopPreview()
-//        }
         
         setIdleTimerActive(true)
         

@@ -11,7 +11,13 @@ import AVFoundation
 
 class NewPostFormViewController: UIViewController {
     
-    @IBOutlet weak var postImageView: UIImageView!
+    @IBOutlet weak var postImageView: UIImageView!{
+        didSet{
+            self.postImageView.clipsToBounds = true
+            self.postImageView.layer.cornerRadius = 10
+            self.postImageView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner, .layerMinXMinYCorner, .layerMaxXMinYCorner]
+        }
+    }
     @IBOutlet weak var counterTitleLabel: UILabel!
     @IBOutlet weak var titleTextField: UITextField!
     @IBAction func actionSwitch(_ sender: Any) {
@@ -27,14 +33,24 @@ class NewPostFormViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.titleTextField.delegate = self
+        self.title = "New Post"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .done, target: self, action: #selector(addTappedPost))
-        self.hideKeyboardWhenTappedAround()
+        
         self.setView(post: self.post)
+        self.hideKeyboardWhenTappedAround()
     }
     
     @objc func addTappedPost(sender: UIBarButtonItem) {
         let title = titleTextField.text
         self.post?.title = title
+        self.post?.isSensitiveContent = self.sensitivitySwitch.isOn
+        self.post?.save(result: { (result) in
+            
+        }, errorCase: { (error) in
+            
+        })
     }
     
     func setView(post: Post?){
@@ -64,6 +80,18 @@ class NewPostFormViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    
+}
+
+extension NewPostFormViewController : UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let MAX_LENGTH = 120
+        let updatedString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        self.counterTitleLabel.text = "\(updatedString.count)/120"
+        return updatedString.count < MAX_LENGTH
     }
 }
 
