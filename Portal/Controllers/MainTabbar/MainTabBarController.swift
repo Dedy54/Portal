@@ -21,9 +21,22 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     }
     
     override func tabBar(_ tabBar: UITabBar, willBeginCustomizing items: [UITabBarItem]) {
+        
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        if item.title == "Open Mic" {
+            if !PreferenceManager.instance.isUserLogin {
+                AppDelegate.relaunchMain(selectedIndex: self.selectedIndex, duration: 0.0) { (result) -> (Void) in
+                    if let visibleViewController = UIApplication.shared.keyWindow?.visibleViewController {
+                        let storyboard = UIStoryboard(name: "LiveMenu", bundle: nil)
+                        let controller = storyboard.instantiateViewController(withIdentifier: "LiveMenuViewController") as! LiveMenuViewController
+                        controller.hidesBottomBarWhenPushed = true
+                        visibleViewController.navigationController?.pushViewController(controller, animated: true)
+                    }
+                }
+            }
+        }
     }
     
     override var selectedIndex: Int {
