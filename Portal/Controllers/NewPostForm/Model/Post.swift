@@ -18,9 +18,11 @@ class Post: CloudKitProtocol, Identifiable, Equatable {
     var lpm: Double?
     var video : CKAsset?
     var videoUrl : URL?
-    var isSensitiveContent: Bool?
-    var userId : [CKRecord.Reference]?
-    var isLive : Bool?
+    var isSensitiveContent: Int?
+    var userReference : CKRecord.Reference?
+    var isLive: Int?
+    
+    static var RecordType = "Post"
     
     public required init(ckRecord: CKRecord) {
         self.title = ckRecord["title"]
@@ -28,21 +30,21 @@ class Post: CloudKitProtocol, Identifiable, Equatable {
         self.lpm = ckRecord["lpm"]
         self.video = ckRecord["video"]
         self.isSensitiveContent = ckRecord["isSensitiveContent"]
-        self.userId = ckRecord["userId"] as? [CKRecord.Reference]
+        self.userReference = ckRecord["userReference"]
         self.isLive = ckRecord["isLive"]
         
         self.record = ckRecord
         self.id = ckRecord.recordID
     }
     
-    init(title: String, viewer: Int, lpm: Double, videoUrl: URL, isSensitiveContent: Bool, isLive: Bool){
+    init(title: String?, viewer: Int?, lpm: Double?, videoUrl: URL, isSensitiveContent: Int?, isLive: Int?, userReference: CKRecord.Reference?){
         self.title = title
         self.viewer = viewer
         self.lpm = lpm
         self.isSensitiveContent = isSensitiveContent
         self.video = CKAsset(fileURL: videoUrl)
         self.videoUrl = videoUrl
-        self.userId = [CKRecord.Reference]()
+        self.userReference = userReference
         self.isLive = isLive
         
         if record == nil {
@@ -55,7 +57,7 @@ class Post: CloudKitProtocol, Identifiable, Equatable {
         record?["video"] = CKAsset(fileURL: videoUrl)
         record?["isSensitiveContent"] = isSensitiveContent
         record?["isLive"] = isLive
-        record?["userId"] = [CKRecord.Reference]()
+        record?["userReference"] = userReference
         
         if let record = self.record {
             self.id = record.recordID

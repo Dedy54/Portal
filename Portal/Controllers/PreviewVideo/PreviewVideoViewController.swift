@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import AVKit
+import CloudKit
 
 class PreviewVideoViewController: UIViewController {
     
@@ -33,10 +34,11 @@ class PreviewVideoViewController: UIViewController {
     }
     
     @objc func addTappedPost(sender: UIBarButtonItem) {
+        // note CKRecord.Reference(record: CKRecord(recordType: "Post"), change with user id registered
         if let url = self.url {
             let storyboard = UIStoryboard(name: "NewPostForm", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "NewPostFormViewController") as! NewPostFormViewController
-            let post = Post(title: "", viewer: 0, lpm: 0, videoUrl: url, isSensitiveContent: false, isLive: false)
+            let post = Post(title: "", viewer: 0, lpm: 0, videoUrl: url, isSensitiveContent: 0, isLive: 0, userReference: CKRecord.Reference(record: CKRecord(recordType: "Post"), action: .none))
             controller.post = post
             self.navigationController?.pushViewController(controller, animated: true)
         }

@@ -172,13 +172,14 @@ extension CloudKitProtocol {
                 guard let recordID = recordID else { return }
                 print("record with id: \(recordID)")
                 
-                completion()
+//                completion()
             })
         }) { (_, error) in
             if let error = error {
                 print("Error: \(error)")
             } else {
                 print("Records deleted")
+                completion()
             }
             
         }
