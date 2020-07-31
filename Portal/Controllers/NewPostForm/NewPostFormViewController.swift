@@ -46,12 +46,13 @@ class NewPostFormViewController: UIViewController {
         if let post = post, let videoUrl = post.videoUrl {
             self.titleTextField.endEditing(true)
             let title = titleTextField.text ?? ""
+            let email = PreferenceManager.instance.userEmail
             
             self.post?.title = title
             self.post?.isSensitiveContent = self.sensitivitySwitch.isOn ? 1 : 0
             self.showIndicator()
             
-            Post(title: title, viewer: post.viewer, lpm: post.lpm, videoUrl: videoUrl, isSensitiveContent: post.isSensitiveContent, isLive: post.isLive, userReference: post.userReference).save(result: { (result) in
+            Post(title: title, viewer: post.viewer, lpm: post.lpm, videoUrl: videoUrl, isSensitiveContent: post.isSensitiveContent, isLive: post.isLive, userReference: post.userReference, email: email).save(result: { (result) in
                 DispatchQueue.main.async {
                     self.hideIndicator()
                     self.navigationController?.dismiss(animated: true, completion: nil)
@@ -67,34 +68,12 @@ class NewPostFormViewController: UIViewController {
     }
     
     func setView(post: Post?){
-        if let post = post, let videoUrl = post.videoUrl {
-            self.getThumbnailImageFromVideoUrl(url: videoUrl) { (thumbnailImage) in
+        if let post = post {
+            post.getThumbnail(completion: { (thumbnailImage) in
                 self.postImageView.image = thumbnailImage
-            }
+            })
         }
     }
-    
-    func getThumbnailImageFromVideoUrl(url: URL, completion: @escaping ((_ image: UIImage?)->Void)) {
-        DispatchQueue.global().async {
-            let asset = AVAsset(url: url)
-            let avAssetImageGenerator = AVAssetImageGenerator(asset: asset)
-            avAssetImageGenerator.appliesPreferredTrackTransform = true
-            let thumnailTime = CMTimeMake(value: 2, timescale: 1)
-            do {
-                let cgThumbImage = try avAssetImageGenerator.copyCGImage(at: thumnailTime, actualTime: nil)
-                let thumbImage = UIImage(cgImage: cgThumbImage)
-                DispatchQueue.main.async {
-                    completion(thumbImage)
-                }
-            } catch {
-                print(error.localizedDescription)
-                DispatchQueue.main.async {
-                    completion(nil)
-                }
-            }
-        }
-    }
-    
     
 }
 
