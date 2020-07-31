@@ -13,7 +13,12 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
-        overrideUserInterfaceStyle = .dark  
+        overrideUserInterfaceStyle = .dark
+        
+        
+//        print(PreferenceManager.instance.isUserLogin)
+//        print(PreferenceManager.instance.userEmail)?\
+//        print(PreferenceManager.instance.userId)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -25,8 +30,12 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        if item.title == "Open Mic" {
-            if !PreferenceManager.instance.isUserLogin {
+        switch item.title {
+        case "Open Mic":
+            if PreferenceManager.instance.isUserLogin == false {
+                performSegue(withIdentifier: "toRegister", sender: nil)
+                self.selectedIndex = 0
+            } else {
                 AppDelegate.relaunchMain(selectedIndex: self.selectedIndex, duration: 0.0) { (result) -> (Void) in
                     if let visibleViewController = UIApplication.shared.keyWindow?.visibleViewController {
                         let storyboard = UIStoryboard(name: "LiveMenu", bundle: nil)
@@ -36,7 +45,21 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
                     }
                 }
             }
+        case "Profile":
+            if PreferenceManager.instance.isUserLogin == false {
+                performSegue(withIdentifier: "toRegister", sender: nil)
+                self.selectedIndex = 0
+            }
+        case "Notification":
+            if PreferenceManager.instance.isUserLogin == false {
+                performSegue(withIdentifier: "toRegister", sender: nil)
+                self.selectedIndex = 0
+                
+            }
+        default:
+            print(item.title)
         }
+        
     }
     
     override var selectedIndex: Int {
@@ -44,5 +67,12 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
             super.selectedIndex = selectedIndex
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        //        if PreferenceManager.instance.isUserLogin == false {
+        //            self.selectedIndex = 1
+        //        }
+    }
+    
     
 }

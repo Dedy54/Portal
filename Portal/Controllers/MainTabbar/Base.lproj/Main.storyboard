@@ -171,11 +171,22 @@
                         <segue destination="Z2B-o1-8at" kind="relationship" relationship="viewControllers" id="PQv-is-ANv"/>
                         <segue destination="Z86-RG-3WI" kind="relationship" relationship="viewControllers" id="iyf-xA-vjK"/>
                         <segue destination="qjl-EV-FJ9" kind="relationship" relationship="viewControllers" id="cP2-2l-MU3"/>
+                        <segue destination="g5I-YR-eTq" kind="show" identifier="toRegister" id="gdY-qd-16z"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="srz-CI-6Fr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1029" y="333"/>
+        </scene>
+        <!--RegisterViewController-->
+        <scene sceneID="Rfb-bp-mka">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Register" referencedIdentifier="RegisterViewController" id="g5I-YR-eTq" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="eCa-WE-xX4"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Max-vE-jWo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-812" y="1066"/>
         </scene>
         <!--Home-->
         <scene sceneID="I46-Bg-lCd">

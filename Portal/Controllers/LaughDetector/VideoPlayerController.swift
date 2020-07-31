@@ -10,7 +10,7 @@ import Foundation
 import AVKit
 import SoundAnalysis
 
-class VideoPlayerController: UIViewController, GenderClassifierDelegate {
+class VideoPlayerController: UIViewController, LaughClassifierDelegate {
     let videoURL = URL(string: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
     var player : AVPlayer?
     
@@ -63,6 +63,7 @@ class VideoPlayerController: UIViewController, GenderClassifierDelegate {
         playerLayer.addSublayer(asd.layer)
         self.view.layer.addSublayer(playerLayer)
         player?.play()
+        
     }
     
     func stopVideo(){
@@ -109,7 +110,7 @@ class VideoPlayerController: UIViewController, GenderClassifierDelegate {
 
 
 class ResultsObserver: NSObject, SNResultsObserving {
-    var delegate: GenderClassifierDelegate?
+    var delegate: LaughClassifierDelegate?
     func request(_ request: SNRequest, didProduce result: SNResult) {
         guard let result = result as? SNClassificationResult,
             let classification = result.classifications.first else { return }
@@ -122,11 +123,11 @@ class ResultsObserver: NSObject, SNResultsObserving {
     }
 }
 
-protocol GenderClassifierDelegate {
+protocol LaughClassifierDelegate {
     func displayPredictionResult(identifier: String, confidence: Double)
 }
 
-extension LaughClassifier: GenderClassifierDelegate {
+extension LaughClassifier: LaughClassifierDelegate {
     func displayPredictionResult(identifier: String, confidence: Double) {
         DispatchQueue.main.async {
             print("Recognition: \(identifier)\nConfidence \(confidence)")
