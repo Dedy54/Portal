@@ -162,6 +162,7 @@ extension CloudKitProtocol {
                 print("Error: \(error)")
             } else {
                 print("Records deleted")
+                completion()
             }
         }
     }

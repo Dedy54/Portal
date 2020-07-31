@@ -202,11 +202,8 @@ class LiveMenuViewController: UIViewController {
         
     }
     
-    private var roomName : String? = "portalaja"
     private lazy var agoraKit: AgoraRtcEngineKit = {
         let engine = AgoraRtcEngineKit.sharedEngine(withAppId: KeyCenter.AppId, delegate: nil)
-        engine.setLogFilter(AgoraLogFilter.info.rawValue)
-        engine.setLogFile(FileCenter.logFilePath())
         return engine
     }()
     private let pickerController : UIImagePickerController = UIImagePickerController()
@@ -216,6 +213,7 @@ class LiveMenuViewController: UIViewController {
             self.setViewSourceVideo()
         }
     }
+    var liveRoom : LiveRoom?
     private let maxVideoSession = 4
     
     private var isSwitchCamera = false {
@@ -224,6 +222,8 @@ class LiveMenuViewController: UIViewController {
         }
     }
     private var isBackCamera = true
+    
+    private var generateTokenStore: GenerateTokenStore = CoreStore.shared
     
     var timer: Timer?
     var countTimer = 0
@@ -582,27 +582,41 @@ private extension LiveMenuViewController {
     
     func joinChanel() {
         self.showIndicator()
-        LiveRoom.deleteAll {
-            LiveRoom(name: "portalaja", token: KeyCenter.Token, userReference: CKRecord.Reference(record: CKRecord(recordType: "Post"), action: .none)).save(result: { (result) in
-                DispatchQueue.main.async {
-                    self.hideIndicator()
-                    self.showHideWaitingView()
-                    guard let channelId = result?.name else {
-                        return
+        self.generateTokenStore = CoreStore.shared
+        let emailMember = PreferenceManager.instance.userEmail ?? ""
+        let emailMemberPredicate = NSPredicate(format: "%K == %@", argumentArray: ["email", "\(emailMember)"])
+        LiveRoom.delete(predicate: emailMemberPredicate, completion: {
+            self.generateTokenStore.postGenerateToken(from: Endpoint.generateagoratoken, page: 0, params: nil, successHandler: { (result) in
+                print("room : \(result.channelName ?? "")")
+                print("token : \(result.token ?? "")")
+                print("uid : \(result.uid ?? 0)")
+                
+                self.liveRoom = LiveRoom(name: result.channelName ?? "", token: result.token ?? "", userReference: CKRecord.Reference(record: CKRecord(recordType: "Post"), action: .none), email: emailMember, uid: "\(result.uid ?? 0)", viewer: 0, lpm: 0.0)
+                
+                LiveRoom(name: result.channelName ?? "", token: result.token ?? "", userReference: CKRecord.Reference(record: CKRecord(recordType: "Post"), action: .none), email: emailMember, uid: "\(result.uid ?? 0)", viewer: 0, lpm: 0.0).save(result: { (result) in
+                    DispatchQueue.main.async {
+                        self.hideIndicator()
+                        self.showHideWaitingView()
+                        guard let channelId = result?.name, let token = result?.token else {
+                            return
+                        }
+                        self.agoraKit.startPreview()
+                        self.agoraKit.joinChannel(byToken: token, channelId: channelId, info: nil, uid: 0, joinSuccess: nil)
+                        self.agoraKit.setEnableSpeakerphone(true)
+                        self.liveMenu = .inlive
+                        self.setViewSourceVideo()
                     }
-                    
-                    self.agoraKit.startPreview()
-                    self.agoraKit.joinChannel(byToken: KeyCenter.Token, channelId: channelId, info: nil, uid: 0, joinSuccess: nil)
-                    self.agoraKit.setEnableSpeakerphone(true)
-                    self.liveMenu = .inlive
-                    self.setViewSourceVideo()
+                }) { (error) in
+                    DispatchQueue.main.async {
+                        self.hideIndicator()
+                    }
                 }
             }) { (error) in
                 DispatchQueue.main.async {
                     self.hideIndicator()
                 }
             }
-        }
+        })
     }
     
     func addLocalSession() {
@@ -615,8 +629,18 @@ private extension LiveMenuViewController {
     func leaveChannel() {
         agoraKit.leaveChannel(nil)
         setIdleTimerActive(true)
+        agoraKit.stopPreview()
         liveMenu = .live
         setViewSourceVideo()
+        
+        self.showIndicator()
+        let emailMember = PreferenceManager.instance.userEmail ?? ""
+        let emailMemberPredicate = NSPredicate(format: "%K == %@", argumentArray: ["email", "\(emailMember)"])
+        LiveRoom.delete(predicate: emailMemberPredicate, completion: {
+            DispatchQueue.main.async {
+                self.hideIndicator()
+            }
+        })
     }
 }
 
@@ -704,10 +728,12 @@ extension LiveMenuViewController: AgoraRtcEngineDelegate {
     /// Reports a warning during SDK runtime.
     func rtcEngine(_ engine: AgoraRtcEngineKit, didOccurWarning warningCode: AgoraWarningCode) {
         print("warning code: \(warningCode.description)")
+        
     }
     
     /// Reports an error during SDK runtime.
     func rtcEngine(_ engine: AgoraRtcEngineKit, didOccurError errorCode: AgoraErrorCode) {
-        print("warning code: \(errorCode.description)")
+        print("errorCode code: \(errorCode.description)")
+        
     }
 }
