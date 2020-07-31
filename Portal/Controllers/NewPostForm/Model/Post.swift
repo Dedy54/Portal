@@ -8,6 +8,8 @@
 
 import Foundation
 import CloudKit
+import AVFoundation
+import UIKit
 
 class Post: CloudKitProtocol, Identifiable, Equatable {
     
@@ -21,6 +23,7 @@ class Post: CloudKitProtocol, Identifiable, Equatable {
     var isSensitiveContent: Int?
     var userReference : CKRecord.Reference?
     var isLive: Int?
+    var email: String?
     
     static var RecordType = "Post"
     
@@ -32,12 +35,13 @@ class Post: CloudKitProtocol, Identifiable, Equatable {
         self.isSensitiveContent = ckRecord["isSensitiveContent"]
         self.userReference = ckRecord["userReference"]
         self.isLive = ckRecord["isLive"]
+        self.email = ckRecord["email"]
         
         self.record = ckRecord
         self.id = ckRecord.recordID
     }
     
-    init(title: String?, viewer: Int?, lpm: Double?, videoUrl: URL, isSensitiveContent: Int?, isLive: Int?, userReference: CKRecord.Reference?){
+    init(title: String?, viewer: Int?, lpm: Double?, videoUrl: URL, isSensitiveContent: Int?, isLive: Int?, userReference: CKRecord.Reference?, email: String?){
         self.title = title
         self.viewer = viewer
         self.lpm = lpm
@@ -46,6 +50,7 @@ class Post: CloudKitProtocol, Identifiable, Equatable {
         self.videoUrl = videoUrl
         self.userReference = userReference
         self.isLive = isLive
+        self.email = email
         
         if record == nil {
             record = CKRecord(recordType: Self.recordType)
@@ -58,6 +63,7 @@ class Post: CloudKitProtocol, Identifiable, Equatable {
         record?["isSensitiveContent"] = isSensitiveContent
         record?["isLive"] = isLive
         record?["userReference"] = userReference
+        record?["email"] = email
         
         if let record = self.record {
             self.id = record.recordID
@@ -68,4 +74,29 @@ class Post: CloudKitProtocol, Identifiable, Equatable {
         return lhs.id == rhs.id
     }
     
+    func getThumbnail(completion: @escaping ((_ image: UIImage?)->Void)) {
+        guard let url = self.videoUrl else {
+            completion(nil)
+            return
+        }
+        
+        DispatchQueue.global().async {
+            let asset = AVAsset(url: url)
+            let avAssetImageGenerator = AVAssetImageGenerator(asset: asset)
+            avAssetImageGenerator.appliesPreferredTrackTransform = true
+            let thumnailTime = CMTimeMake(value: 2, timescale: 1)
+            do {
+                let cgThumbImage = try avAssetImageGenerator.copyCGImage(at: thumnailTime, actualTime: nil)
+                let thumbImage = UIImage(cgImage: cgThumbImage)
+                DispatchQueue.main.async {
+                    completion(thumbImage)
+                }
+            } catch {
+                print(error.localizedDescription)
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+            }
+        }
+    }
 }
