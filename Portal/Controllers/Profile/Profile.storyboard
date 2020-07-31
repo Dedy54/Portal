@@ -21,7 +21,7 @@
                                 <rect key="frame" x="-7" y="0.0" width="429" height="896"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="wp5929786" translatesAutoresizingMaskIntoConstraints="NO" id="BLg-7l-TLC">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Lounge Logo" translatesAutoresizingMaskIntoConstraints="NO" id="BLg-7l-TLC">
                                         <rect key="frame" x="159" y="99" width="111" height="111"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -203,6 +203,7 @@
                         <outlet property="followingCountLabel" destination="ZJf-Na-J44" id="jRz-Ia-CwS"/>
                         <outlet property="laughCountLabel" destination="P3w-Tn-oKQ" id="CE5-KO-IOR"/>
                         <outlet property="nameLabel" destination="5i1-Qf-Nwb" id="ZhL-z1-U4X"/>
+                        <outlet property="profileCollectionView" destination="gHS-bk-ty3" id="xeT-fi-UVV"/>
                         <outlet property="profilePicture" destination="BLg-7l-TLC" id="Aie-sI-WCd"/>
                         <outlet property="profileSC" destination="2Mo-u7-COh" id="fSV-13-nLY"/>
                         <outlet property="statusLabel" destination="XH9-ds-D3L" id="few-BH-ji6"/>
@@ -409,9 +410,9 @@
     </scenes>
     <resources>
         <image name="Emoji" width="56" height="56"/>
+        <image name="Lounge Logo" width="20" height="27"/>
         <image name="ee728bfafddd25bd4a371765a0fe3f078d499e4a0c5413923debeb6832f402f7" width="1000" height="1000"/>
         <image name="icons8-menu-rounded-50" width="22" height="18"/>
-        <image name="wp5929786" width="1080" height="1080"/>
         <namedColor name="ColorYellow">
             <color red="0.98431372549019602" green="0.62352941176470589" blue="0.14901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
