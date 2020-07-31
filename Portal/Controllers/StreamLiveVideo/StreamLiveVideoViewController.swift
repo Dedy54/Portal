@@ -42,7 +42,12 @@ class StreamLiveVideoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideNavigationBar()
         loadAgoraKit()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        self.showNavigationBar()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
