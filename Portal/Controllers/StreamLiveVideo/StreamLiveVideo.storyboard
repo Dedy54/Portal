@@ -27,6 +27,25 @@
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="rcz-Nn-U5q">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vzn-RH-8yC">
+                                                    <rect key="frame" x="20" y="50" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="2BU-qK-CVa"/>
+                                                        <constraint firstAttribute="width" constant="30" id="Q4r-B0-j7b"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <state key="normal" image="xmark.circle.fill" catalog="system"/>
+                                                    <connections>
+                                                        <action selector="actionButtonClose:" destination="FC8-n4-HRz" eventType="touchUpInside" id="GK5-SM-9hS"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Vzn-RH-8yC" firstAttribute="leading" secondItem="rcz-Nn-U5q" secondAttribute="leading" constant="20" id="JNZ-nz-rE0"/>
+                                                <constraint firstItem="Vzn-RH-8yC" firstAttribute="top" secondItem="rcz-Nn-U5q" secondAttribute="top" constant="50" id="hbS-NH-Mqb"/>
+                                            </constraints>
                                         </view>
                                         <blurEffect style="regular"/>
                                     </visualEffectView>
@@ -63,4 +82,7 @@
             <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="xmark.circle.fill" catalog="system" width="128" height="121"/>
+    </resources>
 </document>

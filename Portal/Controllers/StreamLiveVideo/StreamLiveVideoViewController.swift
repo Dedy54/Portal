@@ -8,6 +8,7 @@
 
 import UIKit
 import AgoraRtcKit
+import AgoraRtcCryptoLoader
 
 
 class StreamLiveVideoViewController: UIViewController {
@@ -17,6 +18,9 @@ class StreamLiveVideoViewController: UIViewController {
         didSet{
             waitingView.isHidden = true
         }
+    }
+    @IBAction func actionButtonClose(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     private lazy var agoraKit: AgoraRtcEngineKit = {
@@ -125,7 +129,7 @@ private extension StreamLiveVideoViewController {
 //MARK: - Agora Media SDK
 private extension StreamLiveVideoViewController {
     func loadAgoraKit() {
-        guard let channelId = liveRoom?.name else {
+        guard let channelId = liveRoom?.name, let token = liveRoom?.token else {
             return
         }
         
@@ -158,7 +162,7 @@ private extension StreamLiveVideoViewController {
         // Step 5, join channel and start group chat
         // If join  channel success, agoraKit triggers it's delegate function
         // 'rtcEngine(_ engine: AgoraRtcEngineKit, didJoinChannel channel: String, withUid uid: UInt, elapsed: Int)'
-        agoraKit.joinChannel(byToken: KeyCenter.Token, channelId: channelId, info: nil, uid: 0, joinSuccess: nil)
+        agoraKit.joinChannel(byToken: token, channelId: channelId, info: nil, uid: 0, joinSuccess: nil)
         
         // Step 6, set speaker audio route
         agoraKit.setEnableSpeakerphone(true)
