@@ -61,6 +61,8 @@ class NewPostFormViewController: UIViewController {
                     self.hideIndicator()
                 }
             })
+            
+            
         }
     }
     

@@ -31,6 +31,11 @@ extension UIViewController {
 
 // Put this piece of code anywhere you like
 extension UIViewController {
+    func delay(_ delay:Double, closure:@escaping ()->()) {
+         let when = DispatchTime.now() + delay
+         DispatchQueue.main.asyncAfter(deadline: when, execute: closure)
+     }
+    
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
         tap.cancelsTouchesInView = false

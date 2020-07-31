@@ -14,6 +14,7 @@ class PreferenceManager: NSObject {
     private static let IsUserLogin = "is_user_login"
     private static let UserName = "user_name"
     private static let UserEmail = "user_email"
+    private static let UserID = "user_id"
     
     static let instance = PreferenceManager()
     private let userDefaults: UserDefaults
@@ -69,4 +70,18 @@ class PreferenceManager: NSObject {
             }
         }
     }
+    
+    var userId: String? {
+        get {
+            return userDefaults.string(forKey: PreferenceManager.UserID)
+        }
+        set(newValue) {
+            if let value = newValue {
+                userDefaults.set(value, forKey: PreferenceManager.UserID)
+            }else {
+                userDefaults.removeObject(forKey:PreferenceManager.UserID)
+            }
+        }
+    }
+    
 }

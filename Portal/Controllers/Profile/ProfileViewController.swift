@@ -11,12 +11,12 @@ import UIKit
 class ProfileViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
     @IBOutlet weak var profilePicture: UIImageView!
-    @IBOutlet weak var profileName: UITextView!
-    @IBOutlet weak var profileStatus: UITextView!
-    @IBOutlet weak var profileFollower: UITextView!
-    @IBOutlet weak var profileFollowing: UITextView!
-    @IBOutlet weak var profileLPM: UITextView!
     @IBOutlet weak var profileSC: UISegmentedControl!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var followersCountLabel: UILabel!
+    @IBOutlet weak var followingCountLabel: UILabel!
+    @IBOutlet weak var laughCountLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()

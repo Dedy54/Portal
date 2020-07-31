@@ -3,10 +3,19 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		202157DE24D33A8900503492 /* MBProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 202157DD24D33A8900503492 /* MBProgressHUD */; };
+		202157EA24D33D3E00503492 /* CKFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202157E224D33D3E00503492 /* CKFError.swift */; };
+		202157EB24D33D3E00503492 /* CKFPhotoSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202157E424D33D3E00503492 /* CKFPhotoSession.swift */; };
+		202157EC24D33D3E00503492 /* CKFGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202157E524D33D3E00503492 /* CKFGridView.swift */; };
+		202157ED24D33D3E00503492 /* CKFPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202157E624D33D3E00503492 /* CKFPreviewView.swift */; };
+		202157EE24D33D3E00503492 /* CKFSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202157E724D33D3E00503492 /* CKFSession.swift */; };
+		202157EF24D33D3E00503492 /* CKFUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202157E824D33D3E00503492 /* CKFUtils.swift */; };
+		202157F024D33D3E00503492 /* CKFVideoSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202157E924D33D3E00503492 /* CKFVideoSession.swift */; };
+		202157F324D3FA8000503492 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202157F224D3FA8000503492 /* User.swift */; };
 		205B0F2424CE691700360695 /* LaughClassifier1.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 205B0F2324CE691700360695 /* LaughClassifier1.mlmodel */; };
 		205B0F2624CF1BB700360695 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205B0F2524CF1BB700360695 /* UIViewControllerExtension.swift */; };
 		20A5773A24CA8949009F55EC /* VideoPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A5773924CA8949009F55EC /* VideoPlayerController.swift */; };
@@ -95,7 +104,29 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		202157D924D339C000503492 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		202157E224D33D3E00503492 /* CKFError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKFError.swift; sourceTree = "<group>"; };
+		202157E324D33D3E00503492 /* CameraKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraKit.h; sourceTree = "<group>"; };
+		202157E424D33D3E00503492 /* CKFPhotoSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKFPhotoSession.swift; sourceTree = "<group>"; };
+		202157E524D33D3E00503492 /* CKFGridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKFGridView.swift; sourceTree = "<group>"; };
+		202157E624D33D3E00503492 /* CKFPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKFPreviewView.swift; sourceTree = "<group>"; };
+		202157E724D33D3E00503492 /* CKFSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKFSession.swift; sourceTree = "<group>"; };
+		202157E824D33D3E00503492 /* CKFUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKFUtils.swift; sourceTree = "<group>"; };
+		202157E924D33D3E00503492 /* CKFVideoSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKFVideoSession.swift; sourceTree = "<group>"; };
+		202157F224D3FA8000503492 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		205B0F2324CE691700360695 /* LaughClassifier1.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = LaughClassifier1.mlmodel; path = "../../../../../ML Model/LaughClassifier.mlproj/Models/LaughClassifier1.mlmodel"; sourceTree = "<group>"; };
 		205B0F2524CF1BB700360695 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		20A5773824CA8913009F55EC /* LaughClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = LaughClassifier.mlmodel; sourceTree = "<group>"; };
@@ -180,6 +211,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				202157DE24D33A8900503492 /* MBProgressHUD in Frameworks */,
 				5C44838324D05632000283C3 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -201,6 +233,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		202157E124D33D3E00503492 /* CameraKit */ = {
+			isa = PBXGroup;
+			children = (
+				202157E224D33D3E00503492 /* CKFError.swift */,
+				202157E324D33D3E00503492 /* CameraKit.h */,
+				202157E424D33D3E00503492 /* CKFPhotoSession.swift */,
+				202157E524D33D3E00503492 /* CKFGridView.swift */,
+				202157E624D33D3E00503492 /* CKFPreviewView.swift */,
+				202157E724D33D3E00503492 /* CKFSession.swift */,
+				202157E824D33D3E00503492 /* CKFUtils.swift */,
+				202157E924D33D3E00503492 /* CKFVideoSession.swift */,
+			);
+			path = CameraKit;
+			sourceTree = "<group>";
+		};
+		202157F124D3FA6C00503492 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				202157F224D3FA8000503492 /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		20A5773524CA88FE009F55EC /* LaughDetector */ = {
 			isa = PBXGroup;
 			children = (
@@ -216,6 +271,7 @@
 		2DAD940D24D1370700DC4CC5 /* Register */ = {
 			isa = PBXGroup;
 			children = (
+				202157F124D3FA6C00503492 /* Model */,
 				2DAD940E24D1374B00DC4CC5 /* Register.storyboard */,
 				2DAD941024D1377800DC4CC5 /* RegisterViewController.swift */,
 			);
@@ -225,6 +281,7 @@
 		5C16736224C9466D00DBD828 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				202157E124D33D3E00503492 /* CameraKit */,
 				5CBFEB8424D012D100F406D8 /* AGEVideoLayout */,
 				5CBFEB8B24D012D200F406D8 /* Agora */,
 				5CBFEB8A24D012D100F406D8 /* KeyCenter.swift */,
@@ -526,12 +583,16 @@
 				5C26558A24BEEA0400FCE8AB /* Sources */,
 				5C26558B24BEEA0400FCE8AB /* Frameworks */,
 				5C26558C24BEEA0400FCE8AB /* Resources */,
+				202157D924D339C000503492 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Portal;
+			packageProductDependencies = (
+				202157DD24D33A8900503492 /* MBProgressHUD */,
+			);
 			productName = Portal;
 			productReference = 5C26558E24BEEA0400FCE8AB /* Portal.app */;
 			productType = "com.apple.product-type.application";
@@ -604,6 +665,9 @@
 				Base,
 			);
 			mainGroup = 5C26558524BEEA0400FCE8AB;
+			packageReferences = (
+				202157DC24D33A8900503492 /* XCRemoteSwiftPackageReference "MBProgressHUD" */,
+			);
 			productRefGroup = 5C26558F24BEEA0400FCE8AB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -671,6 +735,7 @@
 				20A5773A24CA8949009F55EC /* VideoPlayerController.swift in Sources */,
 				5CBFEB8124D012C000F406D8 /* AgoraExtension.swift in Sources */,
 				5CBFEB9024D012D200F406D8 /* AGEVideoLayout.swift in Sources */,
+				202157EE24D33D3E00503492 /* CKFSession.swift in Sources */,
 				20A5773A24CA8949009F55EC /* VideoPlayerController.swift in Sources */,
 				205B0F2424CE691700360695 /* LaughClassifier1.mlmodel in Sources */,
 				5CBFEBAE24D012E700F406D8 /* LiveMenuViewController.swift in Sources */,
@@ -679,8 +744,11 @@
 				5C2655DD24BEEFE100FCE8AB /* MainTabBarController.swift in Sources */,
 				8C49FD3824C9877C0009C452 /* NewComerViewController.swift in Sources */,
 				205B0F2624CF1BB700360695 /* UIViewControllerExtension.swift in Sources */,
+				202157EC24D33D3E00503492 /* CKFGridView.swift in Sources */,
 				20C9687D24CF464A0067D346 /* ContentView.swift in Sources */,
 				5CBFEB9524D012D200F406D8 /* KeyCenter.swift in Sources */,
+				202157ED24D33D3E00503492 /* CKFPreviewView.swift in Sources */,
+				202157EF24D33D3E00503492 /* CKFUtils.swift in Sources */,
 				5CBFEB9124D012D200F406D8 /* AGEVideoConstraints.swift in Sources */,
 				8C49FD4024C989490009C452 /* TrendingVideosViewController.swift in Sources */,
 				8C28ADE624D141610057903B /* SettingViewController.swift in Sources */,
@@ -689,12 +757,14 @@
 				5C26559224BEEA0400FCE8AB /* AppDelegate.swift in Sources */,
 				5CBFEBAB24D012E700F406D8 /* StreamLiveVideoViewController.swift in Sources */,
 				5C16736924C9466D00DBD828 /* PreferenceManager.swift in Sources */,
+				202157F024D33D3E00503492 /* CKFVideoSession.swift in Sources */,
 				8C439C6724CD607100B94CDA /* NewComerCollectionViewCell.swift in Sources */,
 				2DD9F6FE24C9807D00CD71AC /* onBoarding2ViewController.swift in Sources */,
 				5C2655D524BEEBCE00FCE8AB /* NotificationViewController.swift in Sources */,
 				2DAD941124D1377800DC4CC5 /* RegisterViewController.swift in Sources */,
 				2DD9F6FA24C9591600CD71AC /* ViewController.swift in Sources */,
 				2DD9F6FC24C9599F00CD71AC /* OnBoardingViewController.swift in Sources */,
+				202157EB24D33D3E00503492 /* CKFPhotoSession.swift in Sources */,
 				8C28ADE824D141900057903B /* EditProfileViewController.swift in Sources */,
 				5C26559424BEEA0400FCE8AB /* SceneDelegate.swift in Sources */,
 				5CBFEB9324D012D200F406D8 /* AGEView.swift in Sources */,
@@ -711,6 +781,8 @@
 				5C2655D324BEEBC400FCE8AB /* OpenMicViewController.swift in Sources */,
 				5C16736824C9466D00DBD828 /* CloudKitService.swift in Sources */,
 				5C2655CB24BEEB9700FCE8AB /* HomeViewController.swift in Sources */,
+				202157EA24D33D3E00503492 /* CKFError.swift in Sources */,
+				202157F324D3FA8000503492 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -885,7 +957,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Portal/Portal.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 52CL477F5B;
+				DEVELOPMENT_TEAM = X7PX2RYRJL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Portal/Framework",
@@ -895,7 +967,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = apple.academy.Portal;
+				PRODUCT_BUNDLE_IDENTIFIER = apple.academy.Portals;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -908,7 +980,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Portal/Portal.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 52CL477F5B;
+				DEVELOPMENT_TEAM = X7PX2RYRJL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Portal/Framework",
@@ -918,7 +990,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = apple.academy.Portal;
+				PRODUCT_BUNDLE_IDENTIFIER = apple.academy.Portals;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1049,6 +1121,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		202157DC24D33A8900503492 /* XCRemoteSwiftPackageReference "MBProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jdg/MBProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		202157DD24D33A8900503492 /* MBProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 202157DC24D33A8900503492 /* XCRemoteSwiftPackageReference "MBProgressHUD" */;
+			productName = MBProgressHUD;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5C26558624BEEA0400FCE8AB /* Project object */;
 }
