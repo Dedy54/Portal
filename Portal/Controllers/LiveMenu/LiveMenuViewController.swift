@@ -584,6 +584,7 @@ private extension LiveMenuViewController {
         self.showIndicator()
         self.generateTokenStore = CoreStore.shared
         let emailMember = PreferenceManager.instance.userEmail ?? ""
+        let userName = PreferenceManager.instance.userName ?? ""
         let emailMemberPredicate = NSPredicate(format: "%K == %@", argumentArray: ["email", "\(emailMember)"])
         LiveRoom.delete(predicate: emailMemberPredicate, completion: {
             self.generateTokenStore.postGenerateToken(from: Endpoint.generateagoratoken, page: 0, params: nil, successHandler: { (result) in
@@ -591,9 +592,9 @@ private extension LiveMenuViewController {
                 print("token : \(result.token ?? "")")
                 print("uid : \(result.uid ?? 0)")
                 
-                self.liveRoom = LiveRoom(name: result.channelName ?? "", token: result.token ?? "", userReference: CKRecord.Reference(record: CKRecord(recordType: "Post"), action: .none), email: emailMember, uid: "\(result.uid ?? 0)", viewer: 0, lpm: 0.0)
+                self.liveRoom = LiveRoom(name: result.channelName ?? "", token: result.token ?? "", userReference: CKRecord.Reference(record: CKRecord(recordType: "Post"), action: .none), email: emailMember, uid: "\(result.uid ?? 0)", viewer: 0, lpm: 0.0, userName: userName)
                 
-                LiveRoom(name: result.channelName ?? "", token: result.token ?? "", userReference: CKRecord.Reference(record: CKRecord(recordType: "Post"), action: .none), email: emailMember, uid: "\(result.uid ?? 0)", viewer: 0, lpm: 0.0).save(result: { (result) in
+                LiveRoom(name: result.channelName ?? "", token: result.token ?? "", userReference: CKRecord.Reference(record: CKRecord(recordType: "Post"), action: .none), email: emailMember, uid: "\(result.uid ?? 0)", viewer: 0, lpm: 0.0, userName: userName).save(result: { (result) in
                     DispatchQueue.main.async {
                         self.hideIndicator()
                         self.showHideWaitingView()

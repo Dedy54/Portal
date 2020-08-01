@@ -20,6 +20,7 @@ class LiveRoom: CloudKitProtocol, Identifiable, Equatable {
     var uid : String?
     var viewer: Int?
     var lpm: Double?
+    var userName : String?
     
     static var RecordType = "LiveRooms"
     
@@ -31,12 +32,13 @@ class LiveRoom: CloudKitProtocol, Identifiable, Equatable {
         self.uid = ckRecord["uid"]
         self.viewer = ckRecord["viewer"]
         self.lpm = ckRecord["lpm"]
+        self.userName = ckRecord["userName"]
         
         self.record = ckRecord
         self.id = ckRecord.recordID
     }
     
-    init(name: String, token: String, userReference: CKRecord.Reference, email: String, uid: String, viewer: Int, lpm: Double){
+    init(name: String, token: String, userReference: CKRecord.Reference, email: String, uid: String, viewer: Int, lpm: Double, userName: String){
         self.name = name
         self.token = token
         self.userReference = userReference
@@ -44,6 +46,7 @@ class LiveRoom: CloudKitProtocol, Identifiable, Equatable {
         self.uid = uid
         self.viewer = viewer
         self.lpm = lpm
+        self.userName = userName
         
         if record == nil {
             record = CKRecord(recordType: Self.recordType)
@@ -56,6 +59,7 @@ class LiveRoom: CloudKitProtocol, Identifiable, Equatable {
         record?["uid"] = uid
         record?["viewer"] = viewer
         record?["lpm"] = lpm
+        record?["userName"] = userName
         
         if let record = self.record {
             self.id = record.recordID
