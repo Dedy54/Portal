@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Home View Controller-->
+        <scene sceneID="ufR-ki-pYk">
+            <objects>
+                <viewController storyboardIdentifier="HomeViewController" id="car-b0-ShY" customClass="HomeViewController" customModule="Portal" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="moa-rL-epq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7SB-pC-ofc">
+                                <rect key="frame" x="26" y="98" width="179" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="btnNewComer"/>
+                                <connections>
+                                    <segue destination="PgI-po-3IR" kind="show" id="NVo-1p-ck0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7yL-PZ-uZ4">
+                                <rect key="frame" x="26" y="147" width="368" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="btnTrending">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
+                                </state>
+                                <connections>
+                                    <segue destination="PK8-Ap-XaF" kind="show" id="uCM-tV-Pre"/>
+                                </connections>
+                            </button>
+                            <searchBar contentMode="redraw" fixedFrame="YES" searchBarStyle="minimal" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="5br-Kf-igk">
+                                <rect key="frame" x="20" y="44" width="323" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Inner" translatesAutoresizingMaskIntoConstraints="NO" id="cyd-WW-vtP">
+                                <rect key="frame" x="343" y="41" width="60" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Featured Videos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oe8-XV-2D6">
+                                <rect key="frame" x="26" y="192" width="134" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8wR-ss-iZJ">
+                                <rect key="frame" x="26" y="221" width="356" height="615"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.027450980390000001" green="0.0" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="nGj-5n-fZo">
+                                    <size key="itemSize" width="169" height="216"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="ukE-tW-gnT" customClass="CollectionViewCell" customModule="Portal" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="169" height="216"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="wNZ-pW-cFC">
+                                            <rect key="frame" x="0.0" y="0.0" width="169" height="216"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Inner" id="vIQ-4j-9VF">
+                                                    <rect key="frame" x="-13" y="0.0" width="195" height="220"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Aku Lucu Banget" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hs3-hS-PT7">
+                                                    <rect key="frame" x="8" y="159" width="187" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Emoji" translatesAutoresizingMaskIntoConstraints="NO" id="pOy-UM-h9k">
+                                                    <rect key="frame" x="8" y="181" width="25" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="88" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPM-TO-07m">
+                                                    <rect key="frame" x="39" y="184" width="72" height="16"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </collectionViewCellContentView>
+                                        <color key="backgroundColor" red="0.027450980390000001" green="0.0" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                        <size key="customSize" width="169" height="216"/>
+                                        <connections>
+                                            <outlet property="ImageStandUpComedianBackground" destination="vIQ-4j-9VF" id="T50-3p-fNh"/>
+                                            <outlet property="LabelStandUpComedian" destination="Hs3-hS-PT7" id="eit-Fj-UbA"/>
+                                            <outlet property="ViewerCount" destination="jPM-TO-07m" id="dYv-Nx-sjm"/>
+                                            <outlet property="ViewerLogo" destination="pOy-UM-h9k" id="lNx-zu-3QT"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="car-b0-ShY" id="gcc-8F-Q9e"/>
+                                    <outlet property="delegate" destination="car-b0-ShY" id="MUO-tb-Z2r"/>
+                                </connections>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOL-Il-X2o">
+                                <rect key="frame" x="217" y="98" width="177" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="btnLiveNow"/>
+                                <connections>
+                                    <segue destination="0Jl-N7-fF3" kind="show" id="Wop-Nx-v0C"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.027450980390000001" green="0.0" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                        <viewLayoutGuide key="safeArea" id="koL-P5-mZ1"/>
+                    </view>
+                    <connections>
+                        <outlet property="collectionViewHome" destination="8wR-ss-iZJ" id="Urw-q1-YnO"/>
+                        <segue destination="Anv-b6-ab3" kind="show" identifier="toVideoPlayer" id="j2K-ak-zXN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s2L-ql-YSZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-313.04347826086956" y="201.5625"/>
+        </scene>
+        <!--NewComerViewController-->
+        <scene sceneID="ZN1-Su-Bar">
+            <objects>
+                <viewControllerPlaceholder storyboardName="NewComer" referencedIdentifier="NewComerViewController" id="PgI-po-3IR" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="wUV-A6-yjO"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pj2-PH-t9F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="580" y="-70"/>
+        </scene>
+        <!--LiveNowViewController-->
+        <scene sceneID="jSa-bz-jfm">
+            <objects>
+                <viewControllerPlaceholder storyboardName="LiveNow" referencedIdentifier="LiveNowViewController" id="0Jl-N7-fF3" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="zh7-na-4q6"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ktu-dW-1FO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="580" y="192"/>
+        </scene>
+        <!--TrendingVideosViewController-->
+        <scene sceneID="P3o-Bo-Zbc">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TrendingVideos" referencedIdentifier="TrendingVideosViewController" id="PK8-Ap-XaF" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="GFi-bj-IOW"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vvy-Nd-n5G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="601" y="451"/>
+        </scene>
+        <!--VideoPlayerController-->
+        <scene sceneID="hwX-hz-cfn">
+            <objects>
+                <viewControllerPlaceholder storyboardName="VideoPlayer" referencedIdentifier="VideoPlayerController" id="Anv-b6-ab3" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="vwx-NX-s1m"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BkV-Be-p88" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="586" y="628"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Emoji" width="56" height="56"/>
+        <image name="Inner" width="166" height="220"/>
+        <image name="btnLiveNow" width="147" height="41"/>
+        <image name="btnNewComer" width="147" height="41"/>
+        <image name="btnTrending" width="307" height="41"/>
+    </resources>
+</document>
