@@ -33,8 +33,20 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         switch item.title {
         case "Open Mic":
             if PreferenceManager.instance.isUserLogin == false {
-                performSegue(withIdentifier: "toRegister", sender: nil)
-                self.selectedIndex = 0
+//                performSegue(withIdentifier: "toRegister", sender: nil)
+//                self.selectedIndex = 0
+                
+                AppDelegate.relaunchMain(selectedIndex: self.selectedIndex, duration: 0.0) { (result) -> (Void) in
+                    if let visibleViewController = UIApplication.shared.keyWindow?.visibleViewController {
+                        let storyboard = UIStoryboard(name: "Register", bundle: nil)
+                        let controller = storyboard.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
+                        controller.navigationController?.isNavigationBarHidden = true
+//                        controller.hidesBottomBarWhenPushed = true
+//                        visibleViewController.navigationController?.pushViewController(controller, animated: true)
+//                        let navController = UINavigationController(rootViewController: controller)
+                        visibleViewController.present(controller, animated:true, completion: nil)
+                    }
+                }
             } else {
                 AppDelegate.relaunchMain(selectedIndex: self.selectedIndex, duration: 0.0) { (result) -> (Void) in
                     if let visibleViewController = UIApplication.shared.keyWindow?.visibleViewController {

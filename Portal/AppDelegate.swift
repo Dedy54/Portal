@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
-    static func relaunchMain(selectedIndex: Int? = 0, duration: Double? = 0.24, completion: ((Bool) -> (Void))?) {
+    static func relaunchMain(selectedIndex: Int? = 0, duration: Double? = 0, completion: ((Bool) -> (Void))?) {
         guard let window = UIApplication.shared.keyWindow else {
             return
         }
@@ -50,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let mainTabBarViewController = window.rootViewController as! MainTabBarController
             mainTabBarViewController.selectedIndex = selectedIndex ?? 0
             
-            UIView.transition(with: window, duration: duration ?? 0.24, options: .transitionCrossDissolve, animations: {
+            UIView.transition(with: window, duration: duration ?? 0, options: .transitionCrossDissolve, animations: {
                 window.alpha = 1.0
             }, completion: { completed in
                 completion?(completed)
@@ -73,7 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window.alpha = 0.0
         window.rootViewController = controller
         
-        UIView.transition(with: window, duration: duration ?? 0.24, options: .transitionCrossDissolve, animations: {
+        UIView.transition(with: window, duration: duration ?? 0, options: .transitionCrossDissolve, animations: {
             window.alpha = 1.0
         }, completion: { completed in
             completion?(completed)
