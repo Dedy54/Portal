@@ -92,7 +92,7 @@ class VideoPlayerStatsViewController: UIViewController {
             }
                
         labelViewer.text = "\(post?.viewer ?? 0)"
-
+        labelNama.text = PreferenceManager.instance.userName
     }
     
     func secondsToHoursMinutesSeconds(seconds : Int) -> (Int, Int, Int) {

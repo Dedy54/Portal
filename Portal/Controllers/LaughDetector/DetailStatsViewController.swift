@@ -48,11 +48,22 @@ class DetailStatsViewController: UIViewController, ChartViewDelegate {
     func getAllLaugh(){
         Laugh.all(result: { (laughs) in
             self.laughList = laughs ?? self.empty
-            for laugh in self.laughList {
-                print(laugh)
-                self.values.append(ChartDataEntry(x: Double(laugh.isLaugh ?? Int(0.0)), y: Double(laugh.second ?? Int(0.0))))
-                print(Double(laugh.second ?? Int(0.0)))
+//            print(self.laughList[0].totalDuration)
+            
+            for i in 0...Int(self.laughList[0].totalDuration ?? 0.0) {
+//                self.values.append(ChartDataEntry(x: Double(i), y: 1))
+                let isIndexValid = self.laughList.indices.contains(i)
+                if isIndexValid {
+                    self.values.append(ChartDataEntry(x: Double(i), y: Double(self.laughList[i].second ?? Int(0.0))))
+                } else {
+                    self.values.append(ChartDataEntry(x: Double(i), y: 0.0))
+                }
             }
+//            for laugh in self.laughList {
+//                print(laugh)
+//                self.values.append(ChartDataEntry(x: Double(laugh.isLaugh ?? Int(0.0)), y: Double(laugh.second ?? Int(0.0))))
+//                print(Double(laugh.second ?? Int(0.0)))
+//            }
             DispatchQueue.main.async {
                 self.setChartData(valuesin: self.values)
             }
