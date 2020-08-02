@@ -186,5 +186,39 @@ extension CloudKitProtocol {
         }
     }
     
-    
+    static func selectById(inDatabase database: CKDatabase? = CloudKitService.shared.container.publicCloudDatabase,
+                           id: CKRecord.ID,
+                       withSortDescriptors sortDescriptors: [NSSortDescriptor] = [],
+                       result: @escaping ([Self]?) -> (),
+                       errorCase: @escaping (Error) -> ()) {
+//           let query = CKQuery.init(recordType: Self.recordType, predicate: predicate)
+//           query.sortDescriptors = sortDescriptors
+
+//        database?.fetch(withRecordID: id, completionHandler: { (records, error) in
+//            if let error = error {
+//                             errorCase(error)
+//                             return
+//                         }
+//
+//                         result(
+//                             records?.map({ (record) -> Self in
+//
+//                                return Self(ckRecord: record)
+//                             })
+//                         )
+//        })
+//           database?.perform(query, inZoneWith: nil) { (records, error) in
+//               if let error = error {
+//                   errorCase(error)
+//                   return
+//               }
+//
+//               result(
+//                   records?.map({ (record) -> Self in
+//
+//                       return Self(ckRecord: record)
+//                   })
+//               )
+//           }
+       }
 }

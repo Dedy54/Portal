@@ -45,6 +45,8 @@ class VideoPlayerController: UIViewController, LaughClassifierDelegate {
     
     var postIdCKRecord : CKRecord.ID?
     
+    var isMute = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -71,6 +73,23 @@ class VideoPlayerController: UIViewController, LaughClassifierDelegate {
     
     
     @IBAction func muteUnMute(_ sender: Any) {
+        if isMute == false {
+            isMute = true
+            audioEngine.pause()
+            if let image = UIImage(named: "icon_mic_mute.png") {
+                buttonVideoPlayerMuteUnMuteMic.setImage(image, for: .normal)
+            }
+        } else if isMute == true {
+            isMute = false
+            do{
+                try audioEngine.start()
+            }catch( _){
+                print("error in starting the Audio Engine")
+            }
+            if let image = UIImage(named: "icon_mic.png") {
+                buttonVideoPlayerMuteUnMuteMic.setImage(image, for: .normal)
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -107,7 +126,7 @@ class VideoPlayerController: UIViewController, LaughClassifierDelegate {
         playerLayer.addSublayer(labelVideoPlayerViewersCount.layer)
         playerLayer.addSublayer(labelVideoPlayerUserName.layer)
         playerLayer.addSublayer(buttonVideoPlayerMuteUnMuteMic.layer)
-         playerLayer.addSublayer(buttonVideoPlayerCount.layer)
+        playerLayer.addSublayer(buttonVideoPlayerCount.layer)
         self.view.layer.addSublayer(playerLayer)
         player?.play()
         
@@ -117,27 +136,34 @@ class VideoPlayerController: UIViewController, LaughClassifierDelegate {
         
     }
     func viewersCount(){
-        totalViewer = totalViewer ?? 0 + 1
-//        print(totalViewer)
+        totalViewer = totalViewer! + 1
+        
+        labelVideoPlayerViewersCount.text = "\(totalViewer ?? 0)"
 
-        let predicate = NSPredicate(format: "%K == %@", argumentArray: ["id", post?.id ?? ""])
-        Post.query(predicate: predicate, result: { (posts) in
-              if let foundPost = posts?.first {
-                foundPost.record?.setValue(self.totalViewer, forKey: "viewer")
-                          foundPost.save(result: { (posts) in
-                              print("Success")
-                          }) { (error) in
-                              print("error")
-                          }
-                      }
-        }, errorCase: { (error) in
-            print(error)
-        })
-        
-   
-        labelVideoPlayerViewersCount.text = "\(post?.viewer ?? 0)"
-        
+        let database = CloudKitService.shared.container.publicCloudDatabase
+        database.fetch(withRecordID:  (post?.id!)!) { (result, error) in
+            if error != nil {
+                print(error!)
+            } else {
+                if result != nil {
+                    result?.setValue(self.totalViewer, forKey: "viewer")
+                    database.save(result!) { (result, error) in
+                        if error != nil {
+                            print(error!)
+                             print("error viewer")
+                        } else {
+                            if result != nil {
+                                print(result!)
+                                print("Success viewer")
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
+    
+    
     
     func setData(){
         let predicate = NSPredicate(format: "%K == %@", argumentArray: ["email", "\(PreferenceManager.instance.userEmail ?? "")" ])
@@ -158,13 +184,45 @@ class VideoPlayerController: UIViewController, LaughClassifierDelegate {
     }
     
     func displayPredictionResult(identifier: String, confidence: Double) {
-        //        print("Recognition: \(identifier)\nConfidence \(confidence)")
         if identifier == "laugh"{
-            laughList.append(Laugh(postId: "\(post?.id!)", isLaugh: 1, second: time, totalDuration: duration))
-            print(laughList[0].postId)
+            updateLaughToCloudKit(laugh: Laugh(postId: "\(post!.id!)", isLaugh: 1, second: time, totalDuration: duration))
+//            print(laughList[0].postId!)
             totalKetawa = totalKetawa! + 1
             DispatchQueue.main.async {
                 self.generateAnimatedViews()
+            }
+        }
+    }
+    
+    func updateLaughToCloudKit(laugh : Laugh){
+        laugh.save(result: { (laugh) in
+            print("suecess tawa")
+        }) { (error) in
+            print(error!)
+            print("error tawa")
+        }
+    }
+    
+    func updateLaughToCloudKit(){
+        let database = CloudKitService.shared.container.publicCloudDatabase
+        database.fetch(withRecordID:  (post?.id!)!) { (result, error) in
+            if error != nil {
+                print(error!)
+            } else {
+                if result != nil {
+                    result?.setValue(self.totalKetawa, forKey: "lpm")
+                    database.save(result!) { (result, error) in
+                        if error != nil {
+                            print(error!)
+                             print("error lpm")
+                        } else {
+                            if result != nil {
+                                print(result!)
+                                print("Success lpm")
+                            }
+                        }
+                    }
+                }
             }
         }
     }
@@ -195,22 +253,23 @@ class VideoPlayerController: UIViewController, LaughClassifierDelegate {
         audioEngine.stop()
         stopVideo()
         updateLaugh(lpm: totalKetawa!)
+        updateLaughToCloudKit()
     }
     
     func updateLaugh(lpm : Double){
         let predicate = NSPredicate(format: "%K == %@", argumentArray: ["id", post?.id ?? ""])
-         Post.query(predicate: predicate, result: { (posts) in
-               if let foundPost = posts?.first {
-                           foundPost.record?.setValue(lpm, forKey: "lpm")
-                           foundPost.save(result: { (posts) in
-                               print("Success")
-                           }) { (error) in
-                               print("error")
-                           }
-                       }
-         }, errorCase: { (error) in
-             print(error)
-         })
+        Post.query(predicate: predicate, result: { (posts) in
+            if let foundPost = posts?.first {
+                foundPost.record?.setValue(lpm, forKey: "lpm")
+                foundPost.save(result: { (posts) in
+                    print("Success")
+                }) { (error) in
+                    print("error")
+                }
+            }
+        }, errorCase: { (error) in
+            print(error)
+        })
         
     }
     

@@ -218,11 +218,22 @@
                         <outlet property="profilePicture" destination="BLg-7l-TLC" id="Aie-sI-WCd"/>
                         <outlet property="profileSC" destination="2Mo-u7-COh" id="fSV-13-nLY"/>
                         <outlet property="statusLabel" destination="XH9-ds-D3L" id="few-BH-ji6"/>
+                        <segue destination="V0V-jx-1Bi" kind="show" identifier="toVideoPlayerStats" id="98F-mp-5ui"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6L4-1J-egr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
+        </scene>
+        <!--VideoPlayerStatsController-->
+        <scene sceneID="5RY-CH-Jlb">
+            <objects>
+                <viewControllerPlaceholder storyboardName="VideoPlayer" referencedIdentifier="VideoPlayerStatsController" id="V0V-jx-1Bi" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Ft1-jf-IGc"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0IR-1g-t4D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="596" y="556"/>
         </scene>
         <!--Setting View Controller-->
         <scene sceneID="Q6i-Pm-hwS">

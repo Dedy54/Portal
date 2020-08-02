@@ -37,6 +37,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.viewTapped(gestureRecognizer:)))
         
+        tapGesture.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGesture)
         
         profileCollectionView.backgroundColor = UIColor.clear
@@ -153,6 +154,17 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         return cell
         
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+         let post = postList[indexPath.row]
+         performSegue(withIdentifier: "toVideoPlayerStats", sender: post)
+     }
+     
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+         if let destination = segue.destination as? VideoPlayerStatsViewController {
+             destination.post = sender as? Post
+         }
+     }
     
     @objc func viewTapped(gestureRecognizer:UITapGestureRecognizer){
         view.endEditing(true)
