@@ -52,7 +52,7 @@ class VideoPlayerController: UIViewController, LaughClassifierDelegate {
         
         do {
             try AVAudioSession.sharedInstance().setCategory(.playAndRecord)
-        } catch (_) {
+        } catch error {
             print("error in starting the Audio AVAudioSession")
         }
         
