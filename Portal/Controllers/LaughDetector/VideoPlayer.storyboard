@@ -200,12 +200,18 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LFv-QQ-X1C" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="20" y="74" width="374" height="311"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.054546379763150687" green="0.091502568493150679" blue="0.24168062126164383" alpha="0.73977953767123283" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.039215686274509803" green="0.0" blue="0.19215686274509802" alpha="1" colorSpace="calibratedRGB"/>
                         <viewLayoutGuide key="safeArea" id="i7c-Jq-3sy"/>
                     </view>
                     <navigationItem key="navigationItem" id="5CN-QL-bTD"/>
                     <connections>
+                        <outlet property="chartView" destination="LFv-QQ-X1C" id="Yoz-Lu-3cH"/>
                         <outlet property="labelLaugh" destination="RtT-p3-Lox" id="iaG-vj-84o"/>
                         <outlet property="labelViewer" destination="2l3-KF-BJV" id="Cvt-NN-cV6"/>
                     </connections>
