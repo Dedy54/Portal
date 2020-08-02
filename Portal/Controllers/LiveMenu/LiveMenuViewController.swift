@@ -176,6 +176,7 @@ class LiveMenuViewController: UIViewController {
     @IBOutlet weak var closeButton: UIButton!
     @IBAction func actionCloseButton(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
     @IBOutlet weak var recordButton: UIButton!
     @IBAction func actionRecordButton(_ sender: Any) {
@@ -236,10 +237,12 @@ class LiveMenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.pickerController.delegate = self
         self.loadAgoraKit()
         self.setViewSourceVideo()
         self.showHideWaitingView()
+        self.hideNavigationBar()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -248,6 +251,7 @@ class LiveMenuViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        self.showNavigationBar()
     }
     
     func showHideWaitingView() {
@@ -399,6 +403,7 @@ class LiveMenuViewController: UIViewController {
 extension LiveMenuViewController : UIImagePickerControllerDelegate , UINavigationControllerDelegate {
     
     func movePreview(url: URL) {
+        self.showIndicator()
         let storyboard = UIStoryboard(name: "PreviewVideo", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "PreviewVideoViewController") as! PreviewVideoViewController
         controller.url = url
@@ -408,7 +413,9 @@ extension LiveMenuViewController : UIImagePickerControllerDelegate , UINavigatio
             }
         }
         let navController = UINavigationController(rootViewController: controller)
-        self.present(navController, animated:true, completion: nil)
+        self.present(navController, animated:true, completion: {
+            self.hideIndicator()
+        })
     }
     
     public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

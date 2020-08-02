@@ -55,7 +55,9 @@ class NewPostFormViewController: UIViewController {
             Post(title: title, viewer: post.viewer, lpm: post.lpm, videoUrl: videoUrl, isSensitiveContent: post.isSensitiveContent, isLive: post.isLive, userReference: post.userReference, email: email).save(result: { (result) in
                 DispatchQueue.main.async {
                     self.hideIndicator()
-                    self.navigationController?.dismiss(animated: true, completion: nil)
+                    self.navigationController?.dismiss(animated: true, completion: {
+                        self.navigationController?.dismiss(animated: true, completion: nil)
+                    })
                 }
             }, errorCase: { (error) in
                 DispatchQueue.main.async {
