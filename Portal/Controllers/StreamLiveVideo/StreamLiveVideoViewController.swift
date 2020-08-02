@@ -9,7 +9,9 @@
 import UIKit
 import AgoraRtcKit
 import AgoraRtcCryptoLoader
-
+import AVKit
+import SoundAnalysis
+import CloudKit
 
 class StreamLiveVideoViewController: UIViewController {
     
@@ -22,6 +24,7 @@ class StreamLiveVideoViewController: UIViewController {
     @IBAction func actionButtonClose(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
+    @IBOutlet weak var countViewerLabel: UILabel!
     
     private lazy var agoraKit: AgoraRtcEngineKit = {
         let engine = AgoraRtcEngineKit.sharedEngine(withAppId: KeyCenter.AppId, delegate: nil)
@@ -40,14 +43,39 @@ class StreamLiveVideoViewController: UIViewController {
     
     var liveRoom : LiveRoom?
     
+    var inputFormat: AVAudioFormat!
+    var analyzer: SNAudioStreamAnalyzer!
+    var resultsObserver = ResultsObserver()
+    let analysisQueue = DispatchQueue(label: "com.apple.AnalysisQueue")
+    private let audioEngine = AVAudioEngine()
+    private var soundClassifier = LaughClassifier()
+    
+    var timerFetchSubscriptionsLiveRoom: Timer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         hideNavigationBar()
         loadAgoraKit()
+        setupLaughDetection()
+        updateViewer(setHigher: true)
+        fetchSubscriptionsLiveRoom()
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         self.showNavigationBar()
+        self.timerFetchSubscriptionsLiveRoom?.invalidate()
+        self.updateViewer(setHigher: false)
+    }
+    
+    func setupLaughDetection() {
+        resultsObserver.delegate = self
+        inputFormat = audioEngine.inputNode.inputFormat(forBus: 0)
+        analyzer = SNAudioStreamAnalyzer(format: inputFormat)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        startAudioEngine()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -63,6 +91,146 @@ class StreamLiveVideoViewController: UIViewController {
             self.waitingView.isHidden = true
         }
     }
+    
+    private func startAudioEngine() {
+        do {
+            let request = try SNClassifySoundRequest(mlModel: soundClassifier.model)
+            try analyzer.add(request, withObserver: resultsObserver)
+        } catch {
+            print("Unable to prepare request: \(error.localizedDescription)")
+            return
+        }
+        
+        audioEngine.inputNode.installTap(onBus: 0, bufferSize: 8000, format: inputFormat) { buffer, time in
+            self.analysisQueue.async {
+                self.analyzer.analyze(buffer, atAudioFramePosition: time.sampleTime)
+            }
+        }
+        
+        do{
+            try audioEngine.start()
+        }catch( _){
+            print("error in starting the Audio Engine")
+        }
+    }
+}
+
+extension StreamLiveVideoViewController : LaughClassifierDelegate {
+    
+    
+    func fetchSubscriptionsLiveRoom() {
+        timerFetchSubscriptionsLiveRoom = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(getUpdateLiveRoomData), userInfo: nil, repeats: true)
+    }
+    
+    @objc func getUpdateLiveRoomData() {
+        let predicate = NSPredicate(format: "%K == %@", argumentArray: ["email", "\(PreferenceManager.instance.userEmail ?? "")" ])
+        LiveRoom.query(predicate: predicate, result: { (result) in
+            DispatchQueue.main.async {
+                if result?.count != 0 {
+                    self.countViewerLabel.text = "\(result?.first?.viewer ?? 0)"
+                }
+            }
+        }) { (error) in }
+    }
+    
+    func updateViewer(setHigher: Bool) {
+        let email = PreferenceManager.instance.userEmail ?? ""
+        let predicate = NSPredicate(format: "%K == %@", argumentArray: ["email", email])
+        LiveRoom.query(predicate: predicate, result: { (foundLiveRooms) in
+            if let foundLiveRoom = foundLiveRooms?.first {
+                var viewer = 0
+                if setHigher {
+                    viewer = 1 + (foundLiveRoom.viewer ?? 0)
+                } else {
+                    viewer = (foundLiveRoom.viewer ?? 0) - 1
+                }
+                foundLiveRoom.record?.setValue(viewer , forKey: "viewer")
+                foundLiveRoom.save(result: { (foundLiveRooms) in
+                    print("Success")
+                }) { (error) in
+                    print("error")
+                }
+            }
+        }) { (error) in
+            print(error)
+        }
+    }
+    
+    func updateLPM() {
+        let email = PreferenceManager.instance.userEmail ?? ""
+        let predicate = NSPredicate(format: "%K == %@", argumentArray: ["email", email])
+        LiveRoom.query(predicate: predicate, result: { (foundLiveRooms) in
+            if let foundLiveRoom = foundLiveRooms?.first {
+                let lpm = (foundLiveRoom.lpm ?? 0.0) + 1
+                foundLiveRoom.record?.setValue(lpm , forKey: "lpm")
+                foundLiveRoom.save(result: { (foundLiveRooms) in
+                    print("Success")
+                }) { (error) in
+                    print("error")
+                }
+            }
+        }) { (error) in
+            print(error)
+        }
+    }
+    
+    func displayPredictionResult(identifier: String, confidence: Double) {
+        if identifier == "laugh"{
+            
+            DispatchQueue.main.async {
+                self.updateLPM()
+                self.generateAnimatedViews()
+                self.generateAnimatedViews()
+                self.generateAnimatedViews()
+                self.generateAnimatedViews()
+                self.generateAnimatedViews()
+            }
+        }
+    }
+    
+    func generateAnimatedViews() {
+        let image = drand48() > 0.5 ? #imageLiteral(resourceName: "Emoji") : #imageLiteral(resourceName: "Emoji")
+        let imageView = UIImageView(image: image)
+        let dimension = 20 + drand48() * 10
+        imageView.frame = CGRect(x: 0, y: 0, width: dimension, height: dimension)
+        
+        let animation = CAKeyframeAnimation(keyPath: "position")
+        
+        animation.path = customPath().cgPath
+        animation.duration = 2 + drand48() * 3
+        animation.fillMode = CAMediaTimingFillMode.forwards
+        animation.isRemovedOnCompletion = false
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+        
+        imageView.layer.add(animation, forKey: nil)
+        view.addSubview(imageView)
+        
+        self.delay(1.5) {
+            imageView.isHidden = true
+            imageView.removeFromSuperview()
+        }
+    }
+    
+    func customPath() -> UIBezierPath {
+        let path = UIBezierPath()
+        
+        //        let randomYShift = 200 + drand48() * 300
+        
+        let xMax = view.frame.maxX
+        let range = CGFloat.random(in: 30...xMax)
+        
+        path.move(to: CGPoint(x: range, y: 0))
+        
+        let endPoint = CGPoint(x: range, y: view.frame.maxY)
+        
+        //    let cp1 = CGPoint(x: 100 - randomYShift, y: 100 )
+        //    let cp2 = CGPoint(x: 200 + randomYShift, y: 300 )
+        
+        path.addLine(to: endPoint)
+        //    path.addCurve(to: endPoint, controlPoint1: cp1, controlPoint2: cp2)
+        return path
+    }
+    
 }
 
 private extension StreamLiveVideoViewController {
@@ -92,14 +260,14 @@ private extension StreamLiveVideoViewController {
             let itemHeight = CGFloat(1.0) / CGFloat(row)
             let itemSize = CGSize(width: itemWidth, height: itemHeight)
             let layout = AGEVideoLayout(level: 0)
-                        .itemSize(.scale(itemSize))
+                .itemSize(.scale(itemSize))
             
             broadcastersView
                 .listCount { [unowned self] (_) -> Int in
                     return self.videoSessions.count
-                }.listItem { [unowned self] (index) -> UIView in
-                    return self.videoSessions[index.item].hostingView
-                }
+            }.listItem { [unowned self] (index) -> UIView in
+                return self.videoSessions[index.item].hostingView
+            }
             
             broadcastersView.setLayouts([layout], animated: true)
         }

@@ -41,6 +41,8 @@ class LiveMenuViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var countLaughLabel: UILabel!
+    @IBOutlet weak var countEyeImageLive: UIImageView!
     @IBOutlet weak var liveImageView: UIImageView!
     @IBOutlet weak var waitingView: UIView!{
         didSet{
@@ -227,6 +229,8 @@ class LiveMenuViewController: UIViewController {
     private var generateTokenStore: GenerateTokenStore = CoreStore.shared
     
     var timer: Timer?
+    var timerFetchSubscriptionsLiveRoom: Timer?
+    var currentLpm = 0.0
     var countTimer = 0
     
     private var videoSessions = [VideoSession]() {
@@ -252,6 +256,8 @@ class LiveMenuViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.showNavigationBar()
+        self.timerFetchSubscriptionsLiveRoom?.invalidate()
+        self.timer?.invalidate()
     }
     
     func showHideWaitingView() {
@@ -286,6 +292,9 @@ class LiveMenuViewController: UIViewController {
             self.liveImageView.isHidden = true
             self.liveStartButton.isHidden = false
             
+            self.countLaughLabel.isHidden = true
+            self.countEyeImageLive.isHidden = true
+            
             self.closeButton.isHidden = false
             self.countDownLabel.isHidden = true
             
@@ -311,6 +320,9 @@ class LiveMenuViewController: UIViewController {
             self.endLiveVideo.isHidden = false
             self.liveImageView.isHidden = false
             self.liveStartButton.isHidden = true
+            
+            self.countLaughLabel.isHidden = false
+            self.countEyeImageLive.isHidden = false
             
             self.closeButton.isHidden = true
             self.countDownLabel.isHidden = true
@@ -339,6 +351,9 @@ class LiveMenuViewController: UIViewController {
             self.liveImageView.isHidden = true
             self.liveStartButton.isHidden = true
             
+            self.countLaughLabel.isHidden = true
+            self.countEyeImageLive.isHidden = true
+            
             self.closeButton.isHidden = false
             self.countDownLabel.isHidden = true
             
@@ -366,6 +381,9 @@ class LiveMenuViewController: UIViewController {
             self.liveImageView.isHidden = true
             self.liveStartButton.isHidden = true
             
+            self.countLaughLabel.isHidden = true
+            self.countEyeImageLive.isHidden = true
+            
             self.closeButton.isHidden = true
             self.countDownLabel.isHidden = false
             
@@ -381,6 +399,73 @@ class LiveMenuViewController: UIViewController {
             self.broadcastersView.isHidden = false
             self.previewView.isHidden = true
         }
+    }
+    
+    func fetchSubscriptionsLiveRoom() {
+        timerFetchSubscriptionsLiveRoom = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(getUpdateLiveRoomData), userInfo: nil, repeats: true)
+    }
+    
+    @objc func getUpdateLiveRoomData() {
+        let predicate = NSPredicate(format: "%K == %@", argumentArray: ["email", "\(PreferenceManager.instance.userEmail ?? "")" ])
+        LiveRoom.query(predicate: predicate, result: { (result) in
+            DispatchQueue.main.async {
+                if result?.count != 0 {
+                    self.countLaughLabel.text = "\(result?.first?.viewer ?? 0)"
+                    
+                    if self.currentLpm < (result?.first?.lpm ?? 0) {
+                        self.currentLpm = result?.first?.lpm ?? 0
+                        self.generateAnimatedViews()
+                        self.generateAnimatedViews()
+                        self.generateAnimatedViews()
+                        self.generateAnimatedViews()
+                        self.generateAnimatedViews()
+                    }
+                }
+            }
+        }) { (error) in }
+    }
+    
+    func generateAnimatedViews() {
+        let image = drand48() > 0.5 ? #imageLiteral(resourceName: "Emoji") : #imageLiteral(resourceName: "Emoji")
+        let imageView = UIImageView(image: image)
+        let dimension = 20 + drand48() * 10
+        imageView.frame = CGRect(x: 0, y: 0, width: dimension, height: dimension)
+        
+        let animation = CAKeyframeAnimation(keyPath: "position")
+        
+        animation.path = customPath().cgPath
+        animation.duration = 2 + drand48() * 3
+        animation.fillMode = CAMediaTimingFillMode.forwards
+        animation.isRemovedOnCompletion = false
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+        
+        imageView.layer.add(animation, forKey: nil)
+        view.addSubview(imageView)
+        
+        self.delay(1.5) {
+            imageView.isHidden = true
+            imageView.removeFromSuperview()
+        }
+    }
+    
+    func customPath() -> UIBezierPath {
+        let path = UIBezierPath()
+        
+        //        let randomYShift = 200 + drand48() * 300
+        
+        let xMax = view.frame.maxX
+        let range = CGFloat.random(in: 30...xMax)
+        
+        path.move(to: CGPoint(x: range, y: 0))
+        
+        let endPoint = CGPoint(x: range, y: view.frame.maxY)
+        
+        //    let cp1 = CGPoint(x: 100 - randomYShift, y: 100 )
+        //    let cp2 = CGPoint(x: 200 + randomYShift, y: 300 )
+        
+        path.addLine(to: endPoint)
+        //    path.addCurve(to: endPoint, controlPoint1: cp1, controlPoint2: cp2)
+        return path
     }
     
     func startTimer() {
@@ -604,6 +689,7 @@ private extension LiveMenuViewController {
                 LiveRoom(name: result.channelName ?? "", token: result.token ?? "", userReference: CKRecord.Reference(record: CKRecord(recordType: "Post"), action: .none), email: emailMember, uid: "\(result.uid ?? 0)", viewer: 0, lpm: 0.0, userName: userName).save(result: { (result) in
                     DispatchQueue.main.async {
                         self.hideIndicator()
+                        self.fetchSubscriptionsLiveRoom()
                         self.showHideWaitingView()
                         guard let channelId = result?.name, let token = result?.token else {
                             return

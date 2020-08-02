@@ -310,12 +310,31 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_view_eye" translatesAutoresizingMaskIntoConstraints="NO" id="O2x-T5-H7n">
+                                <rect key="frame" x="344" y="702" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="0tr-dI-ag0"/>
+                                    <constraint firstAttribute="width" constant="30" id="gcg-sE-Gdm"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nRd-ZP-Hed">
+                                <rect key="frame" x="324" y="742" width="70" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="mCy-SW-qb8"/>
+                                    <constraint firstAttribute="width" constant="70" id="vM8-Z1-3ft"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.027450980390000001" green="0.0" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="gYo-Se-uh0" firstAttribute="centerX" secondItem="sJp-et-uOm" secondAttribute="centerX" id="0hI-ct-gnp"/>
+                            <constraint firstItem="XPK-QF-2MV" firstAttribute="top" secondItem="O2x-T5-H7n" secondAttribute="bottom" constant="10" id="3n4-L2-s9x"/>
                             <constraint firstItem="b27-9c-SkY" firstAttribute="centerX" secondItem="sJp-et-uOm" secondAttribute="centerX" id="6bo-Ri-zwU"/>
                             <constraint firstItem="q7z-pU-aYd" firstAttribute="top" secondItem="b27-9c-SkY" secondAttribute="bottom" constant="20" id="7Ff-ek-2pj"/>
+                            <constraint firstItem="sJp-et-uOm" firstAttribute="trailing" secondItem="nRd-ZP-Hed" secondAttribute="trailing" constant="20" id="8r7-f1-w6P"/>
                             <constraint firstItem="Ldi-7R-eeF" firstAttribute="top" secondItem="Tvg-2A-X02" secondAttribute="top" id="9gu-nl-ACe"/>
                             <constraint firstItem="sJp-et-uOm" firstAttribute="trailing" secondItem="XPK-QF-2MV" secondAttribute="trailing" constant="40" id="9yg-gb-XjU"/>
                             <constraint firstItem="XPK-QF-2MV" firstAttribute="centerY" secondItem="b27-9c-SkY" secondAttribute="centerY" id="DrC-qa-mY1"/>
@@ -338,7 +357,9 @@
                             <constraint firstItem="sJp-et-uOm" firstAttribute="trailing" secondItem="9yu-5b-QzO" secondAttribute="trailing" id="gDt-LY-bu4"/>
                             <constraint firstItem="GrN-CA-0hn" firstAttribute="trailing" secondItem="sJp-et-uOm" secondAttribute="trailing" id="gGd-DI-8F4"/>
                             <constraint firstItem="EfE-sQ-eLs" firstAttribute="top" secondItem="sJp-et-uOm" secondAttribute="top" constant="7" id="gdm-fn-Rp5"/>
+                            <constraint firstItem="q7z-pU-aYd" firstAttribute="top" secondItem="nRd-ZP-Hed" secondAttribute="bottom" constant="39" id="hfM-tX-7lH"/>
                             <constraint firstItem="9yu-5b-QzO" firstAttribute="top" secondItem="Tvg-2A-X02" secondAttribute="top" id="i9S-on-6cc"/>
+                            <constraint firstItem="sJp-et-uOm" firstAttribute="trailing" secondItem="O2x-T5-H7n" secondAttribute="trailing" constant="40" id="k8p-Vr-OR8"/>
                             <constraint firstItem="q7z-pU-aYd" firstAttribute="bottom" secondItem="sJp-et-uOm" secondAttribute="bottom" id="mKc-1U-Vry"/>
                             <constraint firstItem="q7z-pU-aYd" firstAttribute="top" secondItem="9yu-5b-QzO" secondAttribute="bottom" constant="10" id="ofA-sm-bxM"/>
                             <constraint firstItem="Ldi-7R-eeF" firstAttribute="trailing" secondItem="sJp-et-uOm" secondAttribute="trailing" id="pVj-IM-vh9"/>
@@ -355,6 +376,8 @@
                         <outlet property="cancelEndLiveButton" destination="HOQ-GV-TQz" id="r7n-JH-LCl"/>
                         <outlet property="closeButton" destination="sM1-DV-l5P" id="Vix-dj-Klg"/>
                         <outlet property="countDownLabel" destination="zSj-W7-60m" id="x5K-kr-pEC"/>
+                        <outlet property="countEyeImageLive" destination="O2x-T5-H7n" id="3aT-Ss-Wfv"/>
+                        <outlet property="countLaughLabel" destination="nRd-ZP-Hed" id="ow1-vr-j3W"/>
                         <outlet property="endLiveButton" destination="pRX-Fc-A6G" id="edz-lH-7Fw"/>
                         <outlet property="endLiveVideo" destination="mfE-ke-CXx" id="u38-CL-9xy"/>
                         <outlet property="galleryDotImage" destination="F9T-yn-ogH" id="Kbd-ke-Mf9"/>
@@ -384,6 +407,7 @@
         <image name="Record Button" width="72" height="72"/>
         <image name="Start Live Btn" width="72" height="72"/>
         <image name="camera.rotate" catalog="system" width="128" height="96"/>
+        <image name="icon_view_eye" width="31" height="20"/>
         <image name="xmark.circle.fill" catalog="system" width="128" height="121"/>
         <namedColor name="ColorYellow">
             <color red="0.98431372549019602" green="0.62352941176470589" blue="0.14901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
