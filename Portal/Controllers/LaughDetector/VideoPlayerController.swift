@@ -50,6 +50,13 @@ class VideoPlayerController: UIViewController, LaughClassifierDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playAndRecord)
+        } catch (_) {
+            print("error in starting the Audio AVAudioSession")
+        }
+        
+        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: UIResponder.keyboardWillShowNotification, object: nil);
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name: UIResponder.keyboardWillHideNotification, object: nil);

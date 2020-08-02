@@ -22,6 +22,7 @@
 		2021580324D53D6800503492 /* Laugh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2021580224D53D6800503492 /* Laugh.swift */; };
 		2021583224D6928800503492 /* VideoPlayerStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2021583124D6928800503492 /* VideoPlayerStatsViewController.swift */; };
 		2021583424D69B6300503492 /* DetailStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2021583324D69B6300503492 /* DetailStatsViewController.swift */; };
+		2021584A24D6B7DB00503492 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 2021584924D6B7DB00503492 /* Charts */; };
 		205B0F2424CE691700360695 /* LaughClassifier1.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 205B0F2324CE691700360695 /* LaughClassifier1.mlmodel */; };
 		205B0F2624CF1BB700360695 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205B0F2524CF1BB700360695 /* UIViewControllerExtension.swift */; };
 		20A5773A24CA8949009F55EC /* VideoPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A5773924CA8949009F55EC /* VideoPlayerController.swift */; };
@@ -221,6 +222,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2021584A24D6B7DB00503492 /* Charts in Frameworks */,
 				202157DE24D33A8900503492 /* MBProgressHUD in Frameworks */,
 				5C44838324D05632000283C3 /* CloudKit.framework in Frameworks */,
 			);
@@ -639,6 +641,7 @@
 			name = Portal;
 			packageProductDependencies = (
 				202157DD24D33A8900503492 /* MBProgressHUD */,
+				2021584924D6B7DB00503492 /* Charts */,
 			);
 			productName = Portal;
 			productReference = 5C26558E24BEEA0400FCE8AB /* Portal.app */;
@@ -714,6 +717,7 @@
 			mainGroup = 5C26558524BEEA0400FCE8AB;
 			packageReferences = (
 				202157DC24D33A8900503492 /* XCRemoteSwiftPackageReference "MBProgressHUD" */,
+				2021584824D6B7DB00503492 /* XCRemoteSwiftPackageReference "Charts" */,
 			);
 			productRefGroup = 5C26558F24BEEA0400FCE8AB /* Products */;
 			projectDirPath = "";
@@ -1183,6 +1187,14 @@
 				minimumVersion = 1.2.0;
 			};
 		};
+		2021584824D6B7DB00503492 /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.5.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1190,6 +1202,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 202157DC24D33A8900503492 /* XCRemoteSwiftPackageReference "MBProgressHUD" */;
 			productName = MBProgressHUD;
+		};
+		2021584924D6B7DB00503492 /* Charts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2021584824D6B7DB00503492 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = Charts;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
