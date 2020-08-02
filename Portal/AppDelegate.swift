@@ -35,49 +35,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
-    static func relaunchMain(selectedIndex: Int? = 0, duration: Double? = 0, completion: ((Bool) -> (Void))?) {
-        guard let window = UIApplication.shared.keyWindow else {
-            return
-        }
-        window.rootViewController?.navigationController?.popToRootViewController(animated: false)
-        
-        if window.rootViewController is MainTabBarController && window.rootViewController?.navigationController != nil {
-            window.backgroundColor = UIColor.black
-            window.alpha = 0.5
-            
-            let mainTabBarViewController = window.rootViewController as! MainTabBarController
-            mainTabBarViewController.selectedIndex = selectedIndex ?? 0
-            
-            UIView.transition(with: window, duration: duration ?? 0, options: .transitionCrossDissolve, animations: {
-                window.alpha = 1.0
-            }, completion: { completed in
-                completion?(completed)
-            })
-            
-            return
-        }
-        
-        window.rootViewController?.navigationController?.popToRootViewController(animated: true)
-        window.rootViewController?.dismiss(animated: false, completion: nil)
-        
-        window.rootViewController = nil
-        window.rootViewController?.view = nil
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as! MainTabBarController
-        controller.selectedIndex = selectedIndex ?? 0
-        
-        window.backgroundColor = UIColor.black
-        window.alpha = 0.0
-        window.rootViewController = controller
-        
-        UIView.transition(with: window, duration: duration ?? 0, options: .transitionCrossDissolve, animations: {
-            window.alpha = 1.0
-        }, completion: { completed in
-            completion?(completed)
-        })
-        
-    }
+//    static func relaunchMain(selectedIndex: Int? = 0, duration: Double? = 0, completion: ((Bool) -> (Void))?) {
+//        guard let window = UIApplication.shared.keyWindow else {
+//            return
+//        }
+//        window.rootViewController?.navigationController?.popToRootViewController(animated: false)
+//
+//        if window.rootViewController is MainTabBarController && window.rootViewController?.navigationController != nil {
+//            window.backgroundColor = UIColor.black
+//            window.alpha = 0.5
+//
+//            let mainTabBarViewController = window.rootViewController as! MainTabBarController
+//            mainTabBarViewController.selectedIndex = selectedIndex ?? 0
+//
+//            UIView.transition(with: window, duration: duration ?? 0, options: .transitionCrossDissolve, animations: {
+//                window.alpha = 1.0
+//            }, completion: { completed in
+//                completion?(completed)
+//            })
+//
+//            return
+//        }
+//
+//        window.rootViewController?.navigationController?.popToRootViewController(animated: true)
+//        window.rootViewController?.dismiss(animated: false, completion: nil)
+//
+//        window.rootViewController = nil
+//        window.rootViewController?.view = nil
+//
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let controller = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as! MainTabBarController
+//        controller.selectedIndex = selectedIndex ?? 0
+//
+//        window.backgroundColor = UIColor.black
+//        window.alpha = 0.0
+//        window.rootViewController = controller
+//
+//        UIView.transition(with: window, duration: duration ?? 0, options: .transitionCrossDissolve, animations: {
+//            window.alpha = 1.0
+//        }, completion: { completed in
+//            completion?(completed)
+//        })
+//
+//    }
 
 }
 

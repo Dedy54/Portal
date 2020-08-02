@@ -14,7 +14,23 @@
                     <view key="view" contentMode="scaleToFill" id="j7U-eQ-D1g">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                         <color key="backgroundColor" red="0.027450980390000001" green="0.0" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AIx-gY-Ih6">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="P60-fu-el9">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="regular"/>
+                            </visualEffectView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.027450980390000001" green="0.0" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="R16-FH-Ihz" firstAttribute="trailing" secondItem="AIx-gY-Ih6" secondAttribute="trailing" id="FCJ-SH-eeF"/>
+                            <constraint firstItem="AIx-gY-Ih6" firstAttribute="top" secondItem="j7U-eQ-D1g" secondAttribute="top" id="ORE-e6-c9l"/>
+                            <constraint firstAttribute="bottom" secondItem="AIx-gY-Ih6" secondAttribute="bottom" id="fPg-yW-OxD"/>
+                            <constraint firstItem="AIx-gY-Ih6" firstAttribute="leading" secondItem="R16-FH-Ihz" secondAttribute="leading" id="n1K-kz-wkw"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="R16-FH-Ihz"/>
                     </view>
                 </viewController>

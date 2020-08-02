@@ -32,29 +32,25 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         switch item.title {
         case "Open Mic":
+            print("Open Mic")
             if PreferenceManager.instance.isUserLogin == false {
-                //                performSegue(withIdentifier: "toRegister", sender: nil)
-                //                self.selectedIndex = 0
-                
-                AppDelegate.relaunchMain(selectedIndex: self.selectedIndex, duration: 0.0) { (result) -> (Void) in
-                    if let visibleViewController = UIApplication.shared.keyWindow?.visibleViewController {
-                        let storyboard = UIStoryboard(name: "Register", bundle: nil)
-                        let controller = storyboard.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
-                        controller.navigationController?.isNavigationBarHidden = true
-                        //                        controller.hidesBottomBarWhenPushed = true
-                        //                        visibleViewController.navigationController?.pushViewController(controller, animated: true)
-                        //                        let navController = UINavigationController(rootViewController: controller)
-                        visibleViewController.present(controller, animated:true, completion: nil)
-                    }
-                }
+                let storyboard = UIStoryboard(name: "Register", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
+                controller.navigationController?.isNavigationBarHidden = true
+                self.present(controller, animated:true, completion: {
+                    self.selectedIndex = 0
+                })
             } else {
-                AppDelegate.relaunchMain(selectedIndex: self.selectedIndex, duration: 0.0) { (result) -> (Void) in
-                    if let visibleViewController = UIApplication.shared.keyWindow?.visibleViewController {
-                        let storyboard = UIStoryboard(name: "LiveMenu", bundle: nil)
-                        let controller = storyboard.instantiateViewController(withIdentifier: "LiveMenuViewController") as! LiveMenuViewController
-                        controller.hidesBottomBarWhenPushed = true
-                        visibleViewController.navigationController?.pushViewController(controller, animated: true)
-                    }
+                self.showIndicator()
+                let storyboard = UIStoryboard(name: "LiveMenu", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: "LiveMenuViewController") as! LiveMenuViewController
+                controller.hidesBottomBarWhenPushed = true
+                controller.modalPresentationStyle = .fullScreen
+                let navigationController = UINavigationController(rootViewController: controller)
+                navigationController.modalPresentationStyle = .overCurrentContext
+                self.present(navigationController, animated: true) {
+                    self.hideIndicator()
+                    self.selectedIndex = 0
                 }
             }
         case "Profile":

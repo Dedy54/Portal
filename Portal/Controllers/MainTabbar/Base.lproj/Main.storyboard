@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4zZ-2m-8wp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4zZ-2m-8wp">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -268,12 +268,12 @@
         <!--OpenMicViewController-->
         <scene sceneID="k8k-5s-uoB">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bPm-nu-3Fz" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewControllerPlaceholder storyboardName="OpenMic" referencedIdentifier="OpenMicViewController" id="eGR-TJ-aRY" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="54x-AL-kIW"/>
                 </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bPm-nu-3Fz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1743" y="-83"/>
+            <point key="canvasLocation" x="1742" y="-83"/>
         </scene>
         <!--Profile-->
         <scene sceneID="QJB-wL-b2A">
