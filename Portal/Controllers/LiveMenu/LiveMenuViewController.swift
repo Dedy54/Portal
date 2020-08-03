@@ -660,7 +660,7 @@ private extension LiveMenuViewController {
         agoraKit.setVideoEncoderConfiguration(
             AgoraVideoEncoderConfiguration(
                 size: CGSize.defaultDimension(),
-                frameRate: AgoraVideoFrameRate.defaultValue,
+                frameRate: AgoraVideoFrameRate.fps60,
                 bitrate: AgoraVideoBitrateStandard,
                 orientationMode: .adaptative
             )
