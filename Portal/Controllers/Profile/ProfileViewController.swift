@@ -83,8 +83,8 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         DispatchQueue.main.async {
             self.nameLabel.text = user?.name
             self.statusLabel.text = user?.status
-            self.followersCountLabel.text = "\(user!.followers ?? 0)"
-            self.followingCountLabel.text = "\(user!.following ?? 0)"
+            self.followersCountLabel.text = "\(user?.followers ?? 0)"
+            self.followingCountLabel.text = "\(user?.following ?? 0)"
             let laugh = self.laughList.reduce(0, +)
             self.laughCountLabel.text = String(laugh)
         }

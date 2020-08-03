@@ -21,16 +21,16 @@ class DetailStatsViewController: UIViewController, ChartViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         setData()
         getAllLaugh()
-    
+        
         chartView.delegate = self
-            chartView.chartDescription?.enabled = true
-            chartView.dragEnabled = true
-            chartView.setScaleEnabled(true)
-            chartView.pinchZoomEnabled = true
+        chartView.chartDescription?.enabled = true
+        chartView.dragEnabled = true
+        chartView.setScaleEnabled(true)
+        chartView.pinchZoomEnabled = true
     }
     
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
@@ -48,22 +48,8 @@ class DetailStatsViewController: UIViewController, ChartViewDelegate {
     func getAllLaugh(){
         Laugh.all(result: { (laughs) in
             self.laughList = laughs ?? self.empty
-//            print(self.laughList[0].totalDuration)
+            self.getData()
             
-            for i in 0...Int(self.laughList[0].totalDuration ?? 0.0) {
-//                self.values.append(ChartDataEntry(x: Double(i), y: 1))
-                let isIndexValid = self.laughList.indices.contains(i)
-                if isIndexValid {
-                    self.values.append(ChartDataEntry(x: Double(i), y: Double(self.laughList[i].second ?? Int(0.0))))
-                } else {
-                    self.values.append(ChartDataEntry(x: Double(i), y: 0.0))
-                }
-            }
-//            for laugh in self.laughList {
-//                print(laugh)
-//                self.values.append(ChartDataEntry(x: Double(laugh.isLaugh ?? Int(0.0)), y: Double(laugh.second ?? Int(0.0))))
-//                print(Double(laugh.second ?? Int(0.0)))
-//            }
             DispatchQueue.main.async {
                 self.setChartData(valuesin: self.values)
             }
@@ -75,7 +61,21 @@ class DetailStatsViewController: UIViewController, ChartViewDelegate {
     
     func getData(){
         if !laughList.isEmpty{
-            laughList = laughList.filter { $0.postId == "\(post!.id!)" }
+            laughList = laughList.filter { $0.postId == post!.id?.recordName }
+            laughList.sort { (a, b) -> Bool in
+                a.second! < b.second!
+            }
+     let isIndexValid = self.laughList.indices.contains(0)
+          if isIndexValid {
+              for i in 0...Int(self.laughList[0].totalDuration ?? 0.0) {
+                  let isIndexValid = self.laughList.indices.contains(i)
+                  if isIndexValid {
+                    self.values.append(ChartDataEntry(x: Double(self.laughList[i].second ?? Int(0.0)), y: Double(self.laughList[i].isLaugh ?? Int(0.0))))
+                  } else {
+                      self.values.append(ChartDataEntry(x: Double(i), y: 0.0))
+                  }
+              }
+          }
         } else {
             print("list empty")
         }
@@ -84,15 +84,15 @@ class DetailStatsViewController: UIViewController, ChartViewDelegate {
         labelViewer.text = "\(post?.viewer ?? 0)"
         labelLaugh.text = "\(post?.lpm ?? 0)"
     }
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

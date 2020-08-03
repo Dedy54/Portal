@@ -123,14 +123,17 @@ class RegisterViewController: UIViewController, ASAuthorizationControllerDelegat
 //        guard let url = URL(fileURLWithPath: path ?? <#default value#>,
 //                            isDirectory: ((try? Data(contentsOf: url ?? <#default value#>)) != nil),
 //       else { return }
+        self.showIndicator()
         User(name: "\(fullName)", email: "\(email)", userId : "\(userId)", followers: 0, following:  0, lpm:  0, status: "" ).save(result: { (result) in
-            print(result)
+            print(result!)
             DispatchQueue.main.async {
                 self.dismissAndBack()
+                self.hideIndicator()
             }
             
         }) { (error) in
-            print(error)
+            print(error!)
+            self.hideIndicator()
         }
     }
     

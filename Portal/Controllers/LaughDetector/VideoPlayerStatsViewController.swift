@@ -107,5 +107,7 @@ class VideoPlayerStatsViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    override func viewDidDisappear(_ animated: Bool) {
+        player?.pause()
+    }
 }

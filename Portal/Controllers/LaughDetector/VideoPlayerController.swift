@@ -50,12 +50,13 @@ class VideoPlayerController: UIViewController, LaughClassifierDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        do {
+        
+        
+        do{
             try AVAudioSession.sharedInstance().setCategory(.playAndRecord)
-        } catch error {
+        }catch( _){
             print("error in starting the Audio AVAudioSession")
         }
-        
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: UIResponder.keyboardWillShowNotification, object: nil);
         
@@ -76,6 +77,7 @@ class VideoPlayerController: UIViewController, LaughClassifierDelegate {
         resultsObserver.delegate = self
         inputFormat = audioEngine.inputNode.inputFormat(forBus: 0)
         analyzer = SNAudioStreamAnalyzer(format: inputFormat)
+        audioEngine.inputNode.removeTap(onBus: 0)
     }
     
     
@@ -138,7 +140,11 @@ class VideoPlayerController: UIViewController, LaughClassifierDelegate {
         player?.play()
         
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
-            self.time = self.time + 1
+            if self.time < Int(self.duration!) {
+                self.time = self.time + 1
+            } else {
+                self.audioEngine.pause()
+            }
         }
         
     }
@@ -146,7 +152,7 @@ class VideoPlayerController: UIViewController, LaughClassifierDelegate {
         totalViewer = totalViewer! + 1
         
         labelVideoPlayerViewersCount.text = "\(totalViewer ?? 0)"
-
+        
         let database = CloudKitService.shared.container.publicCloudDatabase
         database.fetch(withRecordID:  (post?.id!)!) { (result, error) in
             if error != nil {
@@ -157,7 +163,7 @@ class VideoPlayerController: UIViewController, LaughClassifierDelegate {
                     database.save(result!) { (result, error) in
                         if error != nil {
                             print(error!)
-                             print("error viewer")
+                            print("error viewer")
                         } else {
                             if result != nil {
                                 print(result!)
@@ -173,7 +179,7 @@ class VideoPlayerController: UIViewController, LaughClassifierDelegate {
     
     
     func setData(){
-        let predicate = NSPredicate(format: "%K == %@", argumentArray: ["email", "\(PreferenceManager.instance.userEmail ?? "")" ])
+        let predicate = NSPredicate(format: "%K == %@", argumentArray: ["email", "\(post?.email ?? "")" ])
         User.query(predicate: predicate, result: { (users) in
             DispatchQueue.main.async {
                 self.labelVideoPlayerUserName.text = users?.first?.name
@@ -192,8 +198,8 @@ class VideoPlayerController: UIViewController, LaughClassifierDelegate {
     
     func displayPredictionResult(identifier: String, confidence: Double) {
         if identifier == "laugh"{
-            updateLaughToCloudKit(laugh: Laugh(postId: "\(post!.id!)", isLaugh: 1, second: time, totalDuration: duration))
-//            print(laughList[0].postId!)
+            updateLaughToCloudKit(laugh: Laugh(postId: post!.id?.recordName, isLaugh: 1, second: time, totalDuration: duration))
+            //            print(laughList[0].postId!)
             totalKetawa = totalKetawa! + 1
             DispatchQueue.main.async {
                 self.generateAnimatedViews()
@@ -203,7 +209,7 @@ class VideoPlayerController: UIViewController, LaughClassifierDelegate {
     
     func updateLaughToCloudKit(laugh : Laugh){
         laugh.save(result: { (laugh) in
-            print("suecess tawa")
+            print("success tawa")
         }) { (error) in
             print(error!)
             print("error tawa")
@@ -221,7 +227,7 @@ class VideoPlayerController: UIViewController, LaughClassifierDelegate {
                     database.save(result!) { (result, error) in
                         if error != nil {
                             print(error!)
-                             print("error lpm")
+                            print("error lpm")
                         } else {
                             if result != nil {
                                 print(result!)
@@ -259,26 +265,26 @@ class VideoPlayerController: UIViewController, LaughClassifierDelegate {
     override func viewDidDisappear(_ animated: Bool) {
         audioEngine.stop()
         stopVideo()
-        updateLaugh(lpm: totalKetawa!)
+//        updateLaugh(lpm: totalKetawa!)
         updateLaughToCloudKit()
     }
     
-    func updateLaugh(lpm : Double){
-        let predicate = NSPredicate(format: "%K == %@", argumentArray: ["id", post?.id ?? ""])
-        Post.query(predicate: predicate, result: { (posts) in
-            if let foundPost = posts?.first {
-                foundPost.record?.setValue(lpm, forKey: "lpm")
-                foundPost.save(result: { (posts) in
-                    print("Success")
-                }) { (error) in
-                    print("error")
-                }
-            }
-        }, errorCase: { (error) in
-            print(error)
-        })
-        
-    }
+//    func updateLaugh(lpm : Double){
+//        let predicate = NSPredicate(format: "%K == %@", argumentArray: ["id", post?.id ?? ""])
+//        Post.query(predicate: predicate, result: { (posts) in
+//            if let foundPost = posts?.first {
+//                foundPost.record?.setValue(lpm, forKey: "lpm")
+//                foundPost.save(result: { (posts) in
+//                    print("Success")
+//                }) { (error) in
+//                    print("error")
+//                }
+//            }
+//        }, errorCase: { (error) in
+//            print(error)
+//        })
+//
+//    }
     
     func generateAnimatedViews() {
         let image = drand48() > 0.5 ? #imageLiteral(resourceName: "Emoji") : #imageLiteral(resourceName: "Emoji")

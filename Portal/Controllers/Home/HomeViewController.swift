@@ -23,7 +23,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         view.addGestureRecognizer(tapGesture)
         hideNavigationBar()
         
-        setList()
     }
     
     func setList(){
@@ -76,5 +75,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     override func viewWillAppear(_ animated: Bool) {
         hideNavigationBar()
+        setList()
     }
 }
