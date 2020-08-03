@@ -39,6 +39,8 @@
 	<string>use camera to start video call</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>use microphone to start video call</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>use your picture &amp; video library for post video </string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>use your picture &amp; video library for post video </string>
 	<key>UIApplicationSceneManifest</key>
