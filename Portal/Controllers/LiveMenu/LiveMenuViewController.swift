@@ -476,7 +476,11 @@ class LiveMenuViewController: UIViewController {
     
     @objc func stopTimer() {
         self.countTimer += 1
-        self.countDownLabel.text = "00:0\(self.countTimer)"
+        if self.countTimer >= 10 {
+            self.countDownLabel.text = "00:\(self.countTimer)"
+        } else {
+            self.countDownLabel.text = "00:0\(self.countTimer)"
+        }
         if self.countTimer == 30, let session = self.previewView.session as? CKFVideoSession {
             if session.isRecording {
                 session.stopRecording()
@@ -498,6 +502,8 @@ extension LiveMenuViewController : UIImagePickerControllerDelegate , UINavigatio
                 controller.url = url
             }
         }
+        print(url)
+        print(controller.url)
         let navController = UINavigationController(rootViewController: controller)
         self.present(navController, animated:true, completion: {
             self.hideIndicator()
