@@ -23,6 +23,7 @@ class NewComerViewController: UIViewController, UICollectionViewDataSource, UICo
         showIndicator()
         Post.all(result: { (posts) in
             self.postList = posts!
+            self.postList.reverse()
             DispatchQueue.main.async {
                 self.collectionViewNewComer.reloadData()
                 self.hideIndicator()
