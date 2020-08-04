@@ -10,6 +10,7 @@ import UIKit
 import AgoraRtcKit
 import AgoraRtcCryptoLoader
 import CloudKit
+import Photos
 
 enum LiveMenu : String {
     case live = "live"
@@ -512,8 +513,43 @@ extension LiveMenuViewController : UIImagePickerControllerDelegate , UINavigatio
             return
         }
         
+        self.saveVideo(url: url)
+        
         self.pickerController.dismiss(animated: true, completion: nil)
-        self.movePreview(url: url)
+        
+    }
+    
+    private func saveVideo(url:URL) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            guard let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+            if !FileManager.default.fileExists(atPath: documentsDirectoryURL.appendingPathComponent(url.lastPathComponent).path) {
+                URLSession.shared.downloadTask(with: url) { (location, response, error) -> Void in
+                    guard let location = location else { return }
+                    let destinationURL = documentsDirectoryURL.appendingPathComponent(response?.suggestedFilename ?? url.lastPathComponent)
+                    
+                    do {
+                        try FileManager.default.moveItem(at: location, to: destinationURL)
+                        PHPhotoLibrary.requestAuthorization({ (authorizationStatus: PHAuthorizationStatus) -> Void in
+                            if authorizationStatus == .authorized {
+                                PHPhotoLibrary.shared().performChanges({
+                                    PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: destinationURL)}) { completed, error in
+                                        DispatchQueue.main.async {
+                                            if completed {
+                                                self.movePreview(url: destinationURL)
+                                            } else {
+                                                print(error!)
+                                            }
+                                        }
+                                }
+                            }
+                        })
+                    } catch { print(error) }
+                    
+                }.resume()
+            } else {
+                print("File already exists at destination url")
+            }
+        }
     }
     
     func cropVideo(sourceURL: URL, startTime: Double, endTime: Double, completion: ((_ outputUrl: URL) -> Void)? = nil) {
