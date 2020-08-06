@@ -50,9 +50,7 @@ class DetailStatsViewController: UIViewController, ChartViewDelegate {
             self.laughList = laughs ?? self.empty
             self.getData()
             
-            DispatchQueue.main.async {
-                self.setChartData(valuesin: self.values)
-            }
+            
         }) { (error) in
             print(error)
         }
@@ -71,10 +69,14 @@ class DetailStatsViewController: UIViewController, ChartViewDelegate {
                   let isIndexValid = self.laughList.indices.contains(i)
                   if isIndexValid {
                     self.values.append(ChartDataEntry(x: Double(self.laughList[i].second ?? Int(0.0)), y: Double(self.laughList[i].isLaugh ?? Int(0.0))))
-                  } else {
-                      self.values.append(ChartDataEntry(x: Double(i), y: 0.0))
                   }
+//                  else {
+//                      self.values.append(ChartDataEntry(x: Double(i), y: 0.0))
+//                  }
               }
+            DispatchQueue.main.async {
+                self.setChartData(valuesin: self.values)
+            }
           }
         } else {
             print("list empty")

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4zZ-2m-8wp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="t2A-4G-8qC">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -209,7 +209,7 @@ watch comedy.</string>
         <scene sceneID="I46-Bg-lCd">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AzN-7k-GNv" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="house.fill" catalog="system" selectedImage="house.fill" id="e1q-L4-6fD"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="P Copy 5" selectedImage="plogo" id="e1q-L4-6fD"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ycY-ZX-qfq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
@@ -339,9 +339,10 @@ watch comedy.</string>
         <image name="Be a Creator" width="283" height="232"/>
         <image name="Detect Laugh" width="208" height="259"/>
         <image name="New Logo" width="303" height="230"/>
+        <image name="P Copy 5" width="26" height="25"/>
         <image name="bell.fill" catalog="system" width="128" height="124"/>
-        <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="person" catalog="system" width="128" height="117"/>
+        <image name="plogo" width="37" height="41"/>
         <image name="plus.rectangle.fill" catalog="system" width="128" height="93"/>
         <namedColor name="ColorYellow">
             <color red="0.98431372549019602" green="0.62352941176470589" blue="0.14901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

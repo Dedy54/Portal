@@ -10,7 +10,7 @@
         <!--Register View Controller-->
         <scene sceneID="7dc-b4-1X1">
             <objects>
-                <viewController storyboardIdentifier="RegisterViewController" id="yd4-08-Sw6" customClass="RegisterViewController" customModule="Portal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegisterViewController" modalPresentationStyle="fullScreen" id="yd4-08-Sw6" customClass="RegisterViewController" customModule="Portal" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8h4-sx-Icg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
