@@ -47,8 +47,8 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         hideNavigationBar()
         
         //        profileSC.addTarget(self, action: Selector(("segmentedControlValueChanged:")), for:.touchUpInside)
-        setList()
-        setData()
+//        setList()
+//        setData()
     }
     @IBAction func segmentedValueChange(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
@@ -68,6 +68,11 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     //    func segmentedControlValueChanged(segment: UISegmentedControl) {
     //
     //    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+         setList()
+               setData()
+    }
     
     func setData(){
         let predicate = NSPredicate(format: "%K == %@", argumentArray: ["email", "\(PreferenceManager.instance.userEmail ?? "")" ])
@@ -103,6 +108,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     }
     
     func setListObject(posts: [Post]?) {
+        laughList.removeAll()
         if let posts = posts {
             for post in posts {
                 laughList.append(post.lpm!)

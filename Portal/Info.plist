@@ -15,9 +15,9 @@
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -39,6 +39,10 @@
 	<string>use camera to start video call</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>use microphone to start video call</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>use your picture &amp; video library for post video </string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>use your picture &amp; video library for post video </string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

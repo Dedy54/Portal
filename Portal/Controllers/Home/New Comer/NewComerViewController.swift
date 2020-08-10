@@ -61,6 +61,7 @@ class NewComerViewController: UIViewController, UICollectionViewDataSource, UICo
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        self.title = "New comer"
         showNavigationBar()
         setList()
     }

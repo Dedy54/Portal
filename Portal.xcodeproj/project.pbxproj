@@ -29,6 +29,10 @@
 		20A5773B24CA8E42009F55EC /* LaughClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 20A5773824CA8913009F55EC /* LaughClassifier.mlmodel */; };
 		20C9687B24CF3BA00067D346 /* VideoPlayer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20C9687A24CF3BA00067D346 /* VideoPlayer.storyboard */; };
 		20C9687F24CF46DB0067D346 /* test.mov in Resources */ = {isa = PBXBuildFile; fileRef = 20C9687E24CF46DB0067D346 /* test.mov */; };
+		20DBDB3B24DCF35C00814A6D /* ChooseSaveLiveVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBDB3624DCF35C00814A6D /* ChooseSaveLiveVideoViewController.swift */; };
+		20DBDB3C24DCF35C00814A6D /* ChooseSaveLiveVideo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20DBDB3724DCF35C00814A6D /* ChooseSaveLiveVideo.storyboard */; };
+		20DBDB3D24DCF35C00814A6D /* ConfirmEndLiveVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBDB3924DCF35C00814A6D /* ConfirmEndLiveVideoViewController.swift */; };
+		20DBDB3E24DCF35C00814A6D /* ConfirmEndLiveVideo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20DBDB3A24DCF35C00814A6D /* ConfirmEndLiveVideo.storyboard */; };
 		2DAD940F24D1374B00DC4CC5 /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DAD940E24D1374B00DC4CC5 /* Register.storyboard */; };
 		2DAD941124D1377800DC4CC5 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAD941024D1377800DC4CC5 /* RegisterViewController.swift */; };
 		2DD9F6FA24C9591600CD71AC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD9F6F924C9591600CD71AC /* ViewController.swift */; };
@@ -146,6 +150,10 @@
 		20C9687A24CF3BA00067D346 /* VideoPlayer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VideoPlayer.storyboard; sourceTree = "<group>"; };
 		20C9687E24CF46DB0067D346 /* test.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = test.mov; path = ../../../Desktop/test.mov; sourceTree = "<group>"; };
 		20C9688024CF479E0067D346 /* test2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = test2.mp4; path = ../../../Downloads/test2.mp4; sourceTree = "<group>"; };
+		20DBDB3624DCF35C00814A6D /* ChooseSaveLiveVideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseSaveLiveVideoViewController.swift; sourceTree = "<group>"; };
+		20DBDB3724DCF35C00814A6D /* ChooseSaveLiveVideo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ChooseSaveLiveVideo.storyboard; sourceTree = "<group>"; };
+		20DBDB3924DCF35C00814A6D /* ConfirmEndLiveVideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmEndLiveVideoViewController.swift; sourceTree = "<group>"; };
+		20DBDB3A24DCF35C00814A6D /* ConfirmEndLiveVideo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ConfirmEndLiveVideo.storyboard; sourceTree = "<group>"; };
 		2DAD940E24D1374B00DC4CC5 /* Register.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
 		2DAD941024D1377800DC4CC5 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		2DD9F6F924C9591600CD71AC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -314,6 +322,24 @@
 			path = LaughDetector;
 			sourceTree = "<group>";
 		};
+		20DBDB3524DCF35C00814A6D /* ChooseSaveLiveVideo */ = {
+			isa = PBXGroup;
+			children = (
+				20DBDB3624DCF35C00814A6D /* ChooseSaveLiveVideoViewController.swift */,
+				20DBDB3724DCF35C00814A6D /* ChooseSaveLiveVideo.storyboard */,
+			);
+			path = ChooseSaveLiveVideo;
+			sourceTree = "<group>";
+		};
+		20DBDB3824DCF35C00814A6D /* ConfirmEndLiveVideo */ = {
+			isa = PBXGroup;
+			children = (
+				20DBDB3924DCF35C00814A6D /* ConfirmEndLiveVideoViewController.swift */,
+				20DBDB3A24DCF35C00814A6D /* ConfirmEndLiveVideo.storyboard */,
+			);
+			path = ConfirmEndLiveVideo;
+			sourceTree = "<group>";
+		};
 		2DAD940D24D1370700DC4CC5 /* Register */ = {
 			isa = PBXGroup;
 			children = (
@@ -409,6 +435,8 @@
 		5C2655C124BEEABD00FCE8AB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				20DBDB3524DCF35C00814A6D /* ChooseSaveLiveVideo */,
+				20DBDB3824DCF35C00814A6D /* ConfirmEndLiveVideo */,
 				2DAD940D24D1370700DC4CC5 /* Register */,
 				5CBFEBA024D012E700F406D8 /* LiveMenu */,
 				5CBFEBA524D012E700F406D8 /* NewPostForm */,
@@ -736,6 +764,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5CBFEBAC24D012E700F406D8 /* PreviewVideo.storyboard in Resources */,
+				20DBDB3E24DCF35C00814A6D /* ConfirmEndLiveVideo.storyboard in Resources */,
+				20DBDB3C24DCF35C00814A6D /* ChooseSaveLiveVideo.storyboard in Resources */,
 				5CBFEBAA24D012E700F406D8 /* StreamLiveVideo.storyboard in Resources */,
 				5C26559E24BEEA0700FCE8AB /* LaunchScreen.storyboard in Resources */,
 				8C49FD3A24C9886B0009C452 /* LiveNow.storyboard in Resources */,
@@ -816,11 +846,13 @@
 				8C439C6724CD607100B94CDA /* NewComerCollectionViewCell.swift in Sources */,
 				2DD9F6FE24C9807D00CD71AC /* onBoarding2ViewController.swift in Sources */,
 				5C2655D524BEEBCE00FCE8AB /* NotificationViewController.swift in Sources */,
+				20DBDB3B24DCF35C00814A6D /* ChooseSaveLiveVideoViewController.swift in Sources */,
 				2DAD941124D1377800DC4CC5 /* RegisterViewController.swift in Sources */,
 				2DD9F6FA24C9591600CD71AC /* ViewController.swift in Sources */,
 				2DD9F6FC24C9599F00CD71AC /* OnBoardingViewController.swift in Sources */,
 				202157EB24D33D3E00503492 /* CKFPhotoSession.swift in Sources */,
 				8C28ADE824D141900057903B /* EditProfileViewController.swift in Sources */,
+				20DBDB3D24DCF35C00814A6D /* ConfirmEndLiveVideoViewController.swift in Sources */,
 				5C26559424BEEA0400FCE8AB /* SceneDelegate.swift in Sources */,
 				5CBFEB9324D012D200F406D8 /* AGEView.swift in Sources */,
 				5CBFEB9824D012D200F406D8 /* StatisticsInfo.swift in Sources */,
@@ -1015,6 +1047,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = X7PX2RYRJL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1025,6 +1058,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = apple.academy.Portals;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1040,6 +1074,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = X7PX2RYRJL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1050,6 +1085,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = apple.academy.Portals;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

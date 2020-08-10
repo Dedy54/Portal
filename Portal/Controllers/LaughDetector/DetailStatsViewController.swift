@@ -19,13 +19,15 @@ class DetailStatsViewController: UIViewController, ChartViewDelegate {
     
     @IBOutlet weak var chartView: LineChartView!
     
+    @IBOutlet weak var labelResult: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         setData()
         getAllLaugh()
-        
+        labelResult.isHidden = true
         chartView.delegate = self
         chartView.chartDescription?.enabled = true
         chartView.dragEnabled = true
@@ -50,7 +52,6 @@ class DetailStatsViewController: UIViewController, ChartViewDelegate {
             self.laughList = laughs ?? self.empty
             self.getData()
             
-            
         }) { (error) in
             print(error)
         }
@@ -60,6 +61,7 @@ class DetailStatsViewController: UIViewController, ChartViewDelegate {
     func getData(){
         if !laughList.isEmpty{
             laughList = laughList.filter { $0.postId == post!.id?.recordName }
+            empty = laughList
             laughList.sort { (a, b) -> Bool in
                 a.second! < b.second!
             }
@@ -68,18 +70,33 @@ class DetailStatsViewController: UIViewController, ChartViewDelegate {
               for i in 0...Int(self.laughList[0].totalDuration ?? 0.0) {
                   let isIndexValid = self.laughList.indices.contains(i)
                   if isIndexValid {
-                    self.values.append(ChartDataEntry(x: Double(self.laughList[i].second ?? Int(0.0)), y: Double(self.laughList[i].isLaugh ?? Int(0.0))))
+                    if self.laughList[i].second == i {
+                        empty = empty.filter { $0.second == i }
+                        self.values.append(ChartDataEntry(x: Double(self.laughList[i].second ?? Int(0.0)), y: Double(empty.count)))
+                        empty = laughList
+                    } else {
+                        self.values.append(ChartDataEntry(x: Double(i), y:0.0))
+                    }
                   }
-//                  else {
-//                      self.values.append(ChartDataEntry(x: Double(i), y: 0.0))
-//                  }
               }
             DispatchQueue.main.async {
                 self.setChartData(valuesin: self.values)
+                self.setLabel()
             }
           }
         } else {
             print("list empty")
+        }
+    }
+    
+    func setLabel(){
+        labelResult.isHidden = false
+        if Int(post?.lpm ?? 0.0) < post?.viewer ?? 0 {
+            labelResult.text = "Not bad, but you can't make everyone laugh :("
+        } else if Int(post?.lpm ?? 0.0) > post?.viewer ?? 0 {
+            labelResult.text = "Very good, your jokes works !"
+        } else if Int(post?.lpm ?? 0.0) == post?.viewer ?? 0 {
+            labelResult.text = "You are doing great, keep going !"
         }
     }
     func setData(){
