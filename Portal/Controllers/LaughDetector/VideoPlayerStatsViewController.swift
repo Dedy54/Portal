@@ -18,6 +18,7 @@ class VideoPlayerStatsViewController: UIViewController {
     @IBOutlet weak var buttonView: UIButton!
     @IBOutlet weak var swipeForDetail: UILabel!
     
+    @IBOutlet weak var buttonReplay: UIButton!
     var post : Post?
     var player : AVPlayer?
     
@@ -38,7 +39,15 @@ class VideoPlayerStatsViewController: UIViewController {
         playVideo()
     }
     
-//    @objc func viewTapped(gestureRecognizer:UITapGestureRecognizer){
+    @IBAction func replay(_ sender: Any) {
+        buttonReplay.isHidden = true
+        playVideo()
+        timer?.invalidate()
+        time = 0
+        timer?.fire()
+        
+    }
+    //    @objc func viewTapped(gestureRecognizer:UITapGestureRecognizer){
 //          view.endEditing(true)
 //      }
     @objc func swipedViewUp(swipeUp : UISwipeGestureRecognizer){
@@ -75,6 +84,7 @@ class VideoPlayerStatsViewController: UIViewController {
         playerLayer.addSublayer(labelTime.layer)
         playerLayer.addSublayer(labelNama.layer)
         playerLayer.addSublayer(labelViewer.layer)
+        playerLayer.addSublayer(buttonReplay.layer)
         self.view.layer.addSublayer(playerLayer)
         player?.play()
         
@@ -85,11 +95,13 @@ class VideoPlayerStatsViewController: UIViewController {
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
                       self.time = self.time + 1
             
-            if self.time < Int(self.duration!) {
+            if self.time < Int(self.duration!) + Int(1) {
                 let (h,m,s) = self.secondsToHoursMinutesSeconds(seconds: self.time)
                                self.labelTime.text = "\(h):\(m):\(s)"
-                                 }
-            }
+                                 } else {
+                                 self.buttonReplay.isHidden = false
+        }
+        }
                
         labelViewer.text = "\(post?.viewer ?? 0)"
         labelNama.text = PreferenceManager.instance.userName

@@ -10,6 +10,9 @@ import UIKit
 
 class NotificationViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
+    var postList : [Post] = []
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -17,14 +20,34 @@ class NotificationViewController: UIViewController, UICollectionViewDelegate, UI
         hideNavigationBar()
     }
     
+    func setList(){
+           showIndicator()
+            Post.all(result: { (posts) in
+               self.postList = posts!
+               DispatchQueue.main.async {
+                   self.collectionView.reloadData()
+                   self.hideIndicator()
+               }
+               
+            }) { (error) in
+                print(error)
+            }
+        }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return postList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! NotificationCollectionViewCell
         
         
+        let post = postList[indexPath.row]
+              cell.StandUpComedianName.text = "New video has been posted"
+        cell.StandUpComedianActivity.text = "Title : \(post.title ?? "")"
+              post.getThumbnailCloudKit(completion: { (thumbnailImage) in
+                  cell.StandUpComedianPict.image = thumbnailImage
+              })
         
         return cell
     }
@@ -37,5 +60,8 @@ class NotificationViewController: UIViewController, UICollectionViewDelegate, UI
         // Pass the selected object to the new view controller.
     }
     */
-
+    override func viewWillAppear(_ animated: Bool) {
+          hideNavigationBar()
+          setList()
+      }
 }

@@ -16,6 +16,7 @@ class TrendingVideosViewController: UIViewController, UICollectionViewDelegate, 
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.title = "Trending"
         showNavigationBar()
         setList()
     }
@@ -27,6 +28,9 @@ class TrendingVideosViewController: UIViewController, UICollectionViewDelegate, 
           showIndicator()
           Post.all(result: { (posts) in
               self.postList = posts!
+            self.postList.sort { (a, b) -> Bool in
+                a.lpm! > b.lpm!
+                      }
               DispatchQueue.main.async {
                   self.collectionViewTrending.reloadData()
                   self.hideIndicator()
