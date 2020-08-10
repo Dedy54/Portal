@@ -16,9 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Activity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iab-m7-ufE">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iab-m7-ufE">
                                 <rect key="frame" x="179" y="60" width="57" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -30,9 +29,8 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JSk-RT-m64">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JSk-RT-m64">
                                 <rect key="frame" x="20" y="97" width="374" height="730"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.027450980390000001" green="0.0" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="esN-vg-R4E">
                                     <size key="itemSize" width="374" height="92"/>
@@ -95,6 +93,16 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="0.027450980390000001" green="0.0" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="mNS-7p-MWj" firstAttribute="top" secondItem="Iab-m7-ufE" secondAttribute="bottom" constant="2" id="6JY-Fd-bnN"/>
+                            <constraint firstItem="Iab-m7-ufE" firstAttribute="top" secondItem="HWx-io-O5k" secondAttribute="top" constant="16" id="Jlo-BO-96u"/>
+                            <constraint firstItem="Iab-m7-ufE" firstAttribute="leading" secondItem="HWx-io-O5k" secondAttribute="leading" constant="179" id="NVS-AC-BKs"/>
+                            <constraint firstItem="HWx-io-O5k" firstAttribute="trailing" secondItem="Iab-m7-ufE" secondAttribute="trailing" constant="178" id="QqA-SH-BYm"/>
+                            <constraint firstItem="JSk-RT-m64" firstAttribute="leading" secondItem="HWx-io-O5k" secondAttribute="leading" constant="20" id="Xft-MH-TB7"/>
+                            <constraint firstItem="HWx-io-O5k" firstAttribute="trailing" secondItem="JSk-RT-m64" secondAttribute="trailing" constant="20" id="ab4-Tw-Ws5"/>
+                            <constraint firstItem="HWx-io-O5k" firstAttribute="bottom" secondItem="JSk-RT-m64" secondAttribute="bottom" constant="35" id="kJ2-ZQ-cXw"/>
+                            <constraint firstItem="JSk-RT-m64" firstAttribute="top" secondItem="Iab-m7-ufE" secondAttribute="bottom" constant="16" id="nBP-jL-ZxY"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="HWx-io-O5k"/>
                     </view>
                     <connections>
