@@ -22,6 +22,7 @@ class VideoPlayerController: UIViewController, LaughClassifierDelegate {
     @IBOutlet weak var labelVideoPlayerViewersCount: UILabel!
     @IBOutlet weak var buttonVideoPlayerMuteUnMuteMic: UIButton!
     @IBOutlet weak var buttonVideoPlayerCount: UIButton!
+    @IBOutlet weak var replayButton: UIButton!
     
     private let audioEngine = AVAudioEngine()
     private var soundClassifier = LaughClassifier()
@@ -80,6 +81,20 @@ class VideoPlayerController: UIViewController, LaughClassifierDelegate {
         audioEngine.inputNode.removeTap(onBus: 0)
     }
     
+    @IBAction func replayButton(_ sender: Any) {
+        playVideo()
+        setData()
+        replayButton.isHidden = true
+        do{
+            try audioEngine.start()
+        }catch( _){
+            print("error in starting the Audio Engine")
+        }
+                timer?.invalidate()
+                time = 0
+                timer?.fire()
+        
+    }
     
     @IBAction func muteUnMute(_ sender: Any) {
         if isMute == false {
@@ -136,6 +151,7 @@ class VideoPlayerController: UIViewController, LaughClassifierDelegate {
         playerLayer.addSublayer(labelVideoPlayerUserName.layer)
         playerLayer.addSublayer(buttonVideoPlayerMuteUnMuteMic.layer)
         playerLayer.addSublayer(buttonVideoPlayerCount.layer)
+        playerLayer.addSublayer(replayButton.layer)
         self.view.layer.addSublayer(playerLayer)
         player?.play()
         
@@ -144,6 +160,7 @@ class VideoPlayerController: UIViewController, LaughClassifierDelegate {
                 self.time = self.time + 1
             } else {
                 self.audioEngine.pause()
+                self.replayButton.isHidden = false
             }
         }
         
@@ -265,26 +282,26 @@ class VideoPlayerController: UIViewController, LaughClassifierDelegate {
     override func viewDidDisappear(_ animated: Bool) {
         audioEngine.stop()
         stopVideo()
-//        updateLaugh(lpm: totalKetawa!)
+        //        updateLaugh(lpm: totalKetawa!)
         updateLaughToCloudKit()
     }
     
-//    func updateLaugh(lpm : Double){
-//        let predicate = NSPredicate(format: "%K == %@", argumentArray: ["id", post?.id ?? ""])
-//        Post.query(predicate: predicate, result: { (posts) in
-//            if let foundPost = posts?.first {
-//                foundPost.record?.setValue(lpm, forKey: "lpm")
-//                foundPost.save(result: { (posts) in
-//                    print("Success")
-//                }) { (error) in
-//                    print("error")
-//                }
-//            }
-//        }, errorCase: { (error) in
-//            print(error)
-//        })
-//
-//    }
+    //    func updateLaugh(lpm : Double){
+    //        let predicate = NSPredicate(format: "%K == %@", argumentArray: ["id", post?.id ?? ""])
+    //        Post.query(predicate: predicate, result: { (posts) in
+    //            if let foundPost = posts?.first {
+    //                foundPost.record?.setValue(lpm, forKey: "lpm")
+    //                foundPost.save(result: { (posts) in
+    //                    print("Success")
+    //                }) { (error) in
+    //                    print("error")
+    //                }
+    //            }
+    //        }, errorCase: { (error) in
+    //            print(error)
+    //        })
+    //
+    //    }
     
     func generateAnimatedViews() {
         let image = drand48() > 0.5 ? #imageLiteral(resourceName: "Emoji") : #imageLiteral(resourceName: "Emoji")

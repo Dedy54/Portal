@@ -9,6 +9,10 @@
 import UIKit
 import AVFoundation
 
+protocol NewPostFormViewControllerDelegate {
+    func didSuccessPost()
+}
+
 class NewPostFormViewController: UIViewController {
     
     @IBOutlet weak var postImageView: UIImageView!{
@@ -30,6 +34,7 @@ class NewPostFormViewController: UIViewController {
     }
     
     var post : Post?
+    var newPostFormViewControllerDelegate : NewPostFormViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,9 +42,19 @@ class NewPostFormViewController: UIViewController {
         self.titleTextField.delegate = self
         self.title = "New Post"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .done, target: self, action: #selector(addTappedPost))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backPost))
         
         self.setView(post: self.post)
         self.hideKeyboardWhenTappedAround()
+    }
+    
+    @objc func backPost(sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "All changes will be discarded.\nContinue ?", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (alert) in }))
+        alert.addAction(UIAlertAction(title: "Confirm", style: .default, handler: { (alert) in
+            self.navigationController?.popViewController(animated: true)
+        }))
+        self.present(alert, animated: true)
     }
     
     @objc func addTappedPost(sender: UIBarButtonItem) {
@@ -55,6 +70,7 @@ class NewPostFormViewController: UIViewController {
             Post(title: title, viewer: post.viewer, lpm: post.lpm, videoUrl: videoUrl, isSensitiveContent: post.isSensitiveContent, isLive: post.isLive, userReference: post.userReference, email: email).save(result: { (result) in
                 DispatchQueue.main.async {
                     self.hideIndicator()
+                    self.newPostFormViewControllerDelegate?.didSuccessPost()
                     self.navigationController?.dismiss(animated: true, completion: {
                         self.navigationController?.dismiss(animated: true, completion: nil)
                     })

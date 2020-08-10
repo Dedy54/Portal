@@ -76,6 +76,15 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="icon_view_eye"/>
                             </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rb9-84-AIk">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.20189426369863014" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title=" " image="icon_replay"/>
+                                <connections>
+                                    <action selector="replayButton:" destination="bZb-fO-9nm" eventType="touchUpInside" id="hZW-ls-lhe"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="BDb-f0-trT"/>
@@ -86,11 +95,12 @@
                         <outlet property="imageVideoPlayerProfile" destination="FtS-Rp-CiS" id="a7V-KQ-MK6"/>
                         <outlet property="labelVideoPlayerUserName" destination="v45-wV-9tQ" id="6Q7-5I-cC5"/>
                         <outlet property="labelVideoPlayerViewersCount" destination="RJT-el-aVD" id="fUY-us-GPm"/>
+                        <outlet property="replayButton" destination="Rb9-84-AIk" id="XxL-z9-AXq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1ik-OM-i1E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-762" y="-109"/>
+            <point key="canvasLocation" x="-762.31884057971024" y="-109.15178571428571"/>
         </scene>
         <!--Video Player Stats View Controller-->
         <scene sceneID="5ft-0W-TBd">
@@ -142,11 +152,22 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eeo-8a-MoX">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.20189426369999999" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title=" " image="icon_replay"/>
+                                <connections>
+                                    <action selector="replay:" destination="RTI-08-2z4" eventType="touchUpInside" id="duX-53-YUq"/>
+                                    <action selector="replayButton:" destination="bZb-fO-9nm" eventType="touchUpInside" id="yD0-bS-k1c"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="qBz-8Z-1vc"/>
                     </view>
                     <connections>
+                        <outlet property="buttonReplay" destination="Eeo-8a-MoX" id="qpD-hp-bSh"/>
                         <outlet property="buttonView" destination="6PW-0A-rw8" id="pim-J5-mU2"/>
                         <outlet property="imagePhoto" destination="9th-Sg-o8T" id="tBc-e0-7RX"/>
                         <outlet property="labelNama" destination="b1H-0T-QeN" id="Em2-pR-Ldr"/>
@@ -205,6 +226,13 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.054546379763150687" green="0.091502568493150679" blue="0.24168062126164383" alpha="0.73977953767123283" colorSpace="calibratedRGB"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uzw-1f-Tbv">
+                                <rect key="frame" x="20" y="411" width="374" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.039215686274509803" green="0.0" blue="0.19215686274509802" alpha="1" colorSpace="calibratedRGB"/>
                         <viewLayoutGuide key="safeArea" id="i7c-Jq-3sy"/>
@@ -213,6 +241,7 @@
                     <connections>
                         <outlet property="chartView" destination="LFv-QQ-X1C" id="Yoz-Lu-3cH"/>
                         <outlet property="labelLaugh" destination="RtT-p3-Lox" id="iaG-vj-84o"/>
+                        <outlet property="labelResult" destination="uzw-1f-Tbv" id="1jb-c9-L9d"/>
                         <outlet property="labelViewer" destination="2l3-KF-BJV" id="Cvt-NN-cV6"/>
                     </connections>
                 </viewController>
@@ -225,6 +254,7 @@
         <image name="Emoji" width="56" height="56"/>
         <image name="dummyprofile" width="450" height="450"/>
         <image name="icon_mic" width="17" height="25"/>
+        <image name="icon_replay" width="63" height="69"/>
         <image name="icon_star_empty" width="25" height="24"/>
         <image name="icon_view_eye" width="31" height="20"/>
         <namedColor name="ColorYellow">

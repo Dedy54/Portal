@@ -22,6 +22,7 @@ enum LiveMenu : String {
 
 class LiveMenuViewController: UIViewController {
     
+    @IBOutlet weak var startTitleLabel: UILabel!
     @IBOutlet weak var viewLiveMenu: UIView!
     @IBOutlet weak var liveLabel: UILabel!
     @IBOutlet weak var liveDotImage: UIImageView!{
@@ -153,8 +154,16 @@ class LiveMenuViewController: UIViewController {
         }
     }
     @IBAction func endLiveVideo(_ sender: Any) {
-        self.showHideWaitingView()
-        self.leaveChannel()
+        self.showIndicator()
+        let storyboard = UIStoryboard(name: "ConfirmEndLiveVideo", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "ConfirmEndLiveVideoViewController") as! ConfirmEndLiveVideoViewController
+        controller.confirmEndLiveVideoViewControllerDelegate = self
+        controller.modalPresentationStyle = .fullScreen
+        let navigationController = UINavigationController(rootViewController: controller)
+        navigationController.modalPresentationStyle = .overCurrentContext
+        self.present(navigationController, animated:true, completion: {
+            self.hideIndicator()
+        })
     }
     
     @IBOutlet weak var endLiveButton: UIButton!{
@@ -274,6 +283,7 @@ class LiveMenuViewController: UIViewController {
     func setViewSourceVideo(){
         switch liveMenu {
         case .live:
+            self.startTitleLabel.text = "Tap to start live"
             self.viewLiveMenu.isHidden = false
             self.liveDotImage.isHidden = false
             self.thirtyDotImage.isHidden = true
@@ -304,6 +314,7 @@ class LiveMenuViewController: UIViewController {
             self.rotateCameraBottomButton.isHidden = false
             
         case .inlive:
+            self.startTitleLabel.text = ""
             self.viewLiveMenu.isHidden = true
             self.liveDotImage.isHidden = false
             self.thirtyDotImage.isHidden = true
@@ -333,6 +344,7 @@ class LiveMenuViewController: UIViewController {
             self.rotateCameraBottomButton.isHidden = true
             
         case .thirtyseconds:
+            self.startTitleLabel.text = "Tap to start the video"
             self.viewLiveMenu.isHidden = false
             self.liveDotImage.isHidden = true
             self.thirtyDotImage.isHidden = false
@@ -363,6 +375,7 @@ class LiveMenuViewController: UIViewController {
             self.rotateCameraButton.isHidden = true
             self.rotateCameraBottomButton.isHidden = false
         case .recording:
+            self.startTitleLabel.text = "Tap to end the video"
             self.viewLiveMenu.isHidden = true
             self.liveDotImage.isHidden = true
             self.thirtyDotImage.isHidden = false
@@ -393,6 +406,7 @@ class LiveMenuViewController: UIViewController {
             self.rotateCameraButton.isHidden = true
             self.rotateCameraBottomButton.isHidden = true
         default:
+            self.startTitleLabel.text = ""
             self.liveLabel.textColor = UIColor.white
             self.thirtyLabel.textColor = UIColor.white
             self.galleryLabel.textColor = UIColor.init(named: "ColorYellow")
@@ -476,7 +490,11 @@ class LiveMenuViewController: UIViewController {
     
     @objc func stopTimer() {
         self.countTimer += 1
-        self.countDownLabel.text = "00:0\(self.countTimer)"
+        if self.countTimer >= 10 {
+            self.countDownLabel.text = "00:\(self.countTimer)"
+        } else {
+            self.countDownLabel.text = "00:0\(self.countTimer)"
+        }
         if self.countTimer == 30, let session = self.previewView.session as? CKFVideoSession {
             if session.isRecording {
                 session.stopRecording()
@@ -498,8 +516,11 @@ extension LiveMenuViewController : UIImagePickerControllerDelegate , UINavigatio
                 controller.url = url
             }
         }
-        let navController = UINavigationController(rootViewController: controller)
-        self.present(navController, animated:true, completion: {
+        controller.modalPresentationStyle = .fullScreen
+        controller.newPostFormViewControllerDelegate = self
+        let navigationController = UINavigationController(rootViewController: controller)
+        navigationController.modalPresentationStyle = .overCurrentContext
+        self.present(navigationController, animated:true, completion: {
             self.hideIndicator()
         })
     }
@@ -768,7 +789,13 @@ private extension LiveMenuViewController {
         let emailMemberPredicate = NSPredicate(format: "%K == %@", argumentArray: ["email", "\(emailMember)"])
         LiveRoom.delete(predicate: emailMemberPredicate, completion: {
             DispatchQueue.main.async {
-                self.hideIndicator()
+                let storyboard = UIStoryboard(name: "ChooseSaveLiveVideo", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: "ChooseSaveLiveVideoViewController") as! ChooseSaveLiveVideoViewController
+                controller.chooseSaveLiveVideoViewControllerDelegate = self
+                let navigationController = UINavigationController(rootViewController: controller)
+                self.present(navigationController, animated:true, completion: {
+                    self.hideIndicator()
+                })
             }
         })
     }
@@ -866,4 +893,49 @@ extension LiveMenuViewController: AgoraRtcEngineDelegate {
         print("errorCode code: \(errorCode.description)")
         
     }
+}
+
+extension LiveMenuViewController : ConfirmEndLiveVideoViewControllerDelegate {
+    
+    func didCancelEndLiveVideo() {
+        
+    }
+    
+    func didEndLiveVideo() {
+        self.showHideWaitingView()
+        self.leaveChannel()
+    }
+}
+
+extension LiveMenuViewController : ChooseSaveLiveVideoViewControllerDelegate {
+    
+    func didActionSavePress() {
+        let referenceForTabBarController = self.presentingViewController as! UITabBarController
+        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion:{
+             referenceForTabBarController.selectedIndex = 3
+        })
+    }
+    
+    func didActionDownloadPress() {
+        
+    }
+    
+    func didActionDeletePress() {
+        
+    }
+    
+    
+}
+
+extension LiveMenuViewController : NewPostFormViewControllerDelegate {
+    
+    func didSuccessPost() {
+        let referenceForTabBarController = self.presentingViewController as! UITabBarController
+        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion:{
+             referenceForTabBarController.selectedIndex = 3
+        })
+    }
+    
 }

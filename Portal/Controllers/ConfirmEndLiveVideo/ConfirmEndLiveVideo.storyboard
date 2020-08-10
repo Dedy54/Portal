@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Confirm End Live Video View Controller-->
+        <scene sceneID="AAu-Sf-DDY">
+            <objects>
+                <viewController storyboardIdentifier="ConfirmEndLiveVideoViewController" id="EkN-kf-kRS" customClass="ConfirmEndLiveVideoViewController" customModule="Portal" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aNO-oG-C9e">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wJf-f1-qVS">
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are you sure want to end live video?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7m1-mn-hyV">
+                                        <rect key="frame" x="107" y="396" width="200" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="ITJ-6d-OyP"/>
+                                            <constraint firstAttribute="height" constant="60" id="fL5-bs-jpb"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iTQ-37-aSV">
+                                        <rect key="frame" x="46.5" y="506" width="150" height="44"/>
+                                        <color key="backgroundColor" red="0.99215686270000003" green="0.60392156860000001" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="150" id="JjB-u1-Byp"/>
+                                            <constraint firstAttribute="height" constant="44" id="ubU-RZ-Axf"/>
+                                        </constraints>
+                                        <state key="normal" title="End Now">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="actionEndNow:" destination="EkN-kf-kRS" eventType="touchUpInside" id="c1Z-2I-cqK"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hz4-cd-mTA">
+                                        <rect key="frame" x="217.5" y="506" width="150" height="44"/>
+                                        <color key="backgroundColor" red="0.027450980390000001" green="0.0" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="L2P-By-fV6"/>
+                                            <constraint firstAttribute="width" constant="150" id="NiJ-u9-Oh9"/>
+                                        </constraints>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="actionCancelEndNow:" destination="EkN-kf-kRS" eventType="touchUpInside" id="fQS-ig-gaQ"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XAp-2C-SQC">
+                                        <rect key="frame" x="206.5" y="456" width="1" height="200"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="1" id="2eR-Ui-7et"/>
+                                            <constraint firstAttribute="height" constant="200" id="q0t-ew-GmF"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="XAp-2C-SQC" firstAttribute="leading" secondItem="iTQ-37-aSV" secondAttribute="trailing" constant="10" id="GAy-m3-uAt"/>
+                                    <constraint firstItem="Hz4-cd-mTA" firstAttribute="leading" secondItem="XAp-2C-SQC" secondAttribute="trailing" constant="10" id="IUK-gB-WdL"/>
+                                    <constraint firstItem="iTQ-37-aSV" firstAttribute="top" secondItem="7m1-mn-hyV" secondAttribute="bottom" constant="50" id="ROC-fC-QOn"/>
+                                    <constraint firstItem="XAp-2C-SQC" firstAttribute="top" secondItem="7m1-mn-hyV" secondAttribute="bottom" id="TDV-uY-XHx"/>
+                                    <constraint firstItem="7m1-mn-hyV" firstAttribute="centerX" secondItem="wJf-f1-qVS" secondAttribute="centerX" id="ZbW-ES-Gp2"/>
+                                    <constraint firstItem="XAp-2C-SQC" firstAttribute="centerX" secondItem="wJf-f1-qVS" secondAttribute="centerX" id="hyV-Y9-uyP"/>
+                                    <constraint firstItem="Hz4-cd-mTA" firstAttribute="top" secondItem="7m1-mn-hyV" secondAttribute="bottom" constant="50" id="tjw-9g-BSn"/>
+                                    <constraint firstItem="7m1-mn-hyV" firstAttribute="centerY" secondItem="wJf-f1-qVS" secondAttribute="centerY" id="xBi-xj-k2P"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="wJf-f1-qVS" secondAttribute="bottom" id="2PC-4c-2cJ"/>
+                            <constraint firstItem="wJf-f1-qVS" firstAttribute="leading" secondItem="8Hs-fx-t7J" secondAttribute="leading" id="4SM-iY-rhT"/>
+                            <constraint firstAttribute="trailing" secondItem="wJf-f1-qVS" secondAttribute="trailing" id="dHx-Qu-mEo"/>
+                            <constraint firstItem="wJf-f1-qVS" firstAttribute="top" secondItem="8Hs-fx-t7J" secondAttribute="top" id="p0Y-m1-tWr"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="8Hs-fx-t7J"/>
+                    </view>
+                    <connections>
+                        <outlet property="cancelEndButton" destination="Hz4-cd-mTA" id="SfP-Gq-JH9"/>
+                        <outlet property="endLiveButton" destination="iTQ-37-aSV" id="0XH-bl-qyd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="36o-QN-D5S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="469.56521739130437" y="493.52678571428567"/>
+        </scene>
+    </scenes>
+</document>
