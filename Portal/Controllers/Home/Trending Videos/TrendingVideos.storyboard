@@ -16,9 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IIc-sc-luG">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IIc-sc-luG">
                                 <rect key="frame" x="20" y="103" width="374" height="691"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.027450980390000001" green="0.0" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="LWM-e5-798">
                                     <size key="itemSize" width="169" height="216"/>
@@ -74,6 +73,12 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="0.027450980390000001" green="0.0" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="IIc-sc-luG" firstAttribute="leading" secondItem="yNq-AR-EsZ" secondAttribute="leading" constant="20" id="G2z-p4-wX2"/>
+                            <constraint firstItem="yNq-AR-EsZ" firstAttribute="trailing" secondItem="IIc-sc-luG" secondAttribute="trailing" constant="20" id="cOw-mc-5l7"/>
+                            <constraint firstItem="IIc-sc-luG" firstAttribute="top" secondItem="yNq-AR-EsZ" secondAttribute="top" constant="59" id="hV6-sF-aJE"/>
+                            <constraint firstItem="yNq-AR-EsZ" firstAttribute="bottom" secondItem="IIc-sc-luG" secondAttribute="bottom" constant="68" id="pOK-yI-cst"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="yNq-AR-EsZ"/>
                     </view>
                     <navigationItem key="navigationItem" id="jcU-4t-3r8"/>

@@ -16,9 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dRr-Qq-Gy9">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dRr-Qq-Gy9">
                                 <rect key="frame" x="20" y="108" width="374" height="747"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.027450980390000001" green="0.0" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="AZZ-cM-7Kx">
                                     <size key="itemSize" width="169" height="216"/>
@@ -75,6 +74,12 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="0.027450980390000001" green="0.0" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="vam-fN-Ztp" firstAttribute="bottom" secondItem="dRr-Qq-Gy9" secondAttribute="bottom" constant="7" id="5V7-Pz-qe5"/>
+                            <constraint firstItem="dRr-Qq-Gy9" firstAttribute="leading" secondItem="vam-fN-Ztp" secondAttribute="leading" constant="20" id="ABM-6g-mtJ"/>
+                            <constraint firstItem="vam-fN-Ztp" firstAttribute="trailing" secondItem="dRr-Qq-Gy9" secondAttribute="trailing" constant="20" id="SR5-9z-ldy"/>
+                            <constraint firstItem="dRr-Qq-Gy9" firstAttribute="top" secondItem="vam-fN-Ztp" secondAttribute="top" constant="64" id="dwW-Ak-Gto"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="vam-fN-Ztp"/>
                     </view>
                     <navigationItem key="navigationItem" id="ded-12-aKr"/>

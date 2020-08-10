@@ -17,10 +17,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7SB-pC-ofc">
-                                <rect key="frame" x="29" y="104" width="121" height="41"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="500" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7SB-pC-ofc">
+                                <rect key="frame" x="29" y="116" width="125" height="34"/>
                                 <color key="backgroundColor" name="ColorYellow"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="125" id="8cj-Ia-dXO"/>
+                                    <constraint firstAttribute="height" constant="34" id="XgK-mI-lWZ"/>
+                                </constraints>
                                 <state key="normal" title="New Comer"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -31,10 +34,13 @@
                                     <segue destination="PgI-po-3IR" kind="show" id="KXo-TX-MAc"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7yL-PZ-uZ4">
-                                <rect key="frame" x="293" y="104" width="92" height="41"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7yL-PZ-uZ4">
+                                <rect key="frame" x="293" y="116" width="92" height="34"/>
                                 <color key="backgroundColor" red="0.98431372549019602" green="0.35686274509803922" blue="0.35686274509803922" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="hHv-fR-f2k"/>
+                                    <constraint firstAttribute="width" constant="92" id="srZ-If-Bha"/>
+                                </constraints>
                                 <state key="normal" title="Live">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                                 </state>
@@ -47,21 +53,21 @@
                                     <segue destination="0Jl-N7-fF3" kind="show" id="BR4-dv-Hmk"/>
                                 </connections>
                             </button>
-                            <searchBar contentMode="redraw" fixedFrame="YES" searchBarStyle="minimal" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="5br-Kf-igk">
-                                <rect key="frame" x="20" y="44" width="374" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="5br-Kf-igk">
+                                <rect key="frame" x="20" y="44" width="374" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Featured Videos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oe8-XV-2D6">
-                                <rect key="frame" x="26" y="167" width="134" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Featured Videos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oe8-XV-2D6">
+                                <rect key="frame" x="26" y="172" width="134" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="26" id="sk6-pR-1c8"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8wR-ss-iZJ">
-                                <rect key="frame" x="26" y="196" width="356" height="666"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8wR-ss-iZJ">
+                                <rect key="frame" x="26" y="201" width="356" height="661"/>
                                 <color key="backgroundColor" red="0.027450980390000001" green="0.0" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="nGj-5n-fZo">
                                     <size key="itemSize" width="169" height="216"/>
@@ -116,10 +122,12 @@
                                     <outlet property="delegate" destination="car-b0-ShY" id="MUO-tb-Z2r"/>
                                 </connections>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOL-Il-X2o">
-                                <rect key="frame" x="162" y="104" width="122" height="41"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOL-Il-X2o">
+                                <rect key="frame" x="166" y="116" width="118" height="34"/>
                                 <color key="backgroundColor" red="0.69019607843137254" green="0.27843137254901962" blue="0.52549019607843139" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="B52-FF-9sc"/>
+                                </constraints>
                                 <state key="normal" title="Trending"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -132,6 +140,28 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.027450980390000001" green="0.0" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="koL-P5-mZ1" firstAttribute="trailing" secondItem="8wR-ss-iZJ" secondAttribute="trailing" constant="32" id="15u-S7-kaf"/>
+                            <constraint firstItem="koL-P5-mZ1" firstAttribute="trailing" secondItem="7yL-PZ-uZ4" secondAttribute="trailing" constant="29" id="1AF-G0-tz9"/>
+                            <constraint firstItem="koL-P5-mZ1" firstAttribute="trailing" secondItem="5br-Kf-igk" secondAttribute="trailing" constant="20" id="2Xa-Zd-uoC"/>
+                            <constraint firstItem="8wR-ss-iZJ" firstAttribute="top" secondItem="EOL-Il-X2o" secondAttribute="bottom" constant="51" id="9oc-QS-7uj"/>
+                            <constraint firstItem="8wR-ss-iZJ" firstAttribute="bottom" secondItem="koL-P5-mZ1" secondAttribute="bottom" id="CtX-OG-2ky"/>
+                            <constraint firstItem="7SB-pC-ofc" firstAttribute="top" secondItem="5br-Kf-igk" secondAttribute="bottom" constant="16" id="Gka-Nm-spP"/>
+                            <constraint firstItem="Oe8-XV-2D6" firstAttribute="top" secondItem="7SB-pC-ofc" secondAttribute="bottom" constant="22" id="LU8-T3-FmE"/>
+                            <constraint firstItem="8wR-ss-iZJ" firstAttribute="top" secondItem="Oe8-XV-2D6" secondAttribute="bottom" constant="3" id="NMp-yu-Cdt"/>
+                            <constraint firstItem="EOL-Il-X2o" firstAttribute="leading" secondItem="7SB-pC-ofc" secondAttribute="trailing" constant="12" id="Qxr-8a-qKi"/>
+                            <constraint firstItem="EOL-Il-X2o" firstAttribute="top" secondItem="5br-Kf-igk" secondAttribute="bottom" constant="16" id="Toq-Xa-4DG"/>
+                            <constraint firstItem="7SB-pC-ofc" firstAttribute="leading" secondItem="koL-P5-mZ1" secondAttribute="leading" constant="29" id="UMc-Kp-y7m"/>
+                            <constraint firstItem="7yL-PZ-uZ4" firstAttribute="top" secondItem="5br-Kf-igk" secondAttribute="bottom" constant="16" id="V5P-1p-OcZ"/>
+                            <constraint firstItem="Oe8-XV-2D6" firstAttribute="leading" secondItem="koL-P5-mZ1" secondAttribute="leading" constant="26" id="WIN-AY-301"/>
+                            <constraint firstItem="7yL-PZ-uZ4" firstAttribute="leading" secondItem="EOL-Il-X2o" secondAttribute="trailing" constant="9" id="b9z-ID-3mV"/>
+                            <constraint firstItem="8wR-ss-iZJ" firstAttribute="top" secondItem="7yL-PZ-uZ4" secondAttribute="bottom" constant="51" id="cL2-mz-n6R"/>
+                            <constraint firstItem="7yL-PZ-uZ4" firstAttribute="leading" secondItem="EOL-Il-X2o" secondAttribute="trailing" constant="9" id="dbY-YO-imC"/>
+                            <constraint firstItem="5br-Kf-igk" firstAttribute="leading" secondItem="koL-P5-mZ1" secondAttribute="leading" constant="20" id="pw4-0O-Vad"/>
+                            <constraint firstItem="5br-Kf-igk" firstAttribute="top" secondItem="koL-P5-mZ1" secondAttribute="top" id="rYO-0t-gNl"/>
+                            <constraint firstItem="koL-P5-mZ1" firstAttribute="trailing" secondItem="Oe8-XV-2D6" secondAttribute="trailing" constant="254" id="tjq-4R-ozq"/>
+                            <constraint firstItem="8wR-ss-iZJ" firstAttribute="leading" secondItem="koL-P5-mZ1" secondAttribute="leading" constant="26" id="vpv-ph-eg3"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="koL-P5-mZ1"/>
                     </view>
                     <connections>
