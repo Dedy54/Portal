@@ -106,9 +106,19 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="15"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </collectionViewCellContentView>
                                         <color key="backgroundColor" red="0.027450980390000001" green="0.0" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                         <size key="customSize" width="169" height="216"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="ImageStandUpComedianBackground" destination="vIQ-4j-9VF" id="T50-3p-fNh"/>
                                             <outlet property="LabelStandUpComedian" destination="Hs3-hS-PT7" id="eit-Fj-UbA"/>

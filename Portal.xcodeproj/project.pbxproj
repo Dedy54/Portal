@@ -95,6 +95,7 @@
 		8C49FD3C24C988800009C452 /* LiveNowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C49FD3B24C988800009C452 /* LiveNowViewController.swift */; };
 		8C49FD3E24C9893B0009C452 /* TrendingVideos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C49FD3D24C9893B0009C452 /* TrendingVideos.storyboard */; };
 		8C49FD4024C989490009C452 /* TrendingVideosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C49FD3F24C989490009C452 /* TrendingVideosViewController.swift */; };
+		B037DFED24E24DE70057A65A /* HelperExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B037DFEC24E24DE70057A65A /* HelperExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -223,6 +224,7 @@
 		8C49FD3B24C988800009C452 /* LiveNowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveNowViewController.swift; sourceTree = "<group>"; };
 		8C49FD3D24C9893B0009C452 /* TrendingVideos.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TrendingVideos.storyboard; sourceTree = "<group>"; };
 		8C49FD3F24C989490009C452 /* TrendingVideosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingVideosViewController.swift; sourceTree = "<group>"; };
+		B037DFEC24E24DE70057A65A /* HelperExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -529,6 +531,7 @@
 		5CBFEB7C24D012C000F406D8 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				B037DFEC24E24DE70057A65A /* HelperExtension.swift */,
 				5CBFEB7D24D012C000F406D8 /* AgoraExtension.swift */,
 			);
 			path = Extension;
@@ -840,6 +843,7 @@
 				5C2655DB24BEEBEC00FCE8AB /* ProfileViewController.swift in Sources */,
 				5C26559224BEEA0400FCE8AB /* AppDelegate.swift in Sources */,
 				5CBFEBAB24D012E700F406D8 /* StreamLiveVideoViewController.swift in Sources */,
+				B037DFED24E24DE70057A65A /* HelperExtension.swift in Sources */,
 				5C16736924C9466D00DBD828 /* PreferenceManager.swift in Sources */,
 				202157F024D33D3E00503492 /* CKFVideoSession.swift in Sources */,
 				202157FA24D48E9700503492 /* CoreStore.swift in Sources */,
