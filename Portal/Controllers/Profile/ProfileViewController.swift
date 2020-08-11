@@ -47,8 +47,8 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         hideNavigationBar()
         
         //        profileSC.addTarget(self, action: Selector(("segmentedControlValueChanged:")), for:.touchUpInside)
-//        setList()
-//        setData()
+        //        setList()
+        //        setData()
     }
     @IBAction func segmentedValueChange(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
@@ -70,8 +70,8 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     //    }
     
     override func viewWillAppear(_ animated: Bool) {
-         setList()
-               setData()
+        setList()
+        setData()
     }
     
     func setData(){
@@ -90,8 +90,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
             self.statusLabel.text = user?.status
             self.followersCountLabel.text = "\(user?.followers ?? 0)"
             self.followingCountLabel.text = "\(user?.following ?? 0)"
-            let laugh = self.laughList.reduce(0, +)
-            self.laughCountLabel.text = String(laugh)
+            
         }
     }
     
@@ -108,15 +107,21 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     }
     
     func setListObject(posts: [Post]?) {
-        laughList.removeAll()
-        if let posts = posts {
-            for post in posts {
-                laughList.append(post.lpm!)
-            }
-        }
+        
         
         postList = posts!.filter { $0.email == PreferenceManager.instance.userEmail}
+        laughList.removeAll()
+        //              if let postList = posts {
+        for post in postList {
+            laughList.append(post.lpm!)
+            print(post.lpm!)
+        }
+        DispatchQueue.main.async {
+            let laugh = self.laughList.reduce(0, +)
+            self.laughCountLabel.text = String(laugh)
+        }
         
+        //              }
         postLive = postList.filter { $0.isLive == 1 }
         postNotLive = postList.filter { $0.isLive == 0 }
         
@@ -156,21 +161,21 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         post.getThumbnailCloudKit { (thumbnailImage) in
             cell.ImageBackgroundStandUpComedian.image = thumbnailImage
         }
-
+        
         return cell
         
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-         let post = postList[indexPath.row]
-         performSegue(withIdentifier: "toVideoPlayerStats", sender: post)
-     }
-     
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         if let destination = segue.destination as? VideoPlayerStatsViewController {
-             destination.post = sender as? Post
-         }
-     }
+        let post = postList[indexPath.row]
+        performSegue(withIdentifier: "toVideoPlayerStats", sender: post)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? VideoPlayerStatsViewController {
+            destination.post = sender as? Post
+        }
+    }
     
     @objc func viewTapped(gestureRecognizer:UITapGestureRecognizer){
         view.endEditing(true)
