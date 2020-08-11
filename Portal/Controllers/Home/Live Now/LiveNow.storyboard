@@ -89,8 +89,18 @@
                                                 <constraint firstItem="10D-yU-EpB" firstAttribute="top" secondItem="31x-9y-F9u" secondAttribute="bottom" constant="7" id="szT-ft-Q02"/>
                                                 <constraint firstAttribute="trailing" secondItem="Hd4-JP-110" secondAttribute="trailing" constant="8" id="zP0-6C-FA3"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="6"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </collectionViewCellContentView>
                                         <color key="backgroundColor" red="0.027450980390000001" green="0.0" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="AudienceCount" destination="xGu-0J-Z7o" id="ftN-H0-fEm"/>
                                             <outlet property="CaptionStandUpComedian" destination="31x-9y-F9u" id="c89-cY-ZAf"/>
