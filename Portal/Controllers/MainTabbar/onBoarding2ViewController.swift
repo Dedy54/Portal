@@ -15,7 +15,7 @@ class onBoarding2ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        goButton.layer.cornerRadius = 25
+        goButton.layer.cornerRadius = 6
         // Do any additional setup after loading the view.
     }
     

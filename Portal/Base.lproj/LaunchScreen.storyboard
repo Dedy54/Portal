@@ -19,8 +19,8 @@
                                 <rect key="frame" x="-7" y="0.0" width="429" height="896"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="YxY-DO-bed">
-                                        <rect key="frame" x="99" y="315" width="231" height="266"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="New Logo" translatesAutoresizingMaskIntoConstraints="NO" id="9hV-YX-gow">
+                                        <rect key="frame" x="67" y="271" width="295" height="267"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>
@@ -37,6 +37,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Logo" width="271" height="302"/>
+        <image name="New Logo" width="303" height="230"/>
     </resources>
 </document>
