@@ -11,6 +11,7 @@ import AgoraRtcKit
 import AgoraRtcCryptoLoader
 import CloudKit
 import Photos
+import ReplayKit
 
 enum LiveMenu : String {
     case live = "live"
@@ -248,6 +249,8 @@ class LiveMenuViewController: UIViewController {
             self.updateBroadcastersView()
         }
     }
+    
+    let recorder = RPScreenRecorder.shared()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -756,6 +759,7 @@ private extension LiveMenuViewController {
                         self.agoraKit.setEnableSpeakerphone(true)
                         self.liveMenu = .inlive
                         self.setViewSourceVideo()
+                        self.startRecording()
                     }
                 }) { (error) in
                     DispatchQueue.main.async {
@@ -768,6 +772,40 @@ private extension LiveMenuViewController {
                 }
             }
         })
+    }
+    
+    func startRecording() {
+        guard recorder.isAvailable else {
+            print("Recording is not available at this time.")
+            return
+        }
+        recorder.isMicrophoneEnabled = true
+        recorder.startRecording{ [unowned self] (error) in
+            
+            guard error == nil else {
+                print("There was an error starting the recording.")
+                return
+            }
+            print("Started Recording Successfully")
+        }
+    }
+    
+    func stopRecording() {
+        recorder.stopRecording { [unowned self] (preview, error) in
+            print("Stopped recording")
+            
+            guard preview != nil else {
+                let storyboard = UIStoryboard(name: "ChooseSaveLiveVideo", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: "ChooseSaveLiveVideoViewController") as! ChooseSaveLiveVideoViewController
+                controller.chooseSaveLiveVideoViewControllerDelegate = self
+                let navigationController = UINavigationController(rootViewController: controller)
+                self.present(navigationController, animated:true, completion: { })
+                return
+            }
+            
+            preview?.previewControllerDelegate = self
+            self.present(preview!, animated: true, completion: nil)
+        }
     }
     
     func addLocalSession() {
@@ -783,19 +821,14 @@ private extension LiveMenuViewController {
         agoraKit.stopPreview()
         liveMenu = .live
         setViewSourceVideo()
+        stopRecording()
         
         self.showIndicator()
         let emailMember = PreferenceManager.instance.userEmail ?? ""
         let emailMemberPredicate = NSPredicate(format: "%K == %@", argumentArray: ["email", "\(emailMember)"])
         LiveRoom.delete(predicate: emailMemberPredicate, completion: {
             DispatchQueue.main.async {
-                let storyboard = UIStoryboard(name: "ChooseSaveLiveVideo", bundle: nil)
-                let controller = storyboard.instantiateViewController(withIdentifier: "ChooseSaveLiveVideoViewController") as! ChooseSaveLiveVideoViewController
-                controller.chooseSaveLiveVideoViewControllerDelegate = self
-                let navigationController = UINavigationController(rootViewController: controller)
-                self.present(navigationController, animated:true, completion: {
-                    self.hideIndicator()
-                })
+                self.hideIndicator()
             }
         })
     }
@@ -909,19 +942,19 @@ extension LiveMenuViewController : ConfirmEndLiveVideoViewControllerDelegate {
 
 extension LiveMenuViewController : ChooseSaveLiveVideoViewControllerDelegate {
     
-    func didActionSavePress() {
+    func didActionSavePress(filePathUrl: URL?) {
         let referenceForTabBarController = self.presentingViewController as! UITabBarController
         self.dismiss(animated: true, completion: nil)
         self.dismiss(animated: true, completion:{
-             referenceForTabBarController.selectedIndex = 3
+            referenceForTabBarController.selectedIndex = 3
         })
     }
     
-    func didActionDownloadPress() {
+    func didActionDownloadPress(filePathUrl: URL?) {
         
     }
     
-    func didActionDeletePress() {
+    func didActionDeletePress(filePathUrl: URL?) {
         
     }
     
@@ -934,8 +967,58 @@ extension LiveMenuViewController : NewPostFormViewControllerDelegate {
         let referenceForTabBarController = self.presentingViewController as! UITabBarController
         self.dismiss(animated: true, completion: nil)
         self.dismiss(animated: true, completion:{
-             referenceForTabBarController.selectedIndex = 3
+            referenceForTabBarController.selectedIndex = 3
         })
     }
     
+}
+
+
+extension LiveMenuViewController: RPPreviewViewControllerDelegate{
+    func previewControllerDidFinish(_ previewController: RPPreviewViewController) {
+        dismiss(animated: true)
+    }
+    
+    static func saveVideoToPhotos(url: URL, returnCompletion: @escaping (String?) -> () ) {
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            
+            guard let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+            
+            if !FileManager.default.fileExists(atPath: documentsDirectoryURL.appendingPathComponent(url.lastPathComponent).path) {
+                
+                URLSession.shared.downloadTask(with: url) { (location, response, error) -> Void in
+                    
+                    guard let location = location else { return }
+                    
+                    let destinationURL = documentsDirectoryURL.appendingPathComponent(response?.suggestedFilename ?? url.lastPathComponent)
+                    
+                    do {
+                        try FileManager.default.moveItem(at: location, to: destinationURL)
+                        PHPhotoLibrary.requestAuthorization({ (authorizationStatus: PHAuthorizationStatus) -> Void in
+                            if authorizationStatus == .authorized {
+                                PHPhotoLibrary.shared().performChanges({
+                                    PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: destinationURL)}) { completed, error in
+                                        DispatchQueue.main.async {
+                                            if completed {                                                    returnCompletion(url.lastPathComponent)
+                                            } else {
+                                                returnCompletion(nil)
+                                            }
+                                        }
+                                }
+                            }
+                        })
+                        returnCompletion(url.lastPathComponent)
+                    } catch {
+                        returnCompletion(nil)
+                    }
+                    
+                }.resume()
+                
+            } else {
+                returnCompletion(nil)
+            }
+        }
+        
+    }
 }

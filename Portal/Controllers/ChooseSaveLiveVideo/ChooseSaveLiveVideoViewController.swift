@@ -9,9 +9,9 @@
 import UIKit
 
 protocol ChooseSaveLiveVideoViewControllerDelegate {
-    func didActionSavePress()
-    func didActionDownloadPress()
-    func didActionDeletePress()
+    func didActionSavePress(filePathUrl: URL?)
+    func didActionDownloadPress(filePathUrl: URL?)
+    func didActionDeletePress(filePathUrl: URL?)
 }
 
 class ChooseSaveLiveVideoViewController: UIViewController {
@@ -22,7 +22,7 @@ class ChooseSaveLiveVideoViewController: UIViewController {
             self.hideIndicator()
             let alert = UIAlertController(title: "Success", message: "Saved to Post", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (alert) in
-                self.chooseSaveLiveVideoViewControllerDelegate?.didActionSavePress()
+                self.chooseSaveLiveVideoViewControllerDelegate?.didActionSavePress(filePathUrl: self.filePathUrl)
                 self.dismiss(animated: true, completion: nil)
             }))
             self.present(alert, animated: true)
@@ -35,7 +35,7 @@ class ChooseSaveLiveVideoViewController: UIViewController {
             self.hideIndicator()
             let alert = UIAlertController(title: "Success", message: "Live video saved in Photos", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (alert) in
-                self.chooseSaveLiveVideoViewControllerDelegate?.didActionDownloadPress()
+                self.chooseSaveLiveVideoViewControllerDelegate?.didActionDownloadPress(filePathUrl: self.filePathUrl)
                 self.dismiss(animated: true, completion: nil)
             }))
             self.present(alert, animated: true)
@@ -48,7 +48,7 @@ class ChooseSaveLiveVideoViewController: UIViewController {
             self.hideIndicator()
             let alert = UIAlertController(title: "Success", message: "Delete live video success", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (alert) in
-                self.chooseSaveLiveVideoViewControllerDelegate?.didActionDeletePress()
+                self.chooseSaveLiveVideoViewControllerDelegate?.didActionDeletePress(filePathUrl: self.filePathUrl)
                 self.dismiss(animated: true, completion: nil)
             }))
             self.present(alert, animated: true)
@@ -56,6 +56,7 @@ class ChooseSaveLiveVideoViewController: UIViewController {
     }
     
     var chooseSaveLiveVideoViewControllerDelegate : ChooseSaveLiveVideoViewControllerDelegate?
+    var filePathUrl: URL?
     
     override func viewDidLoad() {
         super.viewDidLoad()
