@@ -70,13 +70,16 @@ class DetailStatsViewController: UIViewController, ChartViewDelegate {
               for i in 0...Int(self.laughList[0].totalDuration ?? 0.0) {
                   let isIndexValid = self.laughList.indices.contains(i)
                   if isIndexValid {
-                    if self.laughList[i].second == i {
-                        empty = empty.filter { $0.second == i }
-                        self.values.append(ChartDataEntry(x: Double(self.laughList[i].second ?? Int(0.0)), y: Double(empty.count)))
+                    print("BBB \(self.laughList[i].second)")
+                    print("BBBi \(i)")
+//                    if self.laughList[i].second == i {
+                        empty = laughList.filter { $0.second == i }
+                        print("sss \(empty.count)")
+                    self.values.append(ChartDataEntry(x: Double(i), y: Double(empty.count)))
                         empty = laughList
-                    } else {
-                        self.values.append(ChartDataEntry(x: Double(i), y:0.0))
-                    }
+//                    }
+                  } else {
+                      self.values.append(ChartDataEntry(x: Double(i), y:0.0))
                   }
               }
             DispatchQueue.main.async {
@@ -90,13 +93,14 @@ class DetailStatsViewController: UIViewController, ChartViewDelegate {
     }
     
     func setLabel(){
+        let info = "X value = Show second \r\nY value = Show how many laugh you get at that time\r\n"
         labelResult.isHidden = false
         if Int(post?.lpm ?? 0.0) < post?.viewer ?? 0 {
-            labelResult.text = "Not bad, but you can't make everyone laugh :("
+            labelResult.text = "\(info)\r\nConclusion : Not bad, but you can't make everyone laugh :("
         } else if Int(post?.lpm ?? 0.0) > post?.viewer ?? 0 {
-            labelResult.text = "Very good, your jokes works !"
+            labelResult.text = "\(info)\r\nConclusion : Very good, your jokes works !"
         } else if Int(post?.lpm ?? 0.0) == post?.viewer ?? 0 {
-            labelResult.text = "You are doing great, keep going !"
+            labelResult.text = "\(info)\r\nConclusion : You are doing great, keep going !"
         }
     }
     func setData(){

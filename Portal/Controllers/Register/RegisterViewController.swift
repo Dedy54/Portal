@@ -51,7 +51,7 @@ class RegisterViewController: UIViewController, ASAuthorizationControllerDelegat
     func setupProviderLoginView() {
         let authorizationButton = ASAuthorizationAppleIDButton(type: .default, style: .white)
         authorizationButton.addTarget(self, action: #selector(handleAuthorizationAppleIDButtonPress), for: .touchUpInside)
-        authorizationButton.cornerRadius = 20
+//        authorizationButton.cornerRadius = 20
         
         self.appleIDStackView.addArrangedSubview(authorizationButton)
     }

@@ -68,8 +68,8 @@ private extension VideoView {
             label.translatesAutoresizingMaskIntoConstraints = false
             
             label.text = " "
-            label.shadowOffset = CGSize(width: 0, height: 1)
-            label.shadowColor = UIColor.black
+//            label.shadowOffset = CGSize(width: 0, height: 1)
+//            label.shadowColor = UIColor.black
             label.numberOfLines = 0
             
             label.font = UIFont.systemFont(ofSize: 12)
